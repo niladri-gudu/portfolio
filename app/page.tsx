@@ -1,8 +1,8 @@
-import Intro from "@/components/intro/Intro";
+import Intro from "@/app/intro/page";
 
 export default function Home() {
   return (
-    <div className="h-[200vh]">
+    <div className="min-h-screen">
       <Intro />
     </div>
   );

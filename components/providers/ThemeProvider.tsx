@@ -19,15 +19,26 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
+const nextTheme = theme === "dark" ? "light" : "dark";
 
+  const applyTheme = () => {
     document.documentElement.classList.toggle("dark", nextTheme === "dark");
     localStorage.setItem("theme", nextTheme);
     setTheme(nextTheme);
   };
 
+  // Check if browser supports View Transition API
+  if (!document.startViewTransition) {
+    applyTheme();
+    return;
+  }
+
+  // Smooth cinematic transition
+  document.startViewTransition(() => applyTheme());
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme: theme ?? "light", toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

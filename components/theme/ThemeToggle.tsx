@@ -11,8 +11,8 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       className={cn(
-        "inline-flex h-9 w-9 items-center justify-center rounded-md",
-        "border bg-background hover:bg-muted transition-colors"
+        "inline-flex h-9 w-9 items-center justify-center rounded-md cursor-pointer",
+        "border bg-background hover:bg-muted transition-colors cursor-pointer"
       )}
     >
       {theme === "dark" ? (

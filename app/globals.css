@@ -3,9 +3,23 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html,
+body {
+  font-family: inherit;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.font-telma {
+  font-family: var(--font-telma);
+}
+
+.font-ds {
+  font-family: var(--font-ds);
+}
+
 @theme {
   --breakpoint-xs: 475px;
-  --font-telma: var(--font-telma-variable);
 }
 
 @theme inline {
@@ -53,8 +67,6 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -84,6 +96,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
 }
 
 .dark {
@@ -122,21 +136,29 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
+  
+  *:focus-visible {
+    @apply outline-ring/50;
+  }
+  
   body {
     @apply bg-background text-foreground;
   }
 }
 
 @layer base {
-  html, body, * {
+  html:not(.setting-theme), 
+  html:not(.setting-theme) body,
+  html:not(.setting-theme) * {
     transition:
-      background-color 300ms ease,
-      color 300ms ease,
-      border-color 300ms ease,
-      fill 300ms ease,
-      stroke 300ms ease;
+      background-color 500ms ease,
+      color 500ms ease,
+      border-color 500ms ease,
+      fill 500ms ease,
+      stroke 500ms ease,
+      box-shadow 500ms ease;
   }
 }
 
@@ -148,7 +170,7 @@ html, body {
   height: 100%;
 }
 
-@media (pointer: fine) {
+/* @media (pointer: fine) {
   * {
     cursor: none !important;
   }
@@ -158,4 +180,42 @@ html, body {
   * {
     cursor: auto;
   }
+} */
+
+/* *::selection {
+  color: black;
+  background-color: white;
+}
+
+*::-moz-selection {
+  color: black;
+  background-color: white;
+} */
+
+::selection {
+  color: var(--background);     
+  background-color: var(--foreground);
+}
+
+.dark ::selection {
+  color: var(--background);     
+  background-color: var(--foreground); 
+}
+
+::-moz-selection {
+  color: var(--background);
+  background-color: var(--foreground);
+}
+.dark ::-moz-selection {
+  color: var(--background);
+  background-color: var(--foreground);
+}
+
+.card {
+  transition: all 300ms ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.005);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
