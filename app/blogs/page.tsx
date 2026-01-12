@@ -1,6 +1,6 @@
 import { PenTool } from "lucide-react";
 
-export default function Blogs() {
+export default function BlogsPage() {
     return (
         <>
             <section className="flex flex-col my-8 gap-6">

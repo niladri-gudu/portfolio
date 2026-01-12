@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import 'tailwind-scrollbar-hide/v4';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -148,7 +149,7 @@ body {
   }
 }
 
-@layer base {
+/* @layer base {
   html:not(.setting-theme), 
   html:not(.setting-theme) body,
   html:not(.setting-theme) * {
@@ -160,11 +161,11 @@ body {
       stroke 500ms ease,
       box-shadow 500ms ease;
   }
-}
+} */
 
-.no-transition * {
+/* .no-transition * {
   transition: none !important;
-}
+} */
 
 html, body {
   height: 100%;
@@ -211,11 +212,31 @@ html, body {
   background-color: var(--foreground);
 }
 
-.card {
+/* .card {
   transition: all 300ms ease-in-out;
 }
 
 .card:hover {
   transform: scale(1.005);
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+} */
+
+/* ✅ hide scrollbar inside GitHubCalendar / react-activity-calendar */
+.react-activity-calendar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.react-activity-calendar::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* if internal wrapper is scrollable */
+.react-activity-calendar > div {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.react-activity-calendar > div::-webkit-scrollbar {
+  display: none;
 }
