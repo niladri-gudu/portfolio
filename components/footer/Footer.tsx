@@ -81,7 +81,7 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Niladri
+            © {new Date().getFullYear()} nILADRI.
           </p>
 
           <p className="text-xs text-muted-foreground">
