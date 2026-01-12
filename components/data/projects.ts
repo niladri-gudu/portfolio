@@ -44,4 +44,44 @@ export const projectItems: ProjectItem[] = [
       { name: "Shadcn UI", icon: Shadcn },
     ],
   },
+  {
+  title: "Folder",
+  description:
+  "A cloud storage platform like Google Drive with file sharing, trash, favorites and S3 uploads.",
+  image: "/nature.jpg",
+    status: "Building",
+
+    links: {
+      website: "https://foldr-flax.vercel.app",
+      github: "https://github.com/niladri-gudu",
+    },
+
+    technologies: [
+      { name: "Next.js", icon: Next },
+      { name: "TypeScript", icon: Typescript },
+      { name: "Vercel", icon: Vercel },
+      { name: "Tailwind CSS", icon: Tailwind },
+      { name: "Shadcn UI", icon: Shadcn },
+    ],
+  },
+  {
+  title: "Foldar",
+  description:
+  "A cloud storage platform like Google Drive with file sharing, trash, favorites and S3 uploads.",
+  image: "/nature.jpg",
+    status: "Building",
+
+    links: {
+      website: "https://foldr-flax.vercel.app",
+      github: "https://github.com/niladri-gudu",
+    },
+
+    technologies: [
+      { name: "Next.js", icon: Next },
+      { name: "TypeScript", icon: Typescript },
+      { name: "Vercel", icon: Vercel },
+      { name: "Tailwind CSS", icon: Tailwind },
+      { name: "Shadcn UI", icon: Shadcn },
+    ],
+  },
 ];

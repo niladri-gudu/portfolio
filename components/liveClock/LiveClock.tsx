@@ -23,7 +23,6 @@ export default function LiveClock() {
     return () => clearInterval(interval);
   }, []);
 
-  // Return a placeholder or a non-breaking space to prevent layout shift
   return (
     <span className="tabular-nums">
       {time || "00:00:00 AM"}

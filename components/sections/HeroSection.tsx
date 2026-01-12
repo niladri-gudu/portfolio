@@ -3,11 +3,10 @@ import { MapPin } from "lucide-react";
 import LiveClock from "@/components/liveClock/LiveClock";
 
 export default function HeroSection() {
-  const isAvailable = true;
+  const isAvailable = false;
 
   return (
     <section className="space-y-10">
-      {/* Top hero row */}
       <main className="flex flex-col-reverse md:flex-row md:items-end justify-between gap-8">
         <div className="flex flex-col gap-6">
           <div className="inline-flex items-center w-fit gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-[10px] font-mono uppercase tracking-wider">
@@ -64,10 +63,8 @@ export default function HeroSection() {
         </div>
       </main>
 
-      {/* Divider */}
-      <div className="w-full h-[1px] bg-gradient-to-r from-neutral-200 dark:from-neutral-800 to-transparent" />
+      <div className="w-full h-px rounded-2xl bg-linear-to-r from-neutral-200 dark:from-neutral-800 to-transparent" />
 
-      {/* About paragraph (moved here) */}
       <div className="max-w-2xl text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed tracking-tight italic font-light">
         <p>
           Building decentralized systems and high-fidelity interfaces. Currently

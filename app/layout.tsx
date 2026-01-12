@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "@/components/providers/Providers";
 import Header from "@/components/header/Header";
 import { geistSans, geistMono, telma, ds } from "../lib/fonts"
+import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "nILADRI - Web3 Developer",
@@ -32,6 +33,7 @@ export default function RootLayout({
           <div className="mx-auto w-full md:w-3xl">
             <Header />
             <main>{children}</main>
+            <Footer />
           </div>
         </Providers>
       </body>

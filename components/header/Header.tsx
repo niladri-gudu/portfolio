@@ -1,33 +1,24 @@
 import Link from "next/link";
 import ThemeToggle from "../theme/ThemeToggle";
-import CursorHover from "../cursor/CursorHover";
+import HeaderNav from "./HeaderNav";
 
 export default function Header() {
-  const links = [
-    { href: "/work", label: "Work" },
-    { href: "/projects", label: "Projects" },
-    // { href: "/blogs", label: "Blogs" },
-  ];
-
   return (
-    <header className="sticky top-0 z-50 flex items-center px-6 py-4 justify-between bg-background">
-        {/* <CursorHover> */}
-            <Link href="/" className="text-4xl font-bold font-telma">
-                n.
-            </Link>
-        {/* </CursorHover> */}
+    <header className="sticky top-0 z-50 w-full border-border bg-background/90 backdrop-blur">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between">
+        <Link
+          href="/"
+          aria-label="Home"
+          className="font-telma text-4xl leading-none font-bold select-none"
+        >
+          n.
+        </Link>
 
-      <nav className="flex items-center gap-4">
-        {links.map((link) => (
-          // <span key={link.href}>
-            <Link href={link.href} key={link.href}>{link.label}</Link>
-          // </span>
-        ))}
-
-        {/* <CursorHover> */}
+        <div className="flex items-center gap-4 sm:gap-6 text-sm">
+          <HeaderNav />
           <ThemeToggle />
-        {/* </CursorHover> */}
-      </nav>
+        </div>
+      </div>
     </header>
   );
 }

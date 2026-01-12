@@ -28,7 +28,6 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-xl font-semibold">{item.title}</h3>
 
-          {/* Links */}
           <div className="flex gap-3">
             {item.links?.website && (
               <Link href={item.links.website} target="_blank">
@@ -62,7 +61,6 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
           {item.description}
         </p>
 
-        {/* Technologies */}
         <div className="mb-6">
           <h3 className="mb-2 text-muted-foreground font-semibold">
             Technologies
@@ -85,7 +83,6 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="flex items-center justify-between">
           {item.status === "Building" ? (
             <div className="flex items-center gap-2 border border-amber-500/20 rounded-md px-2 py-1 text-xs bg-amber-500/10 text-amber-500 font-medium tracking-tight">

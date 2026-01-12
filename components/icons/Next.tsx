@@ -4,7 +4,6 @@ export const Next = (props: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 128 128"
     {...props}
-    // fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <circle cx="64" cy="64" r="64"></circle>

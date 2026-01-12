@@ -12,7 +12,6 @@ const WorldIcon = forwardRef<AnimatedIconHandle, AnimatedIconProps>(
     const [scope, animate] = useAnimate();
 
     const start = useCallback(async () => {
-      // Rotate the globe
       animate(
         ".world-meridians",
         {
@@ -61,14 +60,12 @@ const WorldIcon = forwardRef<AnimatedIconHandle, AnimatedIconProps>(
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
 
-        {/* Globe circle */}
         <motion.path
           d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"
           className="world-globe"
           style={{ transformOrigin: "50% 50%" }}
         />
 
-        {/* Horizontal lines and meridians */}
         <motion.g
           className="world-meridians"
           style={{ transformOrigin: "50% 50%" }}

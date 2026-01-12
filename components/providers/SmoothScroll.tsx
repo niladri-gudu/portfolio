@@ -17,7 +17,6 @@ export default function SmoothScroll({
         duration: 1.2,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        // smoothTouch: false,
       });
 
       const raf = (time: number) => {
@@ -28,7 +27,6 @@ export default function SmoothScroll({
       rafId = requestAnimationFrame(raf);
     };
 
-    // ✅ Wait until full page load
     if (document.readyState === "complete") {
       initLenis();
     } else {
