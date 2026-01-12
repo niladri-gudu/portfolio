@@ -35,7 +35,7 @@ export default function SpotifyCard() {
               </span>
             )}
           </div>
-          <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate max-w-[180px] sm:max-w-xs">
+          <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate max-w-45 sm:max-w-xs">
             {songName}
           </h3>
           <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium">
