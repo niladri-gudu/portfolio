@@ -13,7 +13,6 @@ model VisitLog {
   region    String   @default("UNKNOWN")
   city      String   @default("UNKNOWN")
 
-  pathname  String   @default("/")
   referer   String?
   userAgent String?
 

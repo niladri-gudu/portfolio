@@ -5,14 +5,7 @@ function getGeo(req: NextRequest) {
   const country = req.headers.get("x-vercel-ip-country") ?? "UNKNOWN";
   const region = req.headers.get("x-vercel-ip-country-region") ?? "UNKNOWN";
   const city = req.headers.get("x-vercel-ip-city") ?? "UNKNOWN";
-
   return { country, region, city };
-}
-
-function safeString(val: unknown, fallback = "/") {
-  if (typeof val !== "string") return fallback;
-  const trimmed = val.trim();
-  return trimmed.length ? trimmed : fallback;
 }
 
 export async function POST(req: NextRequest) {
@@ -21,24 +14,12 @@ export async function POST(req: NextRequest) {
 
     const userAgent = req.headers.get("user-agent");
     const referer = req.headers.get("referer");
-
-    // Body is optional (we send pathname from frontend)
-    const body = await req.json().catch(() => ({}));
-    const pathname = safeString(body?.pathname, "/");
-
-    /**
-     * ✅ Anti spam:
-     * If same visit (same geo + ua + path) happened in last 20s,
-     * skip insert.
-     *
-     * This prevents log explosion due to React strict mode / refreshes.
-     */
+    
     const last = await prisma.visitLog.findFirst({
       where: {
         country,
         region,
         city,
-        pathname,
         userAgent: userAgent ?? null,
       },
       orderBy: { createdAt: "desc" },
@@ -53,7 +34,6 @@ export async function POST(req: NextRequest) {
         country,
         region,
         city,
-        pathname,
         referer: referer ?? null,
         userAgent: userAgent ?? null,
       },
