@@ -3,12 +3,14 @@ import "./globals.css";
 
 import Providers from "@/components/providers/Providers";
 import Header from "@/components/header/Header";
-import { geistSans, geistMono, telma, ds } from "../lib/fonts"
+import { geistSans, geistMono, telma, ds } from "../lib/fonts";
 import Footer from "@/components/footer/Footer";
+import VisitLogger from "@/components/visitLogger/VisitLogger";
 
 export const metadata: Metadata = {
   title: "nILADRI - Web3 Developer",
-  description:     "Portfolio of Niladri, a Web3 and dApp developer focused on building decentralized applications, smart contracts, and modern web experiences.",
+  description:
+    "Portfolio of Niladri, a Web3 and dApp developer focused on building decentralized applications, smart contracts, and modern web experiences.",
   keywords: [
     "Niladri",
     "Web3 developer",
@@ -32,6 +34,7 @@ export default function RootLayout({
         <Providers>
           <div className="mx-auto w-full md:w-3xl">
             <Header />
+            <VisitLogger />
             <main>{children}</main>
             <Footer />
           </div>

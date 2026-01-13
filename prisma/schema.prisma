@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model VisitLog {
+  id        String   @id @default(cuid())
+
+  country   String   @default("UNKNOWN")
+  region    String   @default("UNKNOWN")
+  city      String   @default("UNKNOWN")
+
+  pathname  String   @default("/")
+  referer   String?
+  userAgent String?
+
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([country])
+}
