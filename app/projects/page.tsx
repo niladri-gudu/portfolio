@@ -17,13 +17,13 @@ export default function ProjectsPage() {
       <hr className="border mx-3 rounded-xl" />
 
       <section className="flex flex-col gap-5 pb-8">
-        <h2 className="px-6 pt-5">
+        <h2 className="px-6 pt-5 pb-2">
           All Projects <span className="text-muted-foreground">({projectItems.length})</span>
         </h2>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 px-4">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 px-4 divide-y divide-neutral-200 dark:divide-neutral-800">
           {projectItems.map((item) => (
-            <ProjectCard key={item.title} item={item} />
+            <ProjectCard key={item.slug} item={item} />
           ))}
         </div>
       </section>

@@ -13,7 +13,7 @@ import type { ProjectItem } from "@/components/data/projects";
 
 const ProjectCard = ({ item }: { item: ProjectItem }) => {
   return (
-    <section className="flex flex-col h-full rounded-2xl border border-neutral-200 dark:border-neutral-800 p-4 bg-white dark:bg-neutral-900 hover:shadow-lg">
+    <section className="flex flex-col h-full pb-8">
       <div className="relative w-full aspect-3/2 rounded-xl overflow-hidden mb-4">
         <Image
           src={item.image}
@@ -101,7 +101,7 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
           )}
 
           <Link
-            href="#"
+            href={`/projects/${item.slug}`}
             className="group inline-flex items-center gap-2 border border-slate-200 rounded-md px-3 py-1.5 text-xs bg-slate-50/50 text-slate-600 font-medium tracking-tight hover:bg-white hover:text-slate-900 dark:bg-neutral-900/50 dark:border-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-neutral-200"
           >
             <span>View Details</span>

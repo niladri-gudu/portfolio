@@ -17,11 +17,11 @@ export default function WorkPage() {
       <hr className="border mx-3 rounded-xl" />
 
       <section className="flex flex-col gap-5 pb-8">
-        <h2 className="px-6 pt-5">
+        <h2 className="px-6 pt-5 pb-2">
           All Experiences <span className="text-muted-foreground">({workItems.length})</span>
         </h2>
 
-        <div className="grid grid-cols-1 gap-5 px-4">
+        <div className="grid grid-cols-1 gap-5 px-4 divide-y divide-neutral-200 dark:divide-neutral-800">
           {workItems.map((item, idx) => (
             <WorkCard
               key={`${item.company}-${idx}`}

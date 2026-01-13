@@ -4,11 +4,11 @@ import { socials } from "@/components/data/socials";
 export default function SocialsSection() {
   return (
     <div className="space-y-6">
-      <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
+      <h2 className="text-md font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
         Connect with me
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-2">
         {socials.map((link) => {
           const Icon = link.icon;
           return (

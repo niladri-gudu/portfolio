@@ -9,7 +9,7 @@ export default function GithubGraph() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="space-y-6 mt-12">
+    <div className="space-y-6">
       <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
         GitHub Activity ({currentYear})
       </h2>
