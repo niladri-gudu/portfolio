@@ -62,7 +62,7 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
         </p>
 
         <div className="mb-6">
-          <h3 className="mb-2 text-muted-foreground font-semibold">
+          <h3 className="mb-2 font-semibold">
             Technologies
           </h3>
 

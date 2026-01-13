@@ -21,11 +21,12 @@ export default function ProjectsPage() {
           All Projects <span className="text-muted-foreground">({projectItems.length})</span>
         </h2>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 px-4 divide-y divide-neutral-200 dark:divide-neutral-800">
-          {projectItems.map((item) => (
-            <ProjectCard key={item.slug} item={item} />
-          ))}
-        </div>
+<div className="grid grid-cols-1 gap-5 md:grid-cols-2 px-4 divide-y divide-neutral-200 dark:divide-neutral-800 md:divide-y-0">
+  {projectItems.map((item) => (
+    <ProjectCard key={item.slug} item={item} />
+  ))}
+</div>
+
       </section>
     </>
   );

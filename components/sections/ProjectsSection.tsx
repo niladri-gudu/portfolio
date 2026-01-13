@@ -8,7 +8,7 @@ export default function ProjectsSection() {
         Projects
       </h2>
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 divide-y divide-neutral-200 dark:divide-neutral-800">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 divide-y divide-neutral-200 dark:divide-neutral-800 md:divide-y-0">
         {projectItems.map((item) => (
           <ProjectCard key={item.title} item={item} />
         ))}
