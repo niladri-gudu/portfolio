@@ -7,7 +7,7 @@ type TimeParts = {
   hh: string;
   mm: string;
   ss: string;
-  ap: string; // AM / PM
+  ap: string;
 };
 
 function AnimatedPart({
@@ -16,7 +16,7 @@ function AnimatedPart({
   widthClass,
 }: {
   value: string;
-  animateKey: string; // changes ONLY when we want animation
+  animateKey: string;
   widthClass: string;
 }) {
   return (
@@ -55,10 +55,8 @@ export default function LiveClock() {
     ap: "AM",
   });
 
-  // store previous parts so we know what changed
   const prevRef = useRef(parts);
 
-  // animation keys: update ONLY when that segment changes
   const [keys, setKeys] = useState({
     hh: "hh",
     mm: "mm",
@@ -80,7 +78,6 @@ export default function LiveClock() {
 
       const prev = prevRef.current;
 
-      // update animation keys ONLY for changed segments
       setKeys((k) => ({
         hh: next.hh !== prev.hh ? `hh-${next.hh}` : k.hh,
         mm: next.mm !== prev.mm ? `mm-${next.mm}` : k.mm,

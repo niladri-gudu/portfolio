@@ -40,7 +40,6 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
 
   return (
     <section className="flex flex-col h-full pb-8">
-      {/* HEADER */}
       <main className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between pl-2">
         <div className="flex items-center gap-4">
           <div className="relative flex items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950 w-14 h-14 shrink-0 shadow-sm">
@@ -191,7 +190,6 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
         </div>
       </main>
 
-      {/* ✅ EXPANDED (Motion) */}
       <AnimatePresence initial={false}>
         {isExpanded && (
           <motion.div

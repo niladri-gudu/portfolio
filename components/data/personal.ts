@@ -30,7 +30,7 @@ export type PersonalData = {
 
 export const personalData: PersonalData = {
   availability: {
-    isAvailable: false,
+    isAvailable: true,
     availableLabel: "Available for work",
     busyLabel: "Busy Building / Unavailable",
   },

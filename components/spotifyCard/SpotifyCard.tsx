@@ -10,7 +10,7 @@ export default function SpotifyCard() {
   return (
     <div
       className="
-        group w-full p-5 rounded-2xl border
+        group p-4 mx-2 rounded-2xl border
         border-neutral-200 dark:border-neutral-800
         bg-neutral-50/50 dark:bg-neutral-900/30
         flex items-center justify-between

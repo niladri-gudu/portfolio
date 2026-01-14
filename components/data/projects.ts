@@ -49,7 +49,6 @@ export const projectItems: ProjectItem[] = [
       github: "https://github.com/niladri-gudu",
     },
 
-    // ✅ NEW DUMMY DETAILS
     timeline: "2 months",
     role: "Full Stack Developer",
     team: "Solo",
@@ -113,7 +112,6 @@ export const projectItems: ProjectItem[] = [
       github: "https://github.com/niladri-gudu",
     },
 
-    // ✅ NEW DUMMY DETAILS
     timeline: "2 months",
     role: "Full Stack Developer",
     team: "Solo",
@@ -177,7 +175,6 @@ export const projectItems: ProjectItem[] = [
       github: "https://github.com/niladri-gudu",
     },
 
-    // ✅ NEW DUMMY DETAILS
     timeline: "2 months",
     role: "Full Stack Developer",
     team: "Solo",

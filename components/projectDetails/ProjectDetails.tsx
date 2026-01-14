@@ -60,8 +60,7 @@ const linkArrowClass =
 
 const ProjectDetails = ({ project }: { project: ProjectItem }) => {
   return (
-    <section className="px-6 py-10 max-w-5xl mx-auto">
-      {/* TOP ROW */}
+    <section className="px-4 py-10 max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <BackButton />
 
@@ -82,8 +81,7 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
         )}
       </div>
 
-      {/* HERO IMAGE */}
-      <div className="relative w-full aspect-3/2 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-8">
+      <div className="relative mx-2 aspect-3/2 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-8">
         <Image
           src={project.image}
           alt={project.title}
@@ -93,17 +91,15 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
         />
       </div>
 
-      {/* TITLE + DESC */}
-      <div className="mb-8">
+      <div className="mb-8 pl-2 mx-1">
         <h1 className="text-4xl font-bold mb-3">{project.title}</h1>
         <p className="text-muted-foreground text-lg leading-relaxed">
           {project.description}
         </p>
       </div>
 
-      {/* LINKS */}
       {(project.links?.website || project.links?.github) && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-1 mx-1">
           {project.links?.website && (
             <Link
               href={project.links.website}

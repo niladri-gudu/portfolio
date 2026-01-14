@@ -7,10 +7,9 @@ export default function HeroSection() {
   const isAvailable = personalData.availability.isAvailable;
 
   return (
-    <section className="space-y-10">
+    <section className="space-y-10 px-2">
       <main className="flex flex-col-reverse md:flex-row md:items-end justify-between gap-8">
         <div className="flex flex-col gap-6">
-          {/* Availability */}
           <div
             className="
     group relative inline-flex items-center w-fit gap-2 px-3 py-1 rounded-full
@@ -20,10 +19,9 @@ export default function HeroSection() {
     overflow-hidden
     transition-all duration-300 ease-out
     hover:-translate-y-[1px] hover:shadow-sm dark:hover:shadow-neutral-950/40
-    hover:border-neutral-300 dark:hover:border-neutral-700
+    hover:border-neutral-300 dark:hover:border-neutral-700 cursor-pointer
   "
           >
-            {/* ✅ shimmer sweep */}
             <span
               className="
       pointer-events-none absolute inset-0
@@ -36,18 +34,15 @@ export default function HeroSection() {
 
             {isAvailable ? (
               <>
-                {/* Dot */}
                 <span className="relative flex h-2 w-2 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-[1px]">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
 
-                {/* Main label */}
                 <span className="text-neutral-600 dark:text-neutral-400 transition-colors duration-300 group-hover:text-neutral-800 dark:group-hover:text-neutral-200">
                   {personalData.availability.availableLabel}
                 </span>
 
-                {/* ✅ Hidden easter egg message */}
                 <span
                   className="
           max-w-0 overflow-hidden whitespace-nowrap
@@ -63,15 +58,12 @@ export default function HeroSection() {
               </>
             ) : (
               <>
-                {/* Dot */}
                 <span className="h-2 w-2 rounded-full bg-orange-500 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-[1px]" />
 
-                {/* Main label */}
                 <span className="text-neutral-500 dark:text-neutral-500 transition-colors duration-300 group-hover:text-neutral-700 dark:group-hover:text-neutral-300">
                   {personalData.availability.busyLabel}
                 </span>
 
-                {/* ✅ Hidden easter egg message */}
                 <span
                   className="
           max-w-0 overflow-hidden whitespace-nowrap
@@ -88,7 +80,6 @@ export default function HeroSection() {
             )}
           </div>
 
-          {/* Name + Role */}
           <div className="space-y-2">
             <h1 className="pl-2 text-7xl md:text-8xl font-ds font-extrabold text-neutral-900 dark:text-neutral-50 leading-[0.8]">
               {personalData.profile.name}
@@ -99,7 +90,6 @@ export default function HeroSection() {
             </p>
           </div>
 
-          {/* Location + Clock */}
           <div className="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500">
             <div className="flex items-center gap-2">
               <MapPin size={14} className="text-neutral-400" />
@@ -114,7 +104,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Avatar */}
         <div className="relative group">
           <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden grayscale hover:grayscale-0 shadow-2xl">
             <Image
@@ -126,7 +115,7 @@ export default function HeroSection() {
             />
           </div>
 
-          <div
+          {/* <div
             className="
     pointer-events-none absolute left-1/2 -translate-x-1/2 -bottom-7
     whitespace-nowrap
@@ -143,13 +132,12 @@ export default function HeroSection() {
               🎵
             </span>
             <span className="align-middle">made with music</span>
-          </div>
+          </div> */}
         </div>
       </main>
 
       <div className="w-full h-px rounded-2xl bg-linear-to-r from-neutral-200 dark:from-neutral-800 to-transparent" />
 
-      {/* Intro */}
       <div className="max-w-2xl text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed tracking-tight italic font-light">
         <p>
           {personalData.intro.text}{" "}
