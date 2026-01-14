@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
@@ -5,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { ChevronDown, Sparkles, Wrench } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 
 import WorldIcon from "../ui/world-icon";
 import TwitterXIcon from "../ui/twitter-x-icon";
@@ -21,30 +23,19 @@ type WorkCardProps = {
   showToggle?: boolean;
 };
 
-const SubHeading = ({
-  icon: Icon,
-  title,
-}: {
-  icon: any;
-  title: string;
-}) => {
+const SubHeading = ({ icon: Icon, title }: { icon: any; title: string }) => {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 pb-3">
       <Icon className="w-4 h-4 text-muted-foreground" />
-
       <h3 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
         {title}
       </h3>
-
-      {/* ✅ modern underline */}
-      {/* <div className="flex-1 h-px bg-neutral-200 dark:bg-neutral-800" /> */}
     </div>
   );
 };
 
 export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
   const [expanded, setExpanded] = useState(false);
-
   const isExpanded = showToggle ? expanded : true;
 
   return (
@@ -67,7 +58,7 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
               <h2 className="text-lg font-semibold">{item.company}</h2>
 
               {!!item.links && (
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1">
                   {item.links.website && (
                     <Link
                       href={item.links.website}
@@ -76,11 +67,16 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
                       className="flex items-center"
                     >
                       <Tooltip>
-                        <TooltipTrigger className="cursor-pointer text-muted-foreground">
-                          <WorldIcon
-                            size={18}
-                            className="text-muted-foreground"
-                          />
+                        <TooltipTrigger
+                          className="
+            inline-flex items-center justify-center
+            w-7 h-7 rounded-md
+            text-muted-foreground
+            hover:text-foreground
+            transition-colors
+          "
+                        >
+                          <WorldIcon size={18} className="block" />
                         </TooltipTrigger>
                         <TooltipContent>
                           <p>View Website</p>
@@ -97,11 +93,16 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
                       className="flex items-center"
                     >
                       <Tooltip>
-                        <TooltipTrigger className="cursor-pointer text-muted-foreground">
-                          <TwitterXIcon
-                            size={18}
-                            className="text-muted-foreground"
-                          />
+                        <TooltipTrigger
+                          className="
+            inline-flex items-center justify-center
+            w-7 h-7 rounded-md
+            text-muted-foreground
+            hover:text-foreground
+            transition-colors
+          "
+                        >
+                          <TwitterXIcon size={18} className="block" />
                         </TooltipTrigger>
                         <TooltipContent>
                           <p>Follow on X</p>
@@ -118,11 +119,16 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
                       className="flex items-center"
                     >
                       <Tooltip>
-                        <TooltipTrigger className="cursor-pointer text-muted-foreground">
-                          <LinkedinIcon
-                            size={18}
-                            className="text-muted-foreground"
-                          />
+                        <TooltipTrigger
+                          className="
+            inline-flex items-center justify-center
+            w-7 h-7 rounded-md
+            text-muted-foreground
+            hover:text-foreground
+            transition-colors
+          "
+                        >
+                          <LinkedinIcon size={18} className="block" />
                         </TooltipTrigger>
                         <TooltipContent>
                           <p>Connect on LinkedIn</p>
@@ -139,11 +145,16 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
                       className="flex items-center"
                     >
                       <Tooltip>
-                        <TooltipTrigger className="cursor-pointer text-muted-foreground">
-                          <GithubIcon
-                            size={18}
-                            className="text-muted-foreground"
-                          />
+                        <TooltipTrigger
+                          className="
+            inline-flex items-center justify-center
+            w-7 h-7 rounded-md
+            text-muted-foreground
+            hover:text-foreground
+            transition-colors
+          "
+                        >
+                          <GithubIcon size={18} className="block" />
                         </TooltipTrigger>
                         <TooltipContent>
                           <p>View Github</p>
@@ -171,7 +182,7 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
               {expanded ? "Hide details" : "View details"}
               <ChevronDown
                 size={14}
-                className={`transition-transform ${
+                className={`transition-transform duration-300 ${
                   expanded ? "rotate-180" : ""
                 }`}
               />
@@ -180,41 +191,50 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
         </div>
       </main>
 
-      {/* EXPANDED */}
-      {isExpanded && (
-        <div className="mt-6 flex flex-col gap-5 pl-2">
-          {/* ✅ Summary heading modern */}
-          <SubHeading icon={Sparkles} title="Summary" />
+      {/* ✅ EXPANDED (Motion) */}
+      <AnimatePresence initial={false}>
+        {isExpanded && (
+          <motion.div
+            key="expanded"
+            initial={{ height: 0, opacity: 0, y: -6 }}
+            animate={{ height: "auto", opacity: 1, y: 0 }}
+            exit={{ height: 0, opacity: 0, y: -6 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="overflow-hidden"
+          >
+            <div className="mt-6 flex flex-col pl-2">
+              <SubHeading icon={Sparkles} title="Summary" />
 
-          <ul className="list-disc list-outside ml-4 space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-            {item.summary.map((point, i) => (
-              <li key={`${point}-${i}`}>{point}</li>
-            ))}
-          </ul>
+              <ul className="list-disc list-outside ml-4 space-y-2 mb-5 text-sm text-neutral-600 dark:text-neutral-400">
+                {item.summary.map((point, i) => (
+                  <li key={`${point}-${i}`}>{point}</li>
+                ))}
+              </ul>
 
-          {/* ✅ Tools heading modern */}
-          <SubHeading icon={Wrench} title="Tools & Technologies" />
+              <SubHeading icon={Wrench} title="Tools & Technologies" />
 
-          <div className="flex flex-wrap gap-2 pl-1 mb-2">
-            {item.technologies.map((tech) => {
-              const Icon = techIconMap[tech.icon];
+              <div className="flex flex-wrap gap-2 pl-1 mb-2">
+                {item.technologies.map((tech) => {
+                  const Icon = techIconMap[tech.icon];
 
-              return (
-                <Link
-                  key={tech.name}
-                  href={tech.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="tracking-tight px-2 py-1.5 rounded-md text-xs font-bold border border-neutral-200 bg-neutral-50 text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 cursor-pointer flex items-center gap-1.5 transition"
-                >
-                  <Icon className="w-4 h-4" />
-                  {tech.name}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      )}
+                  return (
+                    <Link
+                      key={tech.name}
+                      href={tech.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="tracking-tight px-2 py-1.5 rounded-md text-xs font-bold border border-neutral-200 bg-neutral-50 text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 cursor-pointer flex items-center gap-1.5 transition"
+                    >
+                      <Icon className="w-4 h-4" />
+                      {tech.name}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

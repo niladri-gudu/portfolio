@@ -19,7 +19,6 @@ const SectionBlock = ({
       <div className="flex items-center gap-3 mb-4">
         <div className="h-6 w-0.75 rounded-full bg-neutral-200 dark:bg-neutral-800" />
         <h2 className="text-2xl font-semibold">{title}</h2>
-        {/* <div className="flex-1 h-px bg-neutral-200 dark:bg-neutral-800" /> */}
       </div>
 
       <div className="pl-4">{children}</div>
@@ -38,6 +37,27 @@ const InfoList = ({ items }: { items?: string[] }) => {
     </ul>
   );
 };
+
+// ✅ Reusable hover styles (keeps JSX clean)
+const linkCardClass =
+  "group flex items-center gap-3 px-4 py-3 rounded-xl border " +
+  "border-neutral-200 dark:border-neutral-800 bg-background " +
+  "transition-all duration-300 ease-out " +
+  "hover:border-neutral-300 dark:hover:border-neutral-700 " +
+  "hover:-translate-y-[1px] hover:shadow-sm dark:hover:shadow-neutral-950/40";
+
+const linkIconWrapClass =
+  "flex items-center justify-center w-9 h-9 rounded-lg " +
+  "bg-muted text-muted-foreground " +
+  "transition-all duration-300 ease-out " +
+  "group-hover:bg-accent group-hover:text-accent-foreground " +
+  "group-hover:scale-[1.06] group-hover:-rotate-3";
+
+const linkArrowClass =
+  "shrink-0 text-muted-foreground/40 opacity-50 " +
+  "transition-all duration-300 ease-out " +
+  "group-hover:text-primary group-hover:opacity-100 " +
+  "group-hover:translate-x-1 group-hover:-translate-y-1";
 
 const ProjectDetails = ({ project }: { project: ProjectItem }) => {
   return (
@@ -90,13 +110,13 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
               href={project.links.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition"
+              className={linkCardClass}
             >
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-muted text-muted-foreground group-hover:bg-accent group-hover:text-accent-foreground transition">
+              <div className={linkIconWrapClass}>
                 <WorldIcon />
               </div>
 
-              <div className="flex-1 flex flex-col gap-0.5">
+              <div className="flex-1 flex flex-col gap-0.5 min-w-0">
                 <div className="text-sm font-bold text-foreground tracking-tight">
                   Live Demo
                 </div>
@@ -107,10 +127,8 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
                 </div>
               </div>
 
-              <ArrowUpRight
-                size={16}
-                className="text-muted-foreground/30 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"
-              />
+              {/* ✅ animated arrow */}
+              <ArrowUpRight size={16} className={linkArrowClass} />
             </Link>
           )}
 
@@ -119,13 +137,13 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition"
+              className={linkCardClass}
             >
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-muted text-muted-foreground group-hover:bg-accent group-hover:text-accent-foreground transition">
+              <div className={linkIconWrapClass}>
                 <GithubIcon />
               </div>
 
-              <div className="flex-1 flex flex-col gap-0.5">
+              <div className="flex-1 flex flex-col gap-0.5 min-w-0">
                 <div className="text-sm font-bold text-foreground tracking-tight">
                   Source Code
                 </div>
@@ -136,10 +154,8 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
                 </div>
               </div>
 
-              <ArrowUpRight
-                size={16}
-                className="text-muted-foreground/30 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"
-              />
+              {/* ✅ animated arrow */}
+              <ArrowUpRight size={16} className={linkArrowClass} />
             </Link>
           )}
         </div>

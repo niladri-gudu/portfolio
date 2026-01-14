@@ -11,24 +11,78 @@ export default function HeroSection() {
       <main className="flex flex-col-reverse md:flex-row md:items-end justify-between gap-8">
         <div className="flex flex-col gap-6">
           {/* Availability */}
-          <div className="inline-flex items-center w-fit gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-[10px] font-mono uppercase tracking-wider">
+          <div
+            className="
+    group relative inline-flex items-center w-fit gap-2 px-3 py-1 rounded-full
+    bg-neutral-100 dark:bg-neutral-900
+    border border-neutral-200 dark:border-neutral-800
+    text-[10px] font-mono uppercase tracking-wider
+    overflow-hidden
+    transition-all duration-300 ease-out
+    hover:-translate-y-[1px] hover:shadow-sm dark:hover:shadow-neutral-950/40
+    hover:border-neutral-300 dark:hover:border-neutral-700
+  "
+          >
+            {/* ✅ shimmer sweep */}
+            <span
+              className="
+      pointer-events-none absolute inset-0
+      translate-x-[-120%] group-hover:translate-x-[120%]
+      transition-transform duration-700 ease-out
+      bg-linear-to-r from-transparent via-white/25 to-transparent
+      dark:via-white/10
+    "
+            />
+
             {isAvailable ? (
               <>
-                <span className="relative flex h-2 w-2">
+                {/* Dot */}
+                <span className="relative flex h-2 w-2 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-[1px]">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
 
-                <span className="text-neutral-600 dark:text-neutral-400">
+                {/* Main label */}
+                <span className="text-neutral-600 dark:text-neutral-400 transition-colors duration-300 group-hover:text-neutral-800 dark:group-hover:text-neutral-200">
                   {personalData.availability.availableLabel}
+                </span>
+
+                {/* ✅ Hidden easter egg message */}
+                <span
+                  className="
+          max-w-0 overflow-hidden whitespace-nowrap
+          opacity-0 translate-x-[-3px]
+          transition-all duration-300 ease-out
+          group-hover:max-w-[220px] group-hover:opacity-100 group-hover:translate-x-0
+          text-neutral-400 dark:text-neutral-500
+        "
+                >
+                  {" "}
+                  • Let’s build something cool ✨
                 </span>
               </>
             ) : (
               <>
-                <span className="h-2 w-2 rounded-full bg-orange-500"></span>
+                {/* Dot */}
+                <span className="h-2 w-2 rounded-full bg-orange-500 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-[1px]" />
 
-                <span className="text-neutral-500 dark:text-neutral-500">
+                {/* Main label */}
+                <span className="text-neutral-500 dark:text-neutral-500 transition-colors duration-300 group-hover:text-neutral-700 dark:group-hover:text-neutral-300">
                   {personalData.availability.busyLabel}
+                </span>
+
+                {/* ✅ Hidden easter egg message */}
+                <span
+                  className="
+          max-w-0 overflow-hidden whitespace-nowrap
+          opacity-0 translate-x-[-3px]
+          transition-all duration-300 ease-out
+          group-hover:max-w-[160px] group-hover:opacity-100 group-hover:translate-x-0
+          text-neutral-400 dark:text-neutral-500
+        "
+                >
+                  {" "}
+                  • In the zone… 🚧
                 </span>
               </>
             )}
@@ -72,7 +126,24 @@ export default function HeroSection() {
             />
           </div>
 
-          <div className="absolute -inset-3 border border-neutral-200 dark:border-neutral-800 rounded-[2rem] -z-10 group-hover:inset-0 opacity-50 transition-all"></div>
+          <div
+            className="
+    pointer-events-none absolute left-1/2 -translate-x-1/2 -bottom-7
+    whitespace-nowrap
+    text-[10px] font-mono uppercase tracking-widest
+    text-neutral-400 dark:text-neutral-500
+    drop-shadow-[0_1px_0_rgba(0,0,0,0.15)]
+    opacity-0 translate-y-1
+    transition-all duration-300 ease-out
+    group-hover:opacity-100 group-hover:translate-y-0
+    hidden md:block
+  "
+          >
+            <span className="inline-block mr-1 scale-75 opacity-70 align-middle">
+              🎵
+            </span>
+            <span className="align-middle">made with music</span>
+          </div>
         </div>
       </main>
 

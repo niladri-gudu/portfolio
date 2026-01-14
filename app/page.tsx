@@ -12,14 +12,14 @@ export default function HomePage() {
     <section className="py-16 selection:bg-neutral-200 dark:selection:bg-neutral-800">
       <PageContainer>
         <div className="space-y-12">
-          <HeroSection />
+            <HeroSection />
 
-          <SpotifyCard />
-          <SocialsSection />
-          <WorkSection />
-          <ProjectsSection />
+            <SpotifyCard />
+            <SocialsSection />
+            <WorkSection />
+            <ProjectsSection />
 
-          <GithubGraph />
+            <GithubGraph />
         </div>
       </PageContainer>
     </section>

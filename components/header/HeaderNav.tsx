@@ -1,5 +1,8 @@
 "use client";
 
+import { pressableSoft } from "@/lib/motion";
+import { motion } from "motion/react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -18,17 +21,21 @@ export default function HeaderNav() {
           pathname === link.href || pathname.startsWith(link.href + "/");
 
         return (
-          <Link
+          <motion.div
+            {...pressableSoft}
             key={link.href}
-            href={link.href}
-            className={`transition ${
-              isActive
-                ? "text-foreground font-medium"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
           >
-            {link.label}
-          </Link>
+            <Link
+              href={link.href}
+              className={`transition font-semibold hover:underline hover:decoration-2 underline-offset-2 ${
+                isActive
+                  ? "text-foreground font-medium underline decoration-2"
+                  : "text-muted-foreground"
+              }`}
+            >
+              {link.label}
+            </Link>
+          </motion.div>
         );
       })}
     </nav>
