@@ -13,7 +13,7 @@ import type { ProjectItem } from "@/components/data/projects";
 
 const ProjectCard = ({ item }: { item: ProjectItem }) => {
   return (
-    <section className="flex flex-col h-full pb-8">
+    <section className="flex flex-col h-full pb-8 px-2">
       <div className="relative w-full aspect-3/2 rounded-xl overflow-hidden mb-4">
         <Image
           src={item.image}

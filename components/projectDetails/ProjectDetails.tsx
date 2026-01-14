@@ -38,7 +38,6 @@ const InfoList = ({ items }: { items?: string[] }) => {
   );
 };
 
-// ✅ Reusable hover styles (keeps JSX clean)
 const linkCardClass =
   "group flex items-center gap-3 px-4 py-3 rounded-xl border " +
   "border-neutral-200 dark:border-neutral-800 bg-background " +
@@ -61,7 +60,7 @@ const linkArrowClass =
 
 const ProjectDetails = ({ project }: { project: ProjectItem }) => {
   return (
-    <section className="px-4 py-10 max-w-5xl mx-auto">
+    <section className="px-6 py-10 max-w-5xl mx-auto">
       {/* TOP ROW */}
       <div className="flex items-center justify-between mb-6">
         <BackButton />
@@ -84,7 +83,7 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
       </div>
 
       {/* HERO IMAGE */}
-      <div className="relative w-full aspect-3/2 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-10">
+      <div className="relative w-full aspect-3/2 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-8">
         <Image
           src={project.image}
           alt={project.title}
@@ -95,7 +94,7 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
       </div>
 
       {/* TITLE + DESC */}
-      <div className="mb-8 pl-2">
+      <div className="mb-8">
         <h1 className="text-4xl font-bold mb-3">{project.title}</h1>
         <p className="text-muted-foreground text-lg leading-relaxed">
           {project.description}
@@ -104,7 +103,7 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
 
       {/* LINKS */}
       {(project.links?.website || project.links?.github) && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {project.links?.website && (
             <Link
               href={project.links.website}
@@ -127,7 +126,6 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
                 </div>
               </div>
 
-              {/* ✅ animated arrow */}
               <ArrowUpRight size={16} className={linkArrowClass} />
             </Link>
           )}
@@ -154,14 +152,12 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
                 </div>
               </div>
 
-              {/* ✅ animated arrow */}
               <ArrowUpRight size={16} className={linkArrowClass} />
             </Link>
           )}
         </div>
       )}
 
-      {/* ✅ CLEAN SECTION BLOCKS */}
       {project.overview && (
         <SectionBlock title="Overview">
           <p className="text-muted-foreground leading-relaxed">

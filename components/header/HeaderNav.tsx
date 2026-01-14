@@ -27,9 +27,9 @@ export default function HeaderNav() {
           >
             <Link
               href={link.href}
-              className={`transition font-semibold hover:underline hover:decoration-2 underline-offset-2 ${
+              className={`transition font-semibold hover:underline hover:decoration-1 underline-offset-2 ${
                 isActive
-                  ? "text-foreground font-medium underline decoration-2"
+                  ? "text-foreground font-medium underline decoration-1"
                   : "text-muted-foreground"
               }`}
             >
