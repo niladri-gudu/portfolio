@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { socials } from "@/components/data/socials";
+import Reveal from "@/components/motion/Reveal";
 
 const socialCardClass =
   "group flex items-center gap-3 px-4 py-3 rounded-xl border " +
@@ -24,37 +25,40 @@ const socialArrowClass =
 export default function SocialsSection() {
   return (
     <div className="space-y-6">
-      <h2 className="text-md font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
-        Connect with me
-      </h2>
+      <Reveal delay={0.03}>
+        <h2 className="text-md font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
+          Connect with me
+        </h2>
+      </Reveal>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-2">
-        {socials.map((link) => {
+        {socials.map((link, idx) => {
           const Icon = link.icon;
 
           return (
-            <a
-              key={link.name}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={socialCardClass}
-            >
-              <div className={socialIconWrapClass}>
-                <Icon size={18} />
-              </div>
-
-              <div className="flex-1 flex flex-col gap-0.5 min-w-0">
-                <div className="text-sm font-bold text-foreground tracking-tight">
-                  {link.name}
+            <Reveal key={link.name} delay={(idx + 1) * 0.03}>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={socialCardClass}
+              >
+                <div className={socialIconWrapClass}>
+                  <Icon size={18} />
                 </div>
-                <div className="text-[10px] font-mono text-muted-foreground truncate">
-                  {link.username}
-                </div>
-              </div>
 
-              <ArrowUpRight size={16} className={socialArrowClass} />
-            </a>
+                <div className="flex-1 flex flex-col gap-0.5 min-w-0">
+                  <div className="text-sm font-bold text-foreground tracking-tight">
+                    {link.name}
+                  </div>
+                  <div className="text-[10px] font-mono text-muted-foreground truncate">
+                    {link.username}
+                  </div>
+                </div>
+
+                <ArrowUpRight size={16} className={socialArrowClass} />
+              </a>
+            </Reveal>
           );
         })}
       </div>

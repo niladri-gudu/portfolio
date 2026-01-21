@@ -6,6 +6,7 @@ import BackButton from "../backButton/BackButton";
 import type { ProjectItem } from "@/components/data/projects";
 
 import { ArrowUpRight } from "lucide-react";
+import Reveal from "@/components/motion/Reveal";
 
 const SectionBlock = ({
   title,
@@ -59,141 +60,163 @@ const linkArrowClass =
   "group-hover:translate-x-1 group-hover:-translate-y-1";
 
 const ProjectDetails = ({ project }: { project: ProjectItem }) => {
+  const d = (i: number) => (i + 1) * 0.03;
+
   return (
     <section className="px-4 py-10 max-w-5xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <BackButton />
+      <Reveal delay={0.03}>
+        <div className="flex items-center justify-between mb-6 mx-2">
+          <BackButton />
 
-        {project.status && (
-          <div
-            className={`flex items-center gap-2 rounded-md px-2 py-1 text-xs font-medium tracking-tight border
+          {project.status && (
+            <div
+              className={`flex items-center gap-2 rounded-md px-2 py-1 text-xs font-medium tracking-tight border
               ${
                 project.status === "Building"
                   ? "border-amber-500/20 bg-amber-500/10 text-amber-500"
                   : "border-green-500/20 bg-green-500/10 text-green-500"
               }`}
-          >
-            <svg height="6" width="6" className="animate-pulse">
-              <circle cx="3" cy="3" r="3" fill="currentColor" />
-            </svg>
-            {project.status}
-          </div>
-        )}
-      </div>
-
-      <div className="relative mx-2 aspect-3/2 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-8">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
-
-      <div className="mb-8 pl-2 mx-1">
-        <h1 className="text-4xl font-bold mb-3">{project.title}</h1>
-        <p className="text-muted-foreground text-lg leading-relaxed">
-          {project.description}
-        </p>
-      </div>
-
-      {(project.links?.website || project.links?.github) && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-1 mx-1">
-          {project.links?.website && (
-            <Link
-              href={project.links.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={linkCardClass}
             >
-              <div className={linkIconWrapClass}>
-                <WorldIcon />
-              </div>
-
-              <div className="flex-1 flex flex-col gap-0.5 min-w-0">
-                <div className="text-sm font-bold text-foreground tracking-tight">
-                  Live Demo
-                </div>
-                <div className="text-[10px] font-mono text-muted-foreground truncate">
-                  {project.links.website
-                    .replace("https://", "")
-                    .replace("http://", "")}
-                </div>
-              </div>
-
-              <ArrowUpRight size={16} className={linkArrowClass} />
-            </Link>
-          )}
-
-          {project.links?.github && (
-            <Link
-              href={project.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={linkCardClass}
-            >
-              <div className={linkIconWrapClass}>
-                <GithubIcon />
-              </div>
-
-              <div className="flex-1 flex flex-col gap-0.5 min-w-0">
-                <div className="text-sm font-bold text-foreground tracking-tight">
-                  Source Code
-                </div>
-                <div className="text-[10px] font-mono text-muted-foreground truncate">
-                  {project.links.github
-                    .replace("https://", "")
-                    .replace("http://", "")}
-                </div>
-              </div>
-
-              <ArrowUpRight size={16} className={linkArrowClass} />
-            </Link>
+              <svg height="6" width="6" className="animate-pulse">
+                <circle cx="3" cy="3" r="3" fill="currentColor" />
+              </svg>
+              {project.status}
+            </div>
           )}
         </div>
+      </Reveal>
+
+      <Reveal delay={d(1)}>
+        <div className="relative mx-2 aspect-3/2 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-8">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      </Reveal>
+
+      <Reveal delay={d(2)}>
+        <div className="mb-8 pl-2 mx-1">
+          <h1 className="text-4xl font-bold mb-3">{project.title}</h1>
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            {project.description}
+          </p>
+        </div>
+      </Reveal>
+
+      {(project.links?.website || project.links?.github) && (
+        <Reveal delay={d(3)}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-1 mx-1">
+            {project.links?.website && (
+              <Link
+                href={project.links.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkCardClass}
+              >
+                <div className={linkIconWrapClass}>
+                  <WorldIcon />
+                </div>
+
+                <div className="flex-1 flex flex-col gap-0.5 min-w-0">
+                  <div className="text-sm font-bold text-foreground tracking-tight">
+                    Live Demo
+                  </div>
+                  <div className="text-[10px] font-mono text-muted-foreground truncate">
+                    {project.links.website
+                      .replace("https://", "")
+                      .replace("http://", "")}
+                  </div>
+                </div>
+
+                <ArrowUpRight size={16} className={linkArrowClass} />
+              </Link>
+            )}
+
+            {project.links?.github && (
+              <Link
+                href={project.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkCardClass}
+              >
+                <div className={linkIconWrapClass}>
+                  <GithubIcon />
+                </div>
+
+                <div className="flex-1 flex flex-col gap-0.5 min-w-0">
+                  <div className="text-sm font-bold text-foreground tracking-tight">
+                    Source Code
+                  </div>
+                  <div className="text-[10px] font-mono text-muted-foreground truncate">
+                    {project.links.github
+                      .replace("https://", "")
+                      .replace("http://", "")}
+                  </div>
+                </div>
+
+                <ArrowUpRight size={16} className={linkArrowClass} />
+              </Link>
+            )}
+          </div>
+        </Reveal>
       )}
 
       {project.overview && (
-        <SectionBlock title="Overview">
-          <p className="text-muted-foreground leading-relaxed">
-            {project.overview}
-          </p>
-        </SectionBlock>
+        <Reveal delay={d(4)}>
+          <SectionBlock title="Overview">
+            <p className="text-muted-foreground leading-relaxed">
+              {project.overview}
+            </p>
+          </SectionBlock>
+        </Reveal>
       )}
 
-      <SectionBlock title="What Users Can Do">
-        <InfoList items={project.whatUsersCanDo} />
-      </SectionBlock>
+      <Reveal delay={d(5)}>
+        <SectionBlock title="What Users Can Do">
+          <InfoList items={project.whatUsersCanDo} />
+        </SectionBlock>
+      </Reveal>
 
-      <SectionBlock title="Why I built this">
-        <InfoList items={project.whyIBuiltThis} />
-      </SectionBlock>
+      <Reveal delay={d(6)}>
+        <SectionBlock title="Why I built this">
+          <InfoList items={project.whyIBuiltThis} />
+        </SectionBlock>
+      </Reveal>
 
-      <SectionBlock title="Tech Stack">
-        <div className="flex gap-3 flex-wrap">
-          {project.technologies.map((tech) => {
-            const Icon = tech.icon;
-            return (
-              <div
-                key={tech.name}
-                className="flex items-center gap-2 px-3 py-2 rounded-xl border border-neutral-200 dark:border-neutral-800 text-sm bg-white dark:bg-neutral-900"
-              >
-                {Icon ? <Icon className="w-5 h-5" /> : null}
-                <span>{tech.name}</span>
-              </div>
-            );
-          })}
-        </div>
-      </SectionBlock>
+      <Reveal delay={d(7)}>
+        <SectionBlock title="Tech Stack">
+          <div className="flex gap-3 flex-wrap">
+            {project.technologies.map((tech) => {
+              const Icon = tech.icon;
+              return (
+                <div
+                  key={tech.name}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl border border-neutral-200 dark:border-neutral-800 text-sm bg-white dark:bg-neutral-900"
+                >
+                  {Icon ? <Icon className="w-5 h-5" /> : null}
+                  <span>{tech.name}</span>
+                </div>
+              );
+            })}
+          </div>
+        </SectionBlock>
+      </Reveal>
 
-      <SectionBlock title="After launch & Impact">
-        <InfoList items={project.afterLaunchImpact} />
-      </SectionBlock>
+      <Reveal delay={d(8)}>
+        <SectionBlock title="After launch & Impact">
+          <InfoList items={project.afterLaunchImpact} />
+        </SectionBlock>
+      </Reveal>
 
-      <SectionBlock title="Future Plans">
-        <InfoList items={project.futurePlans} />
-      </SectionBlock>
+      <Reveal delay={d(9)}>
+        <SectionBlock title="Future Plans">
+          <InfoList items={project.futurePlans} />
+        </SectionBlock>
+      </Reveal>
     </section>
   );
 };

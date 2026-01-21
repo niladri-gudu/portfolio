@@ -10,79 +10,90 @@ import {
 } from "@/components/ui/tooltip";
 
 import type { ProjectItem } from "@/components/data/projects";
+import Reveal from "../motion/Reveal";
 
 const ProjectCard = ({ item }: { item: ProjectItem }) => {
+  const d = (i: number) => (i + 1) * 0.03;
+
+
   return (
     <section className="flex flex-col h-full pb-8 px-2">
-      <div className="relative w-full aspect-3/2 rounded-xl overflow-hidden mb-4">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+      <Reveal delay={d(0)}>
+        <div className="relative w-full aspect-3/2 rounded-xl overflow-hidden mb-4">
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      </Reveal>
 
       <main className="flex flex-col grow p-2">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xl font-semibold">{item.title}</h3>
+        <Reveal delay={d(1)}>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xl font-semibold">{item.title}</h3>
 
-          <div className="flex gap-3">
-            {item.links?.website && (
-              <Link href={item.links.website} target="_blank">
-                <Tooltip>
-                  <TooltipTrigger className="cursor-pointer text-muted-foreground">
-                    <WorldIcon />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>View Website</p>
-                  </TooltipContent>
-                </Tooltip>
-              </Link>
-            )}
+            <div className="flex gap-3">
+              {item.links?.website && (
+                <Link href={item.links.website} target="_blank">
+                  <Tooltip>
+                    <TooltipTrigger className="cursor-pointer text-muted-foreground">
+                      <WorldIcon />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>View Website</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </Link>
+              )}
 
-            {item.links?.github && (
-              <Link href={item.links.github} target="_blank">
-                <Tooltip>
-                  <TooltipTrigger className="cursor-pointer text-muted-foreground">
-                    <GithubIcon />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>View Source</p>
-                  </TooltipContent>
-                </Tooltip>
-              </Link>
-            )}
+              {item.links?.github && (
+                <Link href={item.links.github} target="_blank">
+                  <Tooltip>
+                    <TooltipTrigger className="cursor-pointer text-muted-foreground">
+                      <GithubIcon />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>View Source</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </Link>
+              )}
+            </div>
           </div>
-        </div>
+        </Reveal>
 
-        <p className="text-sm font-semibold text-muted-foreground mb-4 grow">
-          {item.description}
-        </p>
+        <Reveal delay={d(2)}>
+          <p className="text-sm font-semibold text-muted-foreground mb-4 grow">
+            {item.description}
+          </p>
+        </Reveal>
 
-        <div className="mb-6">
-          <h3 className="mb-2 font-semibold">
-            Technologies
-          </h3>
+        <Reveal delay={d(3)}>
+          <div className="mb-6">
+            <h3 className="mb-2 font-semibold">Technologies</h3>
 
-          <div className="flex cursor-pointer gap-2">
-            {item.technologies.map((t) => {
-              const Icon = t.icon;
-              return (
-                <Tooltip key={t.name}>
-                  <TooltipTrigger className="cursor-pointer">
-                    <Icon className="w-6 h-6 hover:scale-125 transition" />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{t.name}</p>
-                  </TooltipContent>
-                </Tooltip>
-              );
-            })}
+            <div className="flex cursor-pointer gap-2">
+              {item.technologies.map((t) => {
+                const Icon = t.icon;
+                return (
+                  <Tooltip key={t.name}>
+                    <TooltipTrigger className="cursor-pointer">
+                      <Icon className="w-6 h-6 hover:scale-125 transition" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{t.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </Reveal>
 
+        <Reveal delay={d(4)}>
         <div className="flex items-center justify-between">
           {item.status === "Building" ? (
             <div className="flex items-center gap-2 border border-amber-500/20 rounded-md px-2 py-1 text-xs bg-amber-500/10 text-amber-500 font-medium tracking-tight">
@@ -110,6 +121,7 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
             </span>
           </Link>
         </div>
+        </Reveal>
       </main>
     </section>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Music } from "lucide-react";
+import Reveal from "../motion/Reveal";
 
 export default function SpotifyCard() {
   const isPlaying = true;
@@ -8,9 +9,11 @@ export default function SpotifyCard() {
   const albumCover = "/nature.jpg";
 
   return (
+    <Reveal delay={0.03}>
+
     <div
       className="
-        group p-4 mx-2 rounded-2xl border
+      group p-4 mx-2 rounded-2xl border
         border-neutral-200 dark:border-neutral-800
         bg-neutral-50/50 dark:bg-neutral-900/30
         flex items-center justify-between
@@ -18,8 +21,8 @@ export default function SpotifyCard() {
         hover:bg-neutral-100 dark:hover:bg-neutral-900/50
         hover:-translate-y-[1px] hover:shadow-sm dark:hover:shadow-neutral-950/40
         hover:border-neutral-300 dark:hover:border-neutral-700
-      "
-    >
+        "
+        >
       <div className="flex items-center gap-4">
         <div
           className="
@@ -28,18 +31,18 @@ export default function SpotifyCard() {
             rounded-lg overflow-hidden shadow-md
             transition-transform duration-500 ease-out
             group-hover:rotate-[-1deg]
-          "
+            "
         >
           {albumCover ? (
             <Image
-              src={albumCover}
+            src={albumCover}
               alt={`${songName} album cover`}
               fill
               className="
-                object-cover scale-100
+              object-cover scale-100
                 transition-transform duration-700 ease-out
                 group-hover:scale-110
-              "
+                "
             />
           ) : (
             <Music size={20} className="text-neutral-400" />
@@ -50,11 +53,11 @@ export default function SpotifyCard() {
           <div className="flex items-center gap-2">
             <span
               className="
-                text-[10px] font-mono uppercase tracking-widest
-                text-neutral-500 dark:text-neutral-500
+              text-[10px] font-mono uppercase tracking-widest
+              text-neutral-500 dark:text-neutral-500
                 transition-colors duration-300
                 group-hover:text-neutral-600 dark:group-hover:text-neutral-400
-              "
+                "
             >
               {isPlaying ? "Currently Listening" : "Recently Played"}
             </span>
@@ -69,12 +72,12 @@ export default function SpotifyCard() {
 
           <h3
             className="
-              text-sm font-bold text-neutral-900 dark:text-neutral-100
-              truncate max-w-45 sm:max-w-xs
+            text-sm font-bold text-neutral-900 dark:text-neutral-100
+            truncate max-w-45 sm:max-w-xs
               transition-colors duration-300
               group-hover:text-neutral-950 dark:group-hover:text-white
-            "
-          >
+              "
+              >
             {songName}
           </h3>
 
@@ -83,7 +86,7 @@ export default function SpotifyCard() {
               text-xs text-neutral-500 dark:text-neutral-400 font-medium
               transition-opacity duration-300
               group-hover:opacity-95
-            "
+              "
           >
             by {artistName}
           </p>
@@ -94,16 +97,17 @@ export default function SpotifyCard() {
         <svg
           viewBox="0 0 24 24"
           className="
-            w-5 h-5
-            fill-neutral-300 dark:fill-neutral-700
-            transition-all duration-300 ease-out
+          w-5 h-5
+          fill-neutral-300 dark:fill-neutral-700
+          transition-all duration-300 ease-out
             group-hover:fill-[#1DB954]
             group-hover:scale-105
-          "
-        >
+            "
+            >
           <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.49 17.306c-.215.353-.675.464-1.023.25-2.856-1.745-6.452-2.14-10.686-1.17a.75.75 0 1 1-.336-1.462c4.636-1.06 8.604-.6 11.796 1.359.348.215.46.674.25 1.023zm1.465-3.264c-.269.438-.843.578-1.282.31-3.27-2.01-8.254-2.593-12.12-1.42a.937.937 0 1 1-.543-1.793c4.425-1.343 9.932-.686 13.635 1.59.438.27.578.843.31 1.282zm.126-3.41c-3.92-2.327-10.378-2.541-14.132-1.4c-.6.182-1.23-.165-1.41-.764-.183-.6.164-1.23.764-1.41 4.316-1.31 11.438-1.06 15.908 1.594a1.125 1.125 0 0 1-1.13 1.98z" />
         </svg>
       </div>
     </div>
+          </Reveal>
   );
 }

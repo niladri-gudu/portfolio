@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { ChevronDown, Sparkles, Wrench } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
 
 import WorldIcon from "../ui/world-icon";
 import TwitterXIcon from "../ui/twitter-x-icon";
@@ -17,6 +16,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 import type { WorkItem } from "@/components/data/work";
 import { techIconMap } from "@/components/icons/techIconMap";
+import Reveal from "../motion/Reveal";
 
 type WorkCardProps = {
   item: WorkItem;
@@ -37,170 +37,166 @@ const SubHeading = ({ icon: Icon, title }: { icon: any; title: string }) => {
 export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
   const [expanded, setExpanded] = useState(false);
   const isExpanded = showToggle ? expanded : true;
+  const d = (i: number) => (i + 1) * 0.03;
 
   return (
     <section className="flex flex-col h-full pb-8">
-      <main className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between pl-2">
-        <div className="flex items-center gap-4">
-          <div className="relative flex items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950 w-14 h-14 shrink-0 shadow-sm">
-            <Image
-              src={item.logo}
-              alt={`${item.company} Logo`}
-              width={30}
-              height={30}
-              className="object-contain hover:scale-110 transition"
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <div className="flex gap-3">
-              <h2 className="text-lg font-semibold">{item.company}</h2>
-
-              {!!item.links && (
-                <div className="flex items-center gap-1">
-                  {item.links.website && (
-                    <Link
-                      href={item.links.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center"
-                    >
-                      <Tooltip>
-                        <TooltipTrigger
-                          className="
-            inline-flex items-center justify-center
-            w-7 h-7 rounded-md
-            text-muted-foreground
-            hover:text-foreground
-            transition-colors
-          "
-                        >
-                          <WorldIcon size={18} className="block" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>View Website</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </Link>
-                  )}
-
-                  {item.links.twitter && (
-                    <Link
-                      href={item.links.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center"
-                    >
-                      <Tooltip>
-                        <TooltipTrigger
-                          className="
-            inline-flex items-center justify-center
-            w-7 h-7 rounded-md
-            text-muted-foreground
-            hover:text-foreground
-            transition-colors
-          "
-                        >
-                          <TwitterXIcon size={18} className="block" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Follow on X</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </Link>
-                  )}
-
-                  {item.links.linkedin && (
-                    <Link
-                      href={item.links.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center"
-                    >
-                      <Tooltip>
-                        <TooltipTrigger
-                          className="
-            inline-flex items-center justify-center
-            w-7 h-7 rounded-md
-            text-muted-foreground
-            hover:text-foreground
-            transition-colors
-          "
-                        >
-                          <LinkedinIcon size={18} className="block" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Connect on LinkedIn</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </Link>
-                  )}
-
-                  {item.links.github && (
-                    <Link
-                      href={item.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center"
-                    >
-                      <Tooltip>
-                        <TooltipTrigger
-                          className="
-            inline-flex items-center justify-center
-            w-7 h-7 rounded-md
-            text-muted-foreground
-            hover:text-foreground
-            transition-colors
-          "
-                        >
-                          <GithubIcon size={18} className="block" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>View Github</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </Link>
-                  )}
-                </div>
-              )}
+      <Reveal delay={d(0)}>
+        <main className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between pl-2">
+          <div className="flex items-center gap-4">
+            <div className="relative flex items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950 w-14 h-14 shrink-0 shadow-sm">
+              <Image
+                src={item.logo}
+                alt={`${item.company} Logo`}
+                width={30}
+                height={30}
+                className="object-contain hover:scale-110 transition"
+              />
             </div>
 
-            <h3 className="text-muted-foreground text-sm">{item.role}</h3>
+            <div className="flex flex-col">
+              <div className="flex gap-3">
+                <h2 className="text-lg font-semibold">{item.company}</h2>
+
+                {!!item.links && (
+                  <div className="flex items-center gap-1">
+                    {item.links.website && (
+                      <Link
+                        href={item.links.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center"
+                      >
+                        <Tooltip>
+                          <TooltipTrigger
+                            className="
+              inline-flex items-center justify-center
+              w-7 h-7 rounded-md
+              text-muted-foreground
+              hover:text-foreground
+              transition-colors
+            "
+                          >
+                            <WorldIcon size={18} className="block" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View Website</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </Link>
+                    )}
+
+                    {item.links.twitter && (
+                      <Link
+                        href={item.links.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center"
+                      >
+                        <Tooltip>
+                          <TooltipTrigger
+                            className="
+              inline-flex items-center justify-center
+              w-7 h-7 rounded-md
+              text-muted-foreground
+              hover:text-foreground
+              transition-colors
+            "
+                          >
+                            <TwitterXIcon size={18} className="block" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Follow on X</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </Link>
+                    )}
+
+                    {item.links.linkedin && (
+                      <Link
+                        href={item.links.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center"
+                      >
+                        <Tooltip>
+                          <TooltipTrigger
+                            className="
+              inline-flex items-center justify-center
+              w-7 h-7 rounded-md
+              text-muted-foreground
+              hover:text-foreground
+              transition-colors
+            "
+                          >
+                            <LinkedinIcon size={18} className="block" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Connect on LinkedIn</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </Link>
+                    )}
+
+                    {item.links.github && (
+                      <Link
+                        href={item.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center"
+                      >
+                        <Tooltip>
+                          <TooltipTrigger
+                            className="
+              inline-flex items-center justify-center
+              w-7 h-7 rounded-md
+              text-muted-foreground
+              hover:text-foreground
+              transition-colors
+            "
+                          >
+                            <GithubIcon size={18} className="block" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View Github</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </Link>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <h3 className="text-muted-foreground text-sm">{item.role}</h3>
+            </div>
           </div>
-        </div>
 
-        <div className="flex flex-col md:items-end border-neutral-100 pt-3 md:border-none md:pt-0 dark:border-neutral-800">
-          <h3 className="text-sm">{item.duration}</h3>
-          <h3 className="text-sm text-muted-foreground">{item.location}</h3>
+          <div className="flex flex-col md:items-end border-neutral-100 pt-3 md:border-none md:pt-0 dark:border-neutral-800">
+            <h3 className="text-sm">{item.duration}</h3>
+            <h3 className="text-sm text-muted-foreground">{item.location}</h3>
 
-          {showToggle && (
-            <button
-              onClick={() => setExpanded((v) => !v)}
-              className="mt-2 flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground cursor-pointer select-none"
-            >
-              {expanded ? "Hide details" : "View details"}
-              <ChevronDown
-                size={14}
-                className={`transition-transform duration-300 ${
-                  expanded ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-          )}
-        </div>
-      </main>
+            {showToggle && (
+              <button
+                onClick={() => setExpanded((v) => !v)}
+                className="mt-2 flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground cursor-pointer select-none"
+              >
+                {expanded ? "Hide details" : "View details"}
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-300 ${
+                    expanded ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+            )}
+          </div>
+        </main>
+      </Reveal>
 
-      <AnimatePresence initial={false}>
-        {isExpanded && (
-          <motion.div
-            key="expanded"
-            initial={{ height: 0, opacity: 0, y: -6 }}
-            animate={{ height: "auto", opacity: 1, y: 0 }}
-            exit={{ height: 0, opacity: 0, y: -6 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="overflow-hidden"
-          >
-            <div className="mt-6 flex flex-col pl-2">
+      {isExpanded && (
+        <div className="mt-6 flex flex-col pl-2">
+          <Reveal delay={d(1)}>
+            <div>
               <SubHeading icon={Sparkles} title="Summary" />
 
               <ul className="list-disc list-outside ml-4 space-y-2 mb-5 text-sm text-neutral-600 dark:text-neutral-400">
@@ -208,7 +204,11 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
                   <li key={`${point}-${i}`}>{point}</li>
                 ))}
               </ul>
+            </div>
+          </Reveal>
 
+          <Reveal delay={d(2)}>
+            <div>
               <SubHeading icon={Wrench} title="Tools & Technologies" />
 
               <div className="flex flex-wrap gap-2 pl-1 mb-2">
@@ -230,9 +230,9 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
                 })}
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </Reveal>
+        </div>
+      )}
     </section>
   );
 }
