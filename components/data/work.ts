@@ -1,15 +1,18 @@
+import { CompanyLogoKey } from "@/components/icons/companyLogoMap";
+import { TechIconKey } from "../icons/techIconMap";
+
 export type WorkTechnology = {
   name: string;
-  icon: "next" | "ts" | "tailwind" | "shadcn" | "vercel";
+  icon: TechIconKey
   link: string;
 };
 
 export type WorkItem = {
   company: string;
+  companyLogo: CompanyLogoKey;
   role: string;
   duration: string;
   location: string;
-  logo: string;
 
   links?: {
     website?: string;
@@ -25,17 +28,17 @@ export type WorkItem = {
 
 export const workItems: WorkItem[] = [
   {
-    company: "Company Name",
-    role: "Frontend Developer",
-    duration: "July 2025 - December 2025",
-    location: "Bangalore, India (On-Site)",
-    logo: "/vercel.svg",
+    company: "Baatasari",
+    role: "Backend Developer",
+    duration: "December 2024 - Present",
+    location: "Visakhapatnam, India (On-Site)",
+    companyLogo: 'baatasari',
 
     links: {
-      website: "https://vercel.com",
-      twitter: "https://x.com/vercel",
-      linkedin: "https://www.linkedin.com/company/vercel",
-      github: "https://github.com/vercel",
+      website: "https://baatasari.com",
+      // twitter: "https://x.com/vercel",
+      linkedin: "https://www.linkedin.com/company/baatasari",
+      // github: "https://github.com/vercel",
     },
 
     summary: [
@@ -53,17 +56,17 @@ export const workItems: WorkItem[] = [
     ],
   },
   {
-    company: "Company Name",
-    role: "Frontend Developer",
-    duration: "July 2025 - December 2025",
-    location: "Bangalore, India (On-Site)",
-    logo: "/vercel.svg",
+    company: "Baatasari",
+    role: "Backend Developer",
+    duration: "December 2024 - Present",
+    location: "Visakhapatnam, India (On-Site)",
+    companyLogo: 'baatasari',
 
     links: {
-      website: "https://vercel.com",
-      twitter: "https://x.com/vercel",
-      linkedin: "https://www.linkedin.com/company/vercel",
-      github: "https://github.com/vercel",
+      website: "https://baatasari.com",
+      // twitter: "https://x.com/vercel",
+      linkedin: "https://www.linkedin.com/company/baatasari",
+      // github: "https://github.com/vercel",
     },
 
     summary: [
@@ -81,17 +84,17 @@ export const workItems: WorkItem[] = [
     ],
   },
   {
-    company: "Company Name",
-    role: "Frontend Developer",
-    duration: "July 2025 - December 2025",
-    location: "Bangalore, India (On-Site)",
-    logo: "/vercel.svg",
+    company: "Baatasari",
+    role: "Backend Developer",
+    duration: "December 2024 - Present",
+    location: "Visakhapatnam, India (On-Site)",
+    companyLogo: 'baatasari',
 
     links: {
-      website: "https://vercel.com",
-      twitter: "https://x.com/vercel",
-      linkedin: "https://www.linkedin.com/company/vercel",
-      github: "https://github.com/vercel",
+      website: "https://baatasari.com",
+      // twitter: "https://x.com/vercel",
+      linkedin: "https://www.linkedin.com/company/baatasari",
+      // github: "https://github.com/vercel",
     },
 
     summary: [

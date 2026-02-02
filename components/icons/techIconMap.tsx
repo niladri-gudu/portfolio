@@ -1,5 +1,5 @@
 import type { ComponentType, SVGProps } from "react";
-import { Shadcn, Tailwind, Typescript, Vercel, Next } from "@/components/icons";
+import { Shadcn, Tailwind, Typescript, Vercel, Next } from "@/components/icons/techLogos";
 
 export type TechIconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 

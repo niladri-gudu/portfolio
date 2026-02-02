@@ -20,9 +20,9 @@ export default function HomePage() {
         <div className="space-y-12">
             <HeroSection />
 
-          <Reveal delay={d(0)} baseDelay={afterHero}>
+          {/* <Reveal delay={d(0)} baseDelay={afterHero}>
             <SpotifyCard />
-          </Reveal>
+          </Reveal> */}
 
           <Reveal delay={d(1)} baseDelay={afterHero}>
             <SocialsSection />

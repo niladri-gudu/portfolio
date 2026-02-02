@@ -1,5 +1,2 @@
-export * from "./Tailwind"
-export * from "./Next"
-export * from "./Typescript"
-export * from "./Vercel"
-export * from "./Shadcn"
+export * from './techLogos'
+export * from './companyLogos'

@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import { ChevronDown, Sparkles, Wrench } from "lucide-react";
 
@@ -16,6 +15,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 import type { WorkItem } from "@/components/data/work";
 import { techIconMap } from "@/components/icons/techIconMap";
+import { companyLogoMap } from "../icons/companyLogoMap";
 import Reveal from "../motion/Reveal";
 
 type WorkCardProps = {
@@ -39,18 +39,17 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
   const isExpanded = showToggle ? expanded : true;
   const d = (i: number) => (i + 1) * 0.03;
 
+  const iconKey = item.companyLogo;
+  const CompanyIcon = companyLogoMap[iconKey];
+
   return (
     <section className="flex flex-col h-full pb-8">
       <Reveal delay={d(0)}>
         <main className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between pl-2">
           <div className="flex items-center gap-4">
             <div className="relative flex items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950 w-14 h-14 shrink-0 shadow-sm">
-              <Image
-                src={item.logo}
-                alt={`${item.company} Logo`}
-                width={30}
-                height={30}
-                className="object-contain hover:scale-110 transition"
+              <CompanyIcon
+                className="w-8 h-8 object-contain hover:scale-110 transition text-neutral-900 dark:text-neutral-100"
               />
             </div>
 
@@ -183,9 +182,8 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
                 {expanded ? "Hide details" : "View details"}
                 <ChevronDown
                   size={14}
-                  className={`transition-transform duration-300 ${
-                    expanded ? "rotate-180" : ""
-                  }`}
+                  className={`transition-transform duration-300 ${expanded ? "rotate-180" : ""
+                    }`}
                 />
               </button>
             )}

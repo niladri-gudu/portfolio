@@ -24,7 +24,7 @@ export default function Reveal({
       }}
       viewport={{
         once: true,
-        amount: 0.16,
+        amount: 'some',
       }}
     >
       {children}

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Shadcn, Tailwind, Typescript, Vercel, Next } from "@/components/icons";
+import { Shadcn, Tailwind, Typescript, Vercel, Next } from "@/components/icons/techLogos";
 
 export type ProjectLinks = {
   website?: string;
