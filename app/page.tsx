@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <section className="py-16 selection:bg-neutral-200 dark:selection:bg-neutral-800">
       <PageContainer>
-        <div className="space-y-12">
+        <div className="space-y-4">
             <HeroSection />
 
           {/* <Reveal delay={d(0)} baseDelay={afterHero}>

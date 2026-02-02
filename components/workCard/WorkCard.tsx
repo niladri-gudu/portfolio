@@ -43,7 +43,7 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
   const CompanyIcon = companyLogoMap[iconKey];
 
   return (
-    <section className="flex flex-col h-full pb-8">
+    <section className="flex flex-col h-full pb-6">
       <Reveal delay={d(0)}>
         <main className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between pl-2">
           <div className="flex items-center gap-4">

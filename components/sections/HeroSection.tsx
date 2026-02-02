@@ -10,7 +10,7 @@ export default function HeroSection() {
   const isAvailable = personalData.availability.isAvailable;
 
   return (
-    <section className="space-y-10 px-2">
+    <section className="space-y-8 px-2 pb-6">
       <main className="flex flex-col-reverse md:flex-row md:items-end justify-between gap-8">
         {/* LEFT */}
         <div className="flex flex-col gap-6">
