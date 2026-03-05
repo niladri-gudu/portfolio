@@ -3,7 +3,7 @@ import { TechIconKey } from "../icons/techIconMap";
 
 export type WorkTechnology = {
   name: string;
-  icon: TechIconKey
+  icon: TechIconKey;
   link: string;
 };
 
@@ -32,7 +32,7 @@ export const workItems: WorkItem[] = [
     role: "Backend Developer",
     duration: "December 2024 - Present",
     location: "Visakhapatnam, India (On-Site)",
-    companyLogo: 'baatasari',
+    companyLogo: "baatasari",
 
     links: {
       website: "https://baatasari.com",
@@ -42,15 +42,23 @@ export const workItems: WorkItem[] = [
     },
 
     summary: [
-      "Built scalable and reusable UI components using Next.js + Tailwind.",
-      "Improved performance and UI consistency across pages.",
-      "Worked closely with designers to deliver high-fidelity interfaces.",
+      "Designed and implemented scalable RESTful APIs and microservices to support core business logic.",
+      "Optimized database queries and schema design to improve data retrieval speeds and system performance.",
+      "Integrated third-party services and managed secure authentication/authorization protocols.",
     ],
 
     technologies: [
       { name: "Next.js", icon: "next", link: "https://nextjs.org" },
-      { name: "TypeScript", icon: "ts", link: "https://www.typescriptlang.org" },
-      { name: "Tailwind CSS", icon: "tailwind", link: "https://tailwindcss.com" },
+      {
+        name: "TypeScript",
+        icon: "ts",
+        link: "https://www.typescriptlang.org",
+      },
+      {
+        name: "Tailwind CSS",
+        icon: "tailwind",
+        link: "https://tailwindcss.com",
+      },
       { name: "Shadcn UI", icon: "shadcn", link: "https://ui.shadcn.com" },
       { name: "Vercel", icon: "vercel", link: "https://vercel.com" },
     ],
