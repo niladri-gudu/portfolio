@@ -42,25 +42,27 @@ export const workItems: WorkItem[] = [
     },
 
     summary: [
-      "Designed and implemented scalable RESTful APIs and microservices to support core business logic.",
-      "Optimized database queries and schema design to improve data retrieval speeds and system performance.",
-      "Integrated third-party services and managed secure authentication/authorization protocols.",
+      "Worked as a Backend Developer, contributing across multiple stages of product development and system improvements.",
+      "Supported the transition of the frontend architecture from React (Vite) to Next.js for better scalability and performance.",
+      "Assisted in migrating backend services from Firebase to a self-hosted Supabase setup.",
+      "Played a key role in infrastructure setup, including deployment on a Hetzner server using Coolify.",
+      "Contributed to ongoing backend enhancements and system optimization aligned with future cloud migration plans (GCP)."
     ],
 
     technologies: [
       { name: "Next.js", icon: "next", link: "https://nextjs.org" },
       {
-        name: "TypeScript",
-        icon: "ts",
-        link: "https://www.typescriptlang.org",
+        name: "Supabase",
+        icon: "supabase",
+        link: "https://supabase.com",
       },
       {
-        name: "Tailwind CSS",
-        icon: "tailwind",
-        link: "https://tailwindcss.com",
+        name: "Hetzner",
+        icon: "hetzner",
+        link: "https://www.hetzner.com",
       },
-      { name: "Shadcn UI", icon: "shadcn", link: "https://ui.shadcn.com" },
-      { name: "Vercel", icon: "vercel", link: "https://vercel.com" },
+      { name: "Coolify", icon: "coolify", link: "https://www.coolify.com" },
+      { name: "GCP", icon: "gcp", link: "https://cloud.google.com" },
     ],
   },
 ];

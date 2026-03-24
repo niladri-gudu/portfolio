@@ -36,17 +36,17 @@ export type ProjectItem = {
 
 export const projectItems: ProjectItem[] = [
   {
-    slug: "foldr",
-    title: "Foldr",
+    slug: "questfi",
+    title: "QuestFi",
     description:
       "A cloud storage platform like Google Drive with file sharing, trash, favorites and S3 uploads.",
     image: "/nature.jpg",
 
-    status: "Building",
+    status: "Completed",
 
     links: {
-      website: "https://foldr-flax.vercel.app",
-      github: "https://github.com/niladri-gudu",
+      website: "https://questfi.niladri.app",
+      github: "https://github.com/niladri-gudu/questfi",
     },
 
     timeline: "2 months",
@@ -99,17 +99,17 @@ export const projectItems: ProjectItem[] = [
     ],
   },
   {
-    slug: "folder",
-    title: "Folder",
+    slug: "lendx",
+    title: "LendX",
     description:
       "A cloud storage platform like Google Drive with file sharing, trash, favorites and S3 uploads.",
     image: "/nature.jpg",
 
-    status: "Building",
+    status: "Completed",
 
     links: {
-      website: "https://foldr-flax.vercel.app",
-      github: "https://github.com/niladri-gudu",
+      website: "https://lendx-flax.niladri.app",
+      github: "https://github.com/niladri-gudu/lendx",
     },
 
     timeline: "2 months",
@@ -162,17 +162,17 @@ export const projectItems: ProjectItem[] = [
     ],
   },
   {
-    slug: "foldar",
-    title: "Foldar",
+    slug: "zkpass",
+    title: "ZKPass",
     description:
       "A cloud storage platform like Google Drive with file sharing, trash, favorites and S3 uploads.",
     image: "/nature.jpg",
 
-    status: "Building",
+    status: "Completed",
 
     links: {
-      website: "https://foldr-flax.vercel.app",
-      github: "https://github.com/niladri-gudu",
+      website: "https://zkpass.niladri.app",
+      github: "https://github.com/niladri-gudu/zkpass",
     },
 
     timeline: "2 months",
