@@ -15,6 +15,24 @@ import Reveal from "../motion/Reveal";
 const ProjectCard = ({ item }: { item: ProjectItem }) => {
   const d = (i: number) => (i + 1) * 0.03;
 
+  const statusConfig = {
+    Building: {
+      classes: "border-amber-400/20 bg-amber-400/10 text-amber-400",
+      label: "Building",
+    },
+    Completed: {
+      classes: "border-emerald-400/20 bg-emerald-400/10 text-emerald-400",
+      label: "Completed",
+    },
+    Shipped: {
+      classes: "border-sky-400/20 bg-sky-400/10 text-sky-400",
+      label: "Shipped",
+    },
+  };
+
+  const currentStatus =
+    statusConfig[item.status as keyof typeof statusConfig] ||
+    statusConfig.Building;
 
   return (
     <section className="flex flex-col h-full pb-6 px-2">
@@ -94,33 +112,26 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
         </Reveal>
 
         <Reveal delay={d(4)}>
-        <div className="flex items-center justify-between">
-          {item.status === "Building" ? (
-            <div className="flex items-center gap-2 border border-amber-500/20 rounded-md px-2 py-1 text-xs bg-amber-500/10 text-amber-500 font-medium tracking-tight">
+          <div className="flex items-center justify-between">
+            <div
+              className={`flex items-center gap-2 border rounded-md px-2 py-1 text-xs font-medium tracking-tight ${currentStatus.classes}`}
+            >
               <svg height="6" width="6" className="animate-pulse">
                 <circle cx="3" cy="3" r="3" fill="currentColor" />
               </svg>
-              Building
+              {currentStatus.label}
             </div>
-          ) : (
-            <div className="flex items-center gap-2 border border-green-500/20 rounded-md px-2 py-1 text-xs bg-green-500/10 text-green-500 font-medium tracking-tight">
-              <svg height="6" width="6" className="animate-pulse">
-                <circle cx="3" cy="3" r="3" fill="currentColor" />
-              </svg>
-              Shipped
-            </div>
-          )}
 
-          <Link
-            href={`/projects/${item.slug}`}
-            className="group inline-flex items-center gap-2 border border-slate-200 rounded-md px-3 py-1.5 text-xs bg-slate-50/50 text-slate-600 font-medium tracking-tight hover:bg-white hover:text-slate-900 dark:bg-neutral-900/50 dark:border-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-neutral-200"
-          >
-            <span>View Details</span>
-            <span className="group-hover:translate-x-0.5 transition">
-              <ArrowRight size={12} strokeWidth={2.5} />
-            </span>
-          </Link>
-        </div>
+            <Link
+              href={`/projects/${item.slug}`}
+              className="group inline-flex items-center gap-2 border border-slate-200 rounded-md px-3 py-1.5 text-xs bg-slate-50/50 text-slate-600 font-medium tracking-tight hover:bg-white hover:text-slate-900 dark:bg-neutral-900/50 dark:border-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-neutral-200"
+            >
+              <span>View Details</span>
+              <span className="group-hover:translate-x-0.5 transition">
+                <ArrowRight size={12} strokeWidth={2.5} />
+              </span>
+            </Link>
+          </div>
         </Reveal>
       </main>
     </section>

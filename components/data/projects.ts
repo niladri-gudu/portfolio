@@ -55,7 +55,7 @@ export const projectItems: ProjectItem[] = [
     status: "Completed",
 
     links: {
-      website: "https://questfi.niladri.app",
+      // website: "https://questfi.niladri.app",
       github: "https://github.com/niladri-gudu/questfi",
     },
 
@@ -120,7 +120,7 @@ export const projectItems: ProjectItem[] = [
     status: "Completed",
 
     links: {
-      website: "https://lendx.niladri.app",
+      // website: "https://lendx.niladri.app",
       github: "https://github.com/niladri-gudu/lendx",
     },
 
@@ -187,7 +187,7 @@ export const projectItems: ProjectItem[] = [
     status: "Completed",
 
     links: {
-      website: "https://zkpass.niladri.app",
+      // website: "https://zkpass.niladri.app",
       github: "https://github.com/niladri-gudu/zkpass",
     },
 
