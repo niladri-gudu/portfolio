@@ -240,3 +240,11 @@ html, body {
 .react-activity-calendar > div::-webkit-scrollbar {
   display: none;
 }
+
+:root {
+  --next-n-color: #ffffff; 
+}
+
+.dark {
+  --next-n-color: #000000;
+}
