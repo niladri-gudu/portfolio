@@ -26,10 +26,10 @@ export default function GithubGraph() {
             blockRadius={1.5}
             blockMargin={3}
             fontSize={12}
-            theme={{
-              light: ["#ebebeb", "#d6d6d6", "#bdbdbd", "#a0a0a0", "#808080"],
-              dark: ["#0a0a0a", "#1f1f1f", "#3a3a3a", "#5a5a5a", "#ffffff"],
-            }}
+            // theme={{
+            //   light: ["#ebebeb", "#d6d6d6", "#bdbdbd", "#a0a0a0", "#808080"],
+            //   dark: ["#0a0a0a", "#1f1f1f", "#3a3a3a", "#5a5a5a", "#ffffff"],
+            // }}
             labels={{
               totalCount: "{{count}} contributions so far",
             }}
