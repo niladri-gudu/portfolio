@@ -8,37 +8,6 @@ import type { ProjectItem } from "@/components/data/projects";
 import { ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/motion/Reveal";
 
-const SectionBlock = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => {
-  return (
-    <div className="mt-10">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="h-6 w-0.75 rounded-full bg-neutral-200 dark:bg-neutral-800" />
-        <h2 className="text-2xl font-semibold">{title}</h2>
-      </div>
-
-      <div className="pl-4">{children}</div>
-    </div>
-  );
-};
-
-const InfoList = ({ items }: { items?: string[] }) => {
-  if (!items || items.length === 0) return null;
-
-  return (
-    <ul className="space-y-1.5 text-muted-foreground leading-relaxed list-disc pl-5">
-      {items.map((item, idx) => (
-        <li key={idx}>{item}</li>
-      ))}
-    </ul>
-  );
-};
-
 const linkCardClass =
   "group flex items-center gap-3 px-4 py-3 rounded-xl border " +
   "border-neutral-200 dark:border-neutral-800 bg-background " +
@@ -59,24 +28,56 @@ const linkArrowClass =
   "group-hover:text-primary group-hover:opacity-100 " +
   "group-hover:translate-x-1 group-hover:-translate-y-1";
 
+// ... (keep imports and styles as they are)
+
+const SectionBlock = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <div className="mt-10">
+      <Reveal> {/* Reveals the title and border */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="h-6 w-0.75 rounded-full bg-neutral-200 dark:bg-neutral-800" />
+          <h2 className="text-2xl font-semibold">{title}</h2>
+        </div>
+      </Reveal>
+
+      <div className="pl-4">{children}</div>
+    </div>
+  );
+};
+
+const InfoList = ({ items }: { items?: string[] }) => {
+  if (!items || items.length === 0) return null;
+
+  return (
+    <ul className="space-y-1.5 text-muted-foreground leading-relaxed list-disc pl-5">
+      {items.map((item, idx) => (
+        <Reveal key={idx} delay={idx * 0.05}> {/* Reveals each bullet point */}
+          <li>{item}</li>
+        </Reveal>
+      ))}
+    </ul>
+  );
+};
+
 const ProjectDetails = ({ project }: { project: ProjectItem }) => {
-  const d = (i: number) => (i + 1) * 0.03;
+  // We can remove the strict d(i) calculation for many things 
+  // because whileInView handles the timing based on scroll position.
 
   return (
     <section className="px-4 py-10 max-w-5xl mx-auto">
-      <Reveal delay={0.03}>
+      <Reveal>
         <div className="flex items-center justify-between mb-6 mx-2">
           <BackButton />
-
           {project.status && (
-            <div
-              className={`flex items-center gap-2 rounded-md px-2 py-1 text-xs font-medium tracking-tight border
-              ${
-                project.status === "Building"
-                  ? "border-amber-500/20 bg-amber-500/10 text-amber-500"
-                  : "border-green-500/20 bg-green-500/10 text-green-500"
-              }`}
-            >
+            <div className={`flex items-center gap-2 rounded-md px-2 py-1 text-xs font-medium tracking-tight border ${
+              project.status === "Building" ? "border-amber-500/20 bg-amber-500/10 text-amber-500" : "border-green-500/20 bg-green-500/10 text-green-500"
+            }`}>
               <svg height="6" width="6" className="animate-pulse">
                 <circle cx="3" cy="3" r="3" fill="currentColor" />
               </svg>
@@ -86,137 +87,92 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
         </div>
       </Reveal>
 
-      <Reveal delay={d(1)}>
+      <Reveal y={40}>
         <div className="relative mx-2 aspect-3/2 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-8">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover"
-            priority
-          />
+          <Image src={project.image} alt={project.title} fill className="object-cover" priority />
         </div>
       </Reveal>
 
-      <Reveal delay={d(2)}>
+      <Reveal>
         <div className="mb-8 pl-2 mx-1">
           <h1 className="text-4xl font-bold mb-3">{project.title}</h1>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            {project.description}
-          </p>
+          <p className="text-muted-foreground text-lg leading-relaxed">{project.description}</p>
         </div>
       </Reveal>
 
       {(project.links?.website || project.links?.github) && (
-        <Reveal delay={d(3)}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-1 mx-1">
-            {project.links?.website && (
-              <Link
-                href={project.links.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={linkCardClass}
-              >
-                <div className={linkIconWrapClass}>
-                  <WorldIcon />
-                </div>
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-1 mx-1">
+          {project.links?.website && (
+            <Reveal delay={0.1}>
+              <Link href={project.links.website} target="_blank" rel="noopener noreferrer" className={linkCardClass}>
+                <div className={linkIconWrapClass}><WorldIcon /></div>
                 <div className="flex-1 flex flex-col gap-0.5 min-w-0">
-                  <div className="text-sm font-bold text-foreground tracking-tight">
-                    Live Demo
-                  </div>
+                  <div className="text-sm font-bold text-foreground tracking-tight">Live Demo</div>
                   <div className="text-[10px] font-mono text-muted-foreground truncate">
-                    {project.links.website
-                      .replace("https://", "")
-                      .replace("http://", "")}
+                    {project.links.website.replace("https://", "").replace("http://", "")}
                   </div>
                 </div>
-
                 <ArrowUpRight size={16} className={linkArrowClass} />
               </Link>
-            )}
+            </Reveal>
+          )}
 
-            {project.links?.github && (
-              <Link
-                href={project.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={linkCardClass}
-              >
-                <div className={linkIconWrapClass}>
-                  <GithubIcon />
-                </div>
-
+          {project.links?.github && (
+            <Reveal delay={0.2}>
+              <Link href={project.links.github} target="_blank" rel="noopener noreferrer" className={linkCardClass}>
+                <div className={linkIconWrapClass}><GithubIcon /></div>
                 <div className="flex-1 flex flex-col gap-0.5 min-w-0">
-                  <div className="text-sm font-bold text-foreground tracking-tight">
-                    Source Code
-                  </div>
+                  <div className="text-sm font-bold text-foreground tracking-tight">Source Code</div>
                   <div className="text-[10px] font-mono text-muted-foreground truncate">
-                    {project.links.github
-                      .replace("https://", "")
-                      .replace("http://", "")}
+                    {project.links.github.replace("https://", "").replace("http://", "")}
                   </div>
                 </div>
-
                 <ArrowUpRight size={16} className={linkArrowClass} />
               </Link>
-            )}
-          </div>
-        </Reveal>
+            </Reveal>
+          )}
+        </div>
       )}
 
       {project.overview && (
-        <Reveal delay={d(4)}>
-          <SectionBlock title="Overview">
-            <p className="text-muted-foreground leading-relaxed">
-              {project.overview}
-            </p>
-          </SectionBlock>
-        </Reveal>
+        <SectionBlock title="Overview">
+          <Reveal>
+            <p className="text-muted-foreground leading-relaxed">{project.overview}</p>
+          </Reveal>
+        </SectionBlock>
       )}
 
-      <Reveal delay={d(5)}>
-        <SectionBlock title="What Users Can Do">
-          <InfoList items={project.whatUsersCanDo} />
-        </SectionBlock>
-      </Reveal>
+      <SectionBlock title="What Users Can Do">
+        <InfoList items={project.whatUsersCanDo} />
+      </SectionBlock>
 
-      <Reveal delay={d(6)}>
-        <SectionBlock title="Why I built this">
-          <InfoList items={project.whyIBuiltThis} />
-        </SectionBlock>
-      </Reveal>
+      <SectionBlock title="Why I built this">
+        <InfoList items={project.whyIBuiltThis} />
+      </SectionBlock>
 
-      <Reveal delay={d(7)}>
-        <SectionBlock title="Tech Stack">
-          <div className="flex gap-3 flex-wrap">
-            {project.technologies.map((tech) => {
-              const Icon = tech.icon;
-              return (
-                <div
-                  key={tech.name}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl border border-neutral-200 dark:border-neutral-800 text-sm bg-white dark:bg-neutral-900"
-                >
+      <SectionBlock title="Tech Stack">
+        <div className="flex gap-3 flex-wrap">
+          {project.technologies.map((tech, idx) => {
+            const Icon = tech.icon;
+            return (
+              <Reveal key={tech.name} delay={idx * 0.04}>
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl border border-neutral-200 dark:border-neutral-800 text-sm bg-white dark:bg-neutral-900">
                   {Icon ? <Icon className="w-5 h-5" /> : null}
                   <span>{tech.name}</span>
                 </div>
-              );
-            })}
-          </div>
-        </SectionBlock>
-      </Reveal>
+              </Reveal>
+            );
+          })}
+        </div>
+      </SectionBlock>
 
-      <Reveal delay={d(8)}>
-        <SectionBlock title="After launch & Impact">
-          <InfoList items={project.afterLaunchImpact} />
-        </SectionBlock>
-      </Reveal>
+      <SectionBlock title="After launch & Impact">
+        <InfoList items={project.afterLaunchImpact} />
+      </SectionBlock>
 
-      <Reveal delay={d(9)}>
-        <SectionBlock title="Future Plans">
-          <InfoList items={project.futurePlans} />
-        </SectionBlock>
-      </Reveal>
+      <SectionBlock title="Future Plans">
+        <InfoList items={project.futurePlans} />
+      </SectionBlock>
     </section>
   );
 };

@@ -25,26 +25,27 @@ type WorkCardProps = {
 
 const SubHeading = ({ icon: Icon, title }: { icon: any; title: string }) => {
   return (
-    <div className="flex items-center gap-2 pb-3">
-      <Icon className="w-4 h-4 text-muted-foreground" />
-      <h3 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
-        {title}
-      </h3>
-    </div>
+    <Reveal y={10}>
+      <div className="flex items-center gap-2 pb-3">
+        <Icon className="w-4 h-4 text-muted-foreground" />
+        <h3 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
+          {title}
+        </h3>
+      </div>
+    </Reveal>
   );
 };
 
 export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
   const [expanded, setExpanded] = useState(false);
   const isExpanded = showToggle ? expanded : true;
-  const d = (i: number) => (i + 1) * 0.03;
 
   const iconKey = item.companyLogo;
   const CompanyIcon = companyLogoMap[iconKey];
 
   return (
     <section className="flex flex-col h-full pb-6">
-      <Reveal delay={d(0)}>
+      <Reveal>
         <main className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between pl-2">
           <div className="flex items-center gap-4">
             <div className="relative flex items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950 w-14 h-14 shrink-0 shadow-sm">
@@ -60,105 +61,45 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
                 {!!item.links && (
                   <div className="flex items-center gap-1">
                     {item.links.website && (
-                      <Link
-                        href={item.links.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center"
-                      >
+                      <Link href={item.links.website} target="_blank" rel="noopener noreferrer" className="flex items-center">
                         <Tooltip>
-                          <TooltipTrigger
-                            className="
-              inline-flex items-center justify-center
-              w-7 h-7 rounded-md
-              text-muted-foreground
-              hover:text-foreground
-              transition-colors
-            "
-                          >
+                          <TooltipTrigger className="inline-flex items-center justify-center w-7 h-7 rounded-md text-muted-foreground hover:text-foreground transition-colors">
                             <WorldIcon size={18} className="block" />
                           </TooltipTrigger>
-                          <TooltipContent>
-                            <p>View Website</p>
-                          </TooltipContent>
+                          <TooltipContent><p>View Website</p></TooltipContent>
                         </Tooltip>
                       </Link>
                     )}
 
                     {item.links.twitter && (
-                      <Link
-                        href={item.links.twitter}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center"
-                      >
+                      <Link href={item.links.twitter} target="_blank" rel="noopener noreferrer" className="flex items-center">
                         <Tooltip>
-                          <TooltipTrigger
-                            className="
-              inline-flex items-center justify-center
-              w-7 h-7 rounded-md
-              text-muted-foreground
-              hover:text-foreground
-              transition-colors
-            "
-                          >
+                          <TooltipTrigger className="inline-flex items-center justify-center w-7 h-7 rounded-md text-muted-foreground hover:text-foreground transition-colors">
                             <TwitterXIcon size={18} className="block" />
                           </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Follow on X</p>
-                          </TooltipContent>
+                          <TooltipContent><p>Follow on X</p></TooltipContent>
                         </Tooltip>
                       </Link>
                     )}
 
                     {item.links.linkedin && (
-                      <Link
-                        href={item.links.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center"
-                      >
+                      <Link href={item.links.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center">
                         <Tooltip>
-                          <TooltipTrigger
-                            className="
-              inline-flex items-center justify-center
-              w-7 h-7 rounded-md
-              text-muted-foreground
-              hover:text-foreground
-              transition-colors
-            "
-                          >
+                          <TooltipTrigger className="inline-flex items-center justify-center w-7 h-7 rounded-md text-muted-foreground hover:text-foreground transition-colors">
                             <LinkedinIcon size={18} className="block" />
                           </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Connect on LinkedIn</p>
-                          </TooltipContent>
+                          <TooltipContent><p>Connect on LinkedIn</p></TooltipContent>
                         </Tooltip>
                       </Link>
                     )}
 
                     {item.links.github && (
-                      <Link
-                        href={item.links.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center"
-                      >
+                      <Link href={item.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center">
                         <Tooltip>
-                          <TooltipTrigger
-                            className="
-              inline-flex items-center justify-center
-              w-7 h-7 rounded-md
-              text-muted-foreground
-              hover:text-foreground
-              transition-colors
-            "
-                          >
+                          <TooltipTrigger className="inline-flex items-center justify-center w-7 h-7 rounded-md text-muted-foreground hover:text-foreground transition-colors">
                             <GithubIcon size={18} className="block" />
                           </TooltipTrigger>
-                          <TooltipContent>
-                            <p>View Github</p>
-                          </TooltipContent>
+                          <TooltipContent><p>View Github</p></TooltipContent>
                         </Tooltip>
                       </Link>
                     )}
@@ -182,8 +123,7 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
                 {expanded ? "Hide details" : "View details"}
                 <ChevronDown
                   size={14}
-                  className={`transition-transform duration-300 ${expanded ? "rotate-180" : ""
-                    }`}
+                  className={`transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
                 />
               </button>
             )}
@@ -193,29 +133,25 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
 
       {isExpanded && (
         <div className="mt-6 flex flex-col pl-2">
-          <Reveal delay={d(1)}>
-            <div>
-              <SubHeading icon={Sparkles} title="Summary" />
+          <div>
+            <SubHeading icon={Sparkles} title="Summary" />
+            <ul className="list-disc list-outside ml-4 space-y-2 mb-5 text-sm text-neutral-600 dark:text-neutral-400">
+              {item.summary.map((point, i) => (
+                <Reveal key={`${point}-${i}`} delay={i * 0.04} y={8}>
+                  <li>{point}</li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
 
-              <ul className="list-disc list-outside ml-4 space-y-2 mb-5 text-sm text-neutral-600 dark:text-neutral-400">
-                {item.summary.map((point, i) => (
-                  <li key={`${point}-${i}`}>{point}</li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-
-          <Reveal delay={d(2)}>
-            <div>
-              <SubHeading icon={Wrench} title="Tools & Technologies" />
-
-              <div className="flex flex-wrap gap-2 pl-1 mb-2">
-                {item.technologies.map((tech) => {
-                  const Icon = techIconMap[tech.icon];
-
-                  return (
+          <div>
+            <SubHeading icon={Wrench} title="Tools & Technologies" />
+            <div className="flex flex-wrap gap-2 pl-1 mb-2">
+              {item.technologies.map((tech, i) => {
+                const Icon = techIconMap[tech.icon];
+                return (
+                  <Reveal key={tech.name} delay={i * 0.03} y={8}>
                     <Link
-                      key={tech.name}
                       href={tech.link}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -224,11 +160,11 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
                       <Icon className="w-4 h-4" />
                       {tech.name}
                     </Link>
-                  );
-                })}
-              </div>
+                  </Reveal>
+                );
+              })}
             </div>
-          </Reveal>
+          </div>
         </div>
       )}
     </section>
