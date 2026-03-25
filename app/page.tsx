@@ -10,19 +10,18 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import Reveal from "@/components/motion/Reveal";
 
 export default function HomePage() {
-  const afterHero = 0.21
+  const afterHero = 0.21;
   const d = (i: number) => (i + 1) * 0.03;
-
 
   return (
     <section className="py-16 selection:bg-neutral-200 dark:selection:bg-neutral-800">
       <PageContainer>
         <div className="space-y-4">
-            <HeroSection />
+          <HeroSection />
 
-          {/* <Reveal delay={d(0)} baseDelay={afterHero}>
+          <Reveal delay={d(0)} baseDelay={afterHero}>
             <SpotifyCard />
-          </Reveal> */}
+          </Reveal>
 
           <Reveal delay={d(1)} baseDelay={afterHero}>
             <SocialsSection />
