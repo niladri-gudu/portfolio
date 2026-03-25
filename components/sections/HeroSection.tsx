@@ -122,7 +122,7 @@ export default function HeroSection() {
         {/* RIGHT */}
         <Reveal delay={0.15}>
           <div className="relative group">
-            <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden grayscale hover:grayscale-0 shadow-2xl">
+            <div className="relative cursor-pointer w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden grayscale hover:grayscale-0 shadow-2xl">
               <Image
                 src={personalData.profile.image.src}
                 alt={personalData.profile.image.alt}
