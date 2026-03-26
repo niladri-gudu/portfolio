@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/set-state-in-effect */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -12,7 +11,6 @@ import Link from "next/link";
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function SpotifyCard() {
-  // const [data, setData] = useState<any>(null);
   const [progress, setProgress] = useState(0);
 
   const { data, error } = useSWR("/api/now-playing", fetcher, {
@@ -35,7 +33,7 @@ export default function SpotifyCard() {
       }, 1000);
       return () => clearInterval(timer);
     }
-  }, [data]);
+  }, [data?.isPlaying, data?.durationMs]);
 
   const isPlaying = data?.isPlaying || false;
   const songName = data?.title || (error ? "Error Loading" : "Not Playing");
@@ -45,14 +43,14 @@ export default function SpotifyCard() {
   return (
     <Reveal delay={0.03}>
       <Link
-        href={data?.songUrl || "https://open.spotify.com"}
+        href={data?.songUrl || "https://spotify.com"}
         target="_blank"
         rel="noopener noreferrer"
         className="group mb-10 relative p-4 mx-2 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30 flex flex-col gap-3 transition-all duration-300 ease-out hover:bg-neutral-100 dark:hover:bg-neutral-900/50 hover:-translate-y-px hover:shadow-sm dark:hover:shadow-neutral-950/40 hover:border-neutral-300 dark:hover:border-neutral-700"
       >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="relative flex items-center justify-center w-14 h-14 bg-neutral-200 dark:bg-neutral-800 rounded-lg overflow-hidden shadow-md transition-transform duration-500 ease-out group-hover:-rotate-1">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-4 min-w-0">
+            <div className="relative shrink-0 flex items-center justify-center w-14 h-14 bg-neutral-200 dark:bg-neutral-800 rounded-lg overflow-hidden shadow-md transition-transform duration-500 ease-out group-hover:-rotate-1">
               {albumCover ? (
                 <Image
                   src={albumCover}
@@ -79,16 +77,17 @@ export default function SpotifyCard() {
                 )}
               </div>
 
-              <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate max-w-45 sm:max-w-xs transition-colors duration-300 group-hover:text-neutral-950 dark:group-hover:white">
+              <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate transition-colors duration-300 group-hover:text-neutral-950 dark:group-hover:white">
                 {songName}
               </h3>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium transition-opacity duration-300 group-hover:opacity-95">
+              {/* Added truncate here as well */}
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium truncate transition-opacity duration-300 group-hover:opacity-95">
                 by {artistName}
               </p>
             </div>
           </div>
 
-          <div className="pr-2 sm:block">
+          <div className="shrink-0 pr-2">
             <svg
               viewBox="0 0 24 24"
               className="w-5 h-5 fill-neutral-300 dark:fill-neutral-700 transition-all duration-300 ease-out group-hover:fill-[#1DB954] group-hover:scale-110"
@@ -102,7 +101,7 @@ export default function SpotifyCard() {
         {isPlaying && (
           <div className="w-full h-1 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden">
             <div
-              className="h-full bg-green-500 transition-all duration-1000 ease-linear"
+              className="h-full bg-green-500 rounded-full transition-all duration-1000 ease-linear"
               style={{ width: `${progress}%` }}
             />
           </div>
