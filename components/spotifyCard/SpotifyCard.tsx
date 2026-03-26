@@ -14,7 +14,7 @@ export default function SpotifyCard() {
   const [progress, setProgress] = useState(0);
 
   const { data, error } = useSWR("/api/now-playing", fetcher, {
-    refreshInterval: 10000,
+    refreshInterval: 1000,
   });
 
   useEffect(() => {
