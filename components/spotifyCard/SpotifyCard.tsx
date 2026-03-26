@@ -14,7 +14,7 @@ export default function SpotifyCard({ fallback }: { fallback: any }) {
   const [progress, setProgress] = useState(0);
 
   const { data, error } = useSWR("/api/now-playing", fetcher, {
-    refreshInterval: 1000,
+    refreshInterval: 10000,
     fallbackData: fallback,
   });
 
