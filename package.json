@@ -26,6 +26,7 @@
     "react-dom": "19.2.3",
     "react-github-calendar": "^5.0.4",
     "simple-icons": "^16.5.0",
+    "swr": "^2.4.1",
     "tailwind-merge": "^3.4.0",
     "tailwind-scrollbar-hide": "^4.0.0"
   },

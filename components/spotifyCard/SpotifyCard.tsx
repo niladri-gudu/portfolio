@@ -5,31 +5,25 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Music } from "lucide-react";
+import useSWR from "swr";
 import Reveal from "../motion/Reveal";
+import Link from "next/link";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function SpotifyCard() {
-  const [data, setData] = useState<any>(null);
+  // const [data, setData] = useState<any>(null);
   const [progress, setProgress] = useState(0);
 
-  const fetchNowPlaying = async () => {
-    try {
-      const res = await fetch("/api/now-playing");
-      const json = await res.json();
-      setData(json);
-
-      if (json.isPlaying && json.durationMs) {
-        setProgress((json.progressMs / json.durationMs) * 100);
-      }
-    } catch (error) {
-      console.error("Error fetching Spotify data:", error);
-    }
-  };
+  const { data, error } = useSWR("/api/now-playing", fetcher, {
+    refreshInterval: 10000,
+  });
 
   useEffect(() => {
-    fetchNowPlaying();
-    const interval = setInterval(fetchNowPlaying, 10000);
-    return () => clearInterval(interval);
-  }, []);
+    if (data?.isPlaying && data?.durationMs) {
+      setProgress((data.progressMs / data.durationMs) * 100);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (data?.isPlaying) {
@@ -44,14 +38,14 @@ export default function SpotifyCard() {
   }, [data]);
 
   const isPlaying = data?.isPlaying || false;
-  const songName = data?.title || "Not Playing";
+  const songName = data?.title || (error ? "Error Loading" : "Not Playing");
   const artistName = data?.artist || "Spotify";
   const albumCover = data?.albumImageUrl || null;
 
   return (
     <Reveal delay={0.03}>
-      <a
-        href={data?.songUrl || "#"}
+      <Link
+        href={data?.songUrl || "https://open.spotify.com"}
         target="_blank"
         rel="noopener noreferrer"
         className="group mb-10 relative p-4 mx-2 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30 flex flex-col gap-3 transition-all duration-300 ease-out hover:bg-neutral-100 dark:hover:bg-neutral-900/50 hover:-translate-y-[1px] hover:shadow-sm dark:hover:shadow-neutral-950/40 hover:border-neutral-300 dark:hover:border-neutral-700"
@@ -113,7 +107,7 @@ export default function SpotifyCard() {
             />
           </div>
         )}
-      </a>
+      </Link>
 
       <style jsx>{`
         @keyframes music-bar {
