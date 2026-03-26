@@ -8,13 +8,14 @@ import WorkSection from "@/components/sections/WorkSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 
 import Reveal from "@/components/motion/Reveal";
+import VisitorSection from "@/components/sections/VisitorSection";
 
 export default function HomePage() {
   const afterHero = 0.21;
   const d = (i: number) => (i + 1) * 0.03;
 
   return (
-    <section className="py-16 selection:bg-neutral-200 dark:selection:bg-neutral-800">
+    <section className="pt-16 selection:bg-neutral-200 dark:selection:bg-neutral-800">
       <PageContainer>
         <div className="space-y-4">
           <HeroSection />
@@ -37,6 +38,10 @@ export default function HomePage() {
 
           <Reveal delay={d(4)} baseDelay={afterHero}>
             <GithubGraph />
+          </Reveal>
+
+          <Reveal delay={d(5)} baseDelay={afterHero}>
+            <VisitorSection />
           </Reveal>
         </div>
       </PageContainer>
