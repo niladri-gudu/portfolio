@@ -48,11 +48,11 @@ export default function SpotifyCard() {
         href={data?.songUrl || "https://open.spotify.com"}
         target="_blank"
         rel="noopener noreferrer"
-        className="group mb-10 relative p-4 mx-2 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30 flex flex-col gap-3 transition-all duration-300 ease-out hover:bg-neutral-100 dark:hover:bg-neutral-900/50 hover:-translate-y-[1px] hover:shadow-sm dark:hover:shadow-neutral-950/40 hover:border-neutral-300 dark:hover:border-neutral-700"
+        className="group mb-10 relative p-4 mx-2 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30 flex flex-col gap-3 transition-all duration-300 ease-out hover:bg-neutral-100 dark:hover:bg-neutral-900/50 hover:-translate-y-px hover:shadow-sm dark:hover:shadow-neutral-950/40 hover:border-neutral-300 dark:hover:border-neutral-700"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="relative flex items-center justify-center w-14 h-14 bg-neutral-200 dark:bg-neutral-800 rounded-lg overflow-hidden shadow-md transition-transform duration-500 ease-out group-hover:rotate-[-1deg]">
+            <div className="relative flex items-center justify-center w-14 h-14 bg-neutral-200 dark:bg-neutral-800 rounded-lg overflow-hidden shadow-md transition-transform duration-500 ease-out group-hover:-rotate-1">
               {albumCover ? (
                 <Image
                   src={albumCover}
@@ -68,13 +68,13 @@ export default function SpotifyCard() {
             <div className="flex flex-col min-w-0">
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-500 transition-colors duration-300 group-hover:text-neutral-600 dark:group-hover:text-neutral-400">
-                  {isPlaying ? "Currently Listening" : "Last Played"}
+                  {isPlaying ? "Now Listening" : "Last Played"}
                 </span>
                 {isPlaying && (
-                  <div className="flex items-end gap-[2px] h-3 w-4">
-                    <span className="w-[3px] bg-green-500 rounded-t-full animate-[music-bar_0.8s_ease-in-out_infinite]" />
-                    <span className="w-[3px] bg-green-500 rounded-t-full animate-[music-bar_1.2s_ease-in-out_infinite_0.2s]" />
-                    <span className="w-[3px] bg-green-500 rounded-t-full animate-[music-bar_1s_ease-in-out_infinite_0.4s]" />
+                  <div className="flex items-end gap-0.5 h-3 w-4">
+                    <span className="w-0.75 bg-green-500 rounded-t-full animate-[music-bar_0.8s_ease-in-out_infinite]" />
+                    <span className="w-0.75 bg-green-500 rounded-t-full animate-[music-bar_1.2s_ease-in-out_infinite_0.2s]" />
+                    <span className="w-0.75 bg-green-500 rounded-t-full animate-[music-bar_1s_ease-in-out_infinite_0.4s]" />
                   </div>
                 )}
               </div>
