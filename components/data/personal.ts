@@ -36,7 +36,7 @@ export const personalData: PersonalData = {
   },
 
   location: {
-    city: "New Delhi",
+    city: "Visakhapatnam",
     country: "India",
   },
 
