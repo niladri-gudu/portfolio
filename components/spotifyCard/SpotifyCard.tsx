@@ -10,11 +10,12 @@ import Link from "next/link";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-export default function SpotifyCard() {
+export default function SpotifyCard({ fallback }: { fallback: any }) {
   const [progress, setProgress] = useState(0);
 
   const { data, error } = useSWR("/api/now-playing", fetcher, {
     refreshInterval: 1000,
+    fallbackData: fallback,
   });
 
   useEffect(() => {
@@ -80,7 +81,6 @@ export default function SpotifyCard() {
               <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate transition-colors duration-300 group-hover:text-neutral-950 dark:group-hover:white">
                 {songName}
               </h3>
-              {/* Added truncate here as well */}
               <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium truncate transition-opacity duration-300 group-hover:opacity-95">
                 by {artistName}
               </p>
@@ -97,7 +97,6 @@ export default function SpotifyCard() {
           </div>
         </div>
 
-        {/* Progress Bar */}
         {isPlaying && (
           <div className="w-full h-1 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden">
             <div
