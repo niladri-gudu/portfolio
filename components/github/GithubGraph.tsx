@@ -17,7 +17,7 @@ export default function GithubGraph() {
       </Reveal>
 
       <Reveal delay={0.06}>
-        <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 overflow-x-auto overflow-y-hidden mx-2">
+        <div className="rounded-2xl mb-12 border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 overflow-x-auto overflow-y-hidden mx-2">
           <GitHubCalendar
             username="niladri-gudu"
             year={currentYear}

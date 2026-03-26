@@ -9,6 +9,7 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 
 import Reveal from "@/components/motion/Reveal";
 import VisitorSection from "@/components/sections/VisitorSection";
+import GuestbookSection from "@/components/sections/GuestbookSection";
 
 export default function HomePage() {
   const afterHero = 0.21;
@@ -41,6 +42,10 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={d(5)} baseDelay={afterHero}>
+            <GuestbookSection />
+          </Reveal>
+
+          <Reveal delay={d(6)} baseDelay={afterHero}>
             <VisitorSection />
           </Reveal>
         </div>

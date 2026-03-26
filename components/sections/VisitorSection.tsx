@@ -32,7 +32,7 @@ export default function VisitorSection() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-1 py-4 text-center pt-12">
+    <div className="flex flex-col items-center justify-center gap-1 py-4 text-center pt-10">
       <div className="text-sm font-medium text-foreground min-h-5 flex items-center">
         {isLoading ? (
           <span className="inline-block w-32 h-4 animate-pulse bg-muted rounded" />

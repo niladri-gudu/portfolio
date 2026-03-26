@@ -21,3 +21,10 @@ model VisitLog {
   @@index([createdAt])
   @@index([country])
 }
+
+model GuestbookEntry {
+  id        String   @id @default(cuid())
+  name      String
+  message   String
+  createdAt DateTime @default(now())
+}
