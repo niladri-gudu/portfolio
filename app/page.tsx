@@ -10,6 +10,7 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import Reveal from "@/components/motion/Reveal";
 import VisitorSection from "@/components/sections/VisitorSection";
 import GuestbookSection from "@/components/sections/GuestbookSection";
+import StackSection from "@/components/sections/StackSection";
 
 export default async function HomePage() {
   const afterHero = 0.21;
@@ -37,15 +38,19 @@ export default async function HomePage() {
             <ProjectsSection />
           </Reveal>
 
+          {/* <Reveal delay={d(4)} baseDelay={afterHero}>
+            <StackSection />
+          </Reveal> */}
+
           <Reveal delay={d(4)} baseDelay={afterHero}>
             <GithubGraph />
           </Reveal>
+            
+          {/* <Reveal delay={d(5)} baseDelay={afterHero}>
+            <GuestbookSection />
+          </Reveal> */}
 
           <Reveal delay={d(5)} baseDelay={afterHero}>
-            <GuestbookSection />
-          </Reveal>
-
-          <Reveal delay={d(6)} baseDelay={afterHero}>
             <VisitorSection />
           </Reveal>
         </div>
