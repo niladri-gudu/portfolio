@@ -10,12 +10,11 @@ import Link from "next/link";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-export default function SpotifyCard({ fallback }: { fallback: any }) {
+export default function SpotifyCard() {
   const [progress, setProgress] = useState(0);
 
   const { data, error } = useSWR("/api/now-playing", fetcher, {
     refreshInterval: 10000,
-    fallbackData: fallback,
   });
 
   useEffect(() => {

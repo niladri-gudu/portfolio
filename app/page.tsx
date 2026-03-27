@@ -10,20 +10,10 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import Reveal from "@/components/motion/Reveal";
 import VisitorSection from "@/components/sections/VisitorSection";
 import GuestbookSection from "@/components/sections/GuestbookSection";
-import { redis } from "@/lib/redis";
 
 export default async function HomePage() {
   const afterHero = 0.21;
   const d = (i: number) => (i + 1) * 0.03;
-
-  const cached = await redis.get("spotify:last-played");
-  const spotifyFallback = cached
-    ? {
-        ...(typeof cached === "string" ? JSON.parse(cached) : cached),
-        isPlaying: false,
-        progressMs: 0,
-      }
-    : null;
 
   return (
     <section className="pt-16 selection:bg-neutral-200 dark:selection:bg-neutral-800">
@@ -32,7 +22,7 @@ export default async function HomePage() {
           <HeroSection />
 
           <Reveal delay={d(0)} baseDelay={afterHero}>
-            <SpotifyCard fallback={spotifyFallback} />
+            <SpotifyCard />
           </Reveal>
 
           <Reveal delay={d(1)} baseDelay={afterHero}>
