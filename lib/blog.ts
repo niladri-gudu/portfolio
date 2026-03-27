@@ -13,26 +13,37 @@ export type BlogPost = {
 };
 
 export function getAllPosts(): BlogPost[] {
-  const files = fs.readdirSync(BLOG_DIR);
+  if (!fs.existsSync(BLOG_DIR)) {
+    console.warn(
+      `Directory ${BLOG_DIR} not found. Returning empty posts array.`,
+    );
+    return [];
+  }
 
-  return files
-    .filter((f) => f.endsWith(".mdx"))
-    .map((file) => {
-      const slug = file.replace(".mdx", "");
-      const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
-      const { data } = matter(raw);
+  try {
+    const files = fs.readdirSync(BLOG_DIR);
 
-      return {
-        slug,
-        title: data.title,
-        date: data.date,
-        description: data.description,
-        tags: data.tags ?? [],
-      };
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return files
+      .filter((f) => f.endsWith(".mdx"))
+      .map((file) => {
+        const slug = file.replace(".mdx", "");
+        const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
+        const { data } = matter(raw);
+
+        return {
+          slug,
+          title: data.title,
+          date: data.date,
+          description: data.description,
+          tags: data.tags ?? [],
+        };
+      })
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  } catch (error) {
+    console.error("Error reading blog posts:", error);
+    return [];
+  }
 }
-
 export function getPostBySlug(slug: string) {
   const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
   const raw = fs.readFileSync(filePath, "utf-8");
