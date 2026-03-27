@@ -1,55 +1,74 @@
 import Reveal from "@/components/motion/Reveal";
+import BlogCard from "@/components/blog/BlogCard";
+import { getAllPosts } from "@/lib/blog";
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+  const d = (i: number) => (i + 1) * 0.03;
+
   return (
-    <div className="max-w-4xl mx-auto px-6">
-      <section className="flex flex-col my-12 gap-6 pt-4">
+    <>
+      <section className="flex flex-col my-8 gap-6 pt-4">
         <Reveal>
-          <h1 className="flex items-center justify-center gap-6 text-6xl xl:text-7xl font-ds font-extrabold tracking-tighter">
+          <h1 className="flex items-center justify-center gap-6 text-6xl xl:text-7xl font-ds font-extrabold">
             <span>Blog</span>
           </h1>
         </Reveal>
-        
-        <Reveal delay={0.03}>
-          <p className="text-center text-lg text-muted-foreground mx-auto max-w-md">
+
+        <Reveal delay={d(0)}>
+          <p className="text-center text-lg text-muted-foreground mx-auto w-5/6">
             Building processes and small wins found along the way.
           </p>
         </Reveal>
       </section>
 
-      <Reveal delay={0.06}>
-        <hr className="border-neutral-200 dark:border-neutral-800" />
+      <Reveal delay={d(1)}>
+        <hr className="mx-3 rounded-xl" />
       </Reveal>
 
-      {/* Empty State Section */}
-      <section className="flex flex-col items-center justify-center gap-4 py-32 text-center">
-        <Reveal delay={0.09}>
-          <div className="w-16 h-16 bg-neutral-100 dark:bg-neutral-900 rounded-2xl flex items-center justify-center text-3xl mb-2">
-            ✍️
+      {posts.length === 0 ? (
+        <section className="flex flex-col items-center justify-center gap-4 py-24 text-center">
+          <Reveal delay={d(2)}>
+            <p className="text-4xl">✍️</p>
+          </Reveal>
+          <Reveal delay={d(3)}>
+            <h2 className="text-xl font-semibold tracking-tight">
+              Nothing here yet
+            </h2>
+          </Reveal>
+          <Reveal delay={d(4)}>
+            <p className="text-sm text-muted-foreground max-w-sm">
+              I&apos;m cooking up some posts. Check back soon — or{" "}
+              <a
+                href="https://x.com/dev_niladri"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 hover:text-foreground transition"
+              >
+                follow me on X
+              </a>{" "}
+              to know when they drop.
+            </p>
+          </Reveal>
+        </section>
+      ) : (
+        <section className="flex flex-col gap-5 pb-8">
+          <Reveal delay={d(2)}>
+            <h2 className="px-6 pt-5 pb-2">
+              All Posts{" "}
+              <span className="text-muted-foreground">({posts.length})</span>
+            </h2>
+          </Reveal>
+
+          <div className="grid grid-cols-1 gap-5 px-6 divide-y divide-neutral-200 dark:divide-neutral-800">
+            {posts.map((post, idx) => (
+              <Reveal key={post.slug} delay={(idx + 1) * 0.03}>
+                <BlogCard post={post} />
+              </Reveal>
+            ))}
           </div>
-        </Reveal>
-
-        <Reveal delay={0.12}>
-          <h2 className="text-xl font-semibold tracking-tight">
-            Nothing here yet
-          </h2>
-        </Reveal>
-
-        <Reveal delay={0.15}>
-          <p className="text-sm text-muted-foreground max-w-[280px] leading-relaxed">
-            I&apos;m cooking up some posts. Check back soon — or{" "}
-            <a
-              href="https://x.com/dev_niladri"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-foreground underline underline-offset-4 decoration-neutral-300 dark:decoration-neutral-700 hover:decoration-foreground transition-all"
-            >
-              follow me on X
-            </a>{" "}
-            to know when they drop.
-          </p>
-        </Reveal>
-      </section>
-    </div>
+        </section>
+      )}
+    </>
   );
 }
