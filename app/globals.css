@@ -100,6 +100,7 @@ body {
   --sidebar-ring: oklch(0.708 0 0);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+  --next-n-color: #ffffff;
 }
 
 .dark {
@@ -134,6 +135,7 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --next-n-color: #000000;
 }
 
 @layer base {
@@ -150,49 +152,9 @@ body {
   }
 }
 
-/* @layer base {
-  html:not(.setting-theme), 
-  html:not(.setting-theme) body,
-  html:not(.setting-theme) * {
-    transition:
-      background-color 500ms ease,
-      color 500ms ease,
-      border-color 500ms ease,
-      fill 500ms ease,
-      stroke 500ms ease,
-      box-shadow 500ms ease;
-  }
-} */
-
-/* .no-transition * {
-  transition: none !important;
-} */
-
 html, body {
   height: 100%;
 }
-
-/* @media (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-}
-
-@media (pointer: coarse) {
-  * {
-    cursor: auto;
-  }
-} */
-
-/* *::selection {
-  color: black;
-  background-color: white;
-}
-
-*::-moz-selection {
-  color: black;
-  background-color: white;
-} */
 
 ::selection {
   color: var(--background);     
@@ -208,31 +170,22 @@ html, body {
   color: var(--background);
   background-color: var(--foreground);
 }
+
 .dark ::-moz-selection {
   color: var(--background);
   background-color: var(--foreground);
 }
 
-/* .card {
-  transition: all 300ms ease-in-out;
-}
-
-.card:hover {
-  transform: scale(1.005);
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-} */
-
-/* ✅ hide scrollbar inside GitHubCalendar / react-activity-calendar */
+/* hide scrollbar inside GitHubCalendar */
 .react-activity-calendar {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .react-activity-calendar::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+  display: none;
 }
 
-/* if internal wrapper is scrollable */
 .react-activity-calendar > div {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -240,14 +193,6 @@ html, body {
 
 .react-activity-calendar > div::-webkit-scrollbar {
   display: none;
-}
-
-:root {
-  --next-n-color: #ffffff; 
-}
-
-.dark {
-  --next-n-color: #000000;
 }
 
 /* Blog prose styles */
@@ -262,8 +207,59 @@ html, body {
 .prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
 .prose li { margin-bottom: 0.25rem; line-height: 1.75; }
 .prose blockquote { border-left: 3px solid var(--border); padding-left: 1rem; color: var(--muted-foreground); font-style: italic; margin: 1.5rem 0; }
-.prose code { font-size: 0.875rem; background-color: var(--muted); padding: 0.125rem 0.375rem; border-radius: 0.375rem; font-family: var(--font-geist-mono); }
-.prose pre { background-color: var(--muted); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; margin: 1.5rem 0; }
-.prose pre code { background: none; padding: 0; font-size: 0.875rem; }
+.prose pre:not([data-rehype-pretty-code-figure] pre) { 
+  background-color: var(--muted); 
+  border: 1px solid var(--border); 
+  border-radius: 0.75rem; 
+  padding: 1rem; 
+  overflow-x: auto; 
+  margin: 1.5rem 0; 
+}
+.prose code:not([data-rehype-pretty-code-figure] code) { 
+  font-size: 0.875rem; 
+  background-color: var(--muted); 
+  padding: 0.125rem 0.375rem; 
+  border-radius: 0.375rem; 
+  font-family: var(--font-geist-mono); 
+}
+.prose pre code { 
+  background: none; 
+  padding: 0; 
+  font-size: 0.875rem; 
+}
 .prose img { border-radius: 0.75rem; border: 1px solid var(--border); margin: 1.5rem 0; }
 .prose hr { border-color: var(--border); margin: 2rem 0; }
+
+/* Syntax highlighting */
+[data-theme="light"] { display: block; }
+[data-theme="dark"] { display: none; }
+
+.dark [data-theme="light"] { display: none; }
+.dark [data-theme="dark"] { display: block; }
+
+[data-rehype-pretty-code-figure] {
+  margin: 1.5rem 0;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+[data-rehype-pretty-code-figure] code {
+  background: none !important;
+  padding: 0 !important;
+  font-size: 0.875rem;
+  font-family: var(--font-geist-mono);
+  counter-reset: line;
+}
+
+[data-rehype-pretty-code-figure] span {
+  color: var(--shiki-light);
+}
+
+.dark [data-rehype-pretty-code-figure] span {
+  color: var(--shiki-dark);
+}
