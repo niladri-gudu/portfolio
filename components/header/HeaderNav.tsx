@@ -12,6 +12,7 @@ export default function HeaderNav() {
   const links = [
     { href: "/work", label: "Work" },
     { href: "/projects", label: "Projects" },
+    { href: "/blog", label: "Blog" },
   ];
 
   return (
