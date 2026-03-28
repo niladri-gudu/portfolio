@@ -7,6 +7,7 @@ import { Music } from "lucide-react";
 import useSWR from "swr";
 import Reveal from "../motion/Reveal";
 import Link from "next/link";
+import { motion, AnimatePresence } from "motion/react";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -50,17 +51,31 @@ export default function SpotifyCard() {
       >
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-4 min-w-0">
+            {/* Album Cover Transition */}
             <div className="relative shrink-0 flex items-center justify-center w-14 h-14 bg-neutral-200 dark:bg-neutral-800 rounded-lg overflow-hidden shadow-md transition-transform duration-500 ease-out group-hover:-rotate-1">
-              {albumCover ? (
-                <Image
-                  src={albumCover}
-                  alt={`${songName} album cover`}
-                  fill
-                  className="object-cover scale-100 transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-              ) : (
-                <Music size={20} className="text-neutral-400" />
-              )}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={albumCover}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative w-full h-full"
+                >
+                  {albumCover ? (
+                    <Image
+                      src={albumCover}
+                      alt={`${songName} album cover`}
+                      fill
+                      className="object-cover scale-100 transition-transform duration-700 ease-out group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-full h-full">
+                      <Music size={20} className="text-neutral-400" />
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             <div className="flex flex-col min-w-0">
@@ -70,19 +85,30 @@ export default function SpotifyCard() {
                 </span>
                 {isPlaying && (
                   <div className="flex items-end gap-0.5 h-3 w-4">
-                    <span className="w-0.75 bg-green-500 rounded-t-full animate-[music-bar_0.8s_ease-in-out_infinite]" />
-                    <span className="w-0.75 bg-green-500 rounded-t-full animate-[music-bar_1.2s_ease-in-out_infinite_0.2s]" />
-                    <span className="w-0.75 bg-green-500 rounded-t-full animate-[music-bar_1s_ease-in-out_infinite_0.4s]" />
+                    <span className="w-0.75 bg-green-500 rounded-t-full rounded-b-full animate-[music-bar_0.8s_ease-in-out_infinite]" />
+                    <span className="w-0.75 bg-green-500 rounded-t-full rounded-b-full animate-[music-bar_1.2s_ease-in-out_infinite_0.2s]" />
+                    <span className="w-0.75 bg-green-500 rounded-t-full rounded-b-full animate-[music-bar_1s_ease-in-out_infinite_0.4s]" />
                   </div>
                 )}
               </div>
 
-              <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate transition-colors duration-300 group-hover:text-neutral-950 dark:group-hover:white">
-                {songName}
-              </h3>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium truncate transition-opacity duration-300 group-hover:opacity-95">
-                by {artistName}
-              </p>
+              {/* Text Info Transition */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={songName}
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate transition-colors duration-300 group-hover:text-neutral-950 dark:group-hover:white">
+                    {songName}
+                  </h3>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium truncate transition-opacity duration-300 group-hover:opacity-95">
+                    by {artistName}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
 
@@ -96,11 +122,14 @@ export default function SpotifyCard() {
           </div>
         </div>
 
+        {/* Progress Bar with Motion for smoother linear growth */}
         {isPlaying && (
           <div className="w-full h-1 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-green-500 rounded-full transition-all duration-1000 ease-linear"
-              style={{ width: `${progress}%` }}
+            <motion.div
+              initial={false}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 1, ease: "linear" }}
+              className="h-full bg-green-500 rounded-full"
             />
           </div>
         )}

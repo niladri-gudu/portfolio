@@ -26,6 +26,14 @@ export type PersonalData = {
       second: string;
     };
   };
+
+  about: {
+    image: {
+      src: string;
+      alt: string;
+    };
+    paragraphs: string[];
+  };
 };
 
 export const personalData: PersonalData = {
@@ -55,5 +63,17 @@ export const personalData: PersonalData = {
       first: "Solidity architecture",
       second: "user-centric design",
     },
+  },
+
+  about: {
+    image: {
+      src: "/profile.jpg",
+      alt: "Niladri",
+    },
+paragraphs: [
+      "I’m Niladri, a Web3 developer in Visakhapatnam, originally from the small town of Damanjodi, Odisha.",
+      "I build decentralized systems focused on usability, prioritizing interfaces that feel fast, intentional, and polished.",
+      "Outside of code, I’m at the gym, watching a series, or lost in a playlist. Balance makes for better building.",
+    ],
   },
 };
