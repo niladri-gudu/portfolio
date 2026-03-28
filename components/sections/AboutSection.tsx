@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Reveal from "@/components/motion/Reveal";
 import { personalData } from "@/components/data/personal";
+import Link from "next/link";
 
 export default function AboutSection() {
   return (
@@ -13,14 +14,16 @@ export default function AboutSection() {
 
       <div className="flex flex-col md:flex-row gap-8 px-2">
         <Reveal delay={0.06}>
-          <div className="relative w-full md:w-64 shrink-0 aspect-square rounded-4xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
-            <Image
-              src={personalData.about.image.src}
-              alt={personalData.about.image.alt}
-              fill
-              className="object-cover object-top"
-            />
-          </div>
+          <Link href="/guestbook" prefetch>
+            <div className="relative w-full md:w-64 shrink-0 aspect-square rounded-4xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
+              <Image
+                src={personalData.about.image.src}
+                alt={personalData.about.image.alt}
+                fill
+                className="object-cover object-top"
+              />
+            </div>
+          </Link>
         </Reveal>
 
         <div className="flex flex-col justify-center gap-4">
