@@ -263,3 +263,27 @@ html, body {
 .dark [data-rehype-pretty-code-figure] span {
   color: var(--shiki-dark);
 }
+
+/* GitHub calendar tooltip */
+.react-activity-calendar__tooltip {
+  width: max-content;
+  padding: 0.3em 0.6em;
+  border-radius: 0.375rem;
+  background-color: oklch(0.145 0 0);
+  color: oklch(0.985 0 0);
+  font-size: 11px;
+  font-family: var(--font-geist-mono);
+}
+
+.react-activity-calendar__tooltip .react-activity-calendar__tooltip-arrow {
+  fill: oklch(0.145 0 0);
+}
+
+.dark .react-activity-calendar__tooltip {
+  background-color: oklch(0.985 0 0);
+  color: oklch(0.145 0 0);
+}
+
+.dark .react-activity-calendar__tooltip .react-activity-calendar__tooltip-arrow {
+  fill: oklch(0.985 0 0);
+}
