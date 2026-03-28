@@ -5,9 +5,13 @@ import Reveal from "@/components/motion/Reveal";
 export const revalidate = 0;
 
 export default async function GuestbookPage() {
-  const entries = await prisma.guestbookEntry.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  const [entries, total] = await Promise.all([
+    prisma.guestbookEntry.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 10,
+    }),
+    prisma.guestbookEntry.count(),
+  ]);
 
   const d = (i: number) => (i + 1) * 0.03;
 
@@ -32,12 +36,12 @@ export default async function GuestbookPage() {
         <Reveal delay={d(2)}>
           <h2 className="px-6 pt-5 pb-2">
             All Entries{" "}
-            <span className="text-muted-foreground">({entries.length})</span>
+            <span className="text-muted-foreground">({total})</span>
           </h2>
         </Reveal>
         <Reveal delay={d(3)}>
           <div className="px-4">
-            <GuestbookClient initialEntries={entries} />
+            <GuestbookClient initialEntries={entries} total={total} />
           </div>
         </Reveal>
       </section>

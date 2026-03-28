@@ -1,11 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
-  const entries = await prisma.guestbookEntry.findMany({
-    orderBy: { createdAt: "desc" },
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const page = parseInt(searchParams.get("page") ?? "1");
+  const limit = 10;
+  const skip = (page - 1) * limit;
+
+  const [entries, total] = await Promise.all([
+    prisma.guestbookEntry.findMany({
+      orderBy: { createdAt: "desc" },
+      take: limit,
+      skip,
+    }),
+    prisma.guestbookEntry.count(),
+  ]);
+
+  return NextResponse.json({
+    entries,
+    total,
+    hasMore: skip + entries.length < total,
   });
-  return NextResponse.json(entries);
 }
 
 export async function POST(req: NextRequest) {

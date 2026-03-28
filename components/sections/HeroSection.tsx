@@ -5,11 +5,10 @@ import { MapPin } from "lucide-react";
 import LiveClock from "@/components/liveClock/LiveClock";
 import { personalData } from "@/components/data/personal";
 import Reveal from "@/components/motion/Reveal";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function HeroSection() {
   const isAvailable = personalData.availability.isAvailable;
-  const router = useRouter();
 
   return (
     <section className="space-y-8 px-2 pb-6">
@@ -118,20 +117,19 @@ export default function HeroSection() {
         </div>
 
         <Reveal delay={0.15}>
-          <div className="relative group">
-            <div
-              className="relative cursor-pointer w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden grayscale hover:grayscale-0 shadow-2xl"
-              onClick={() => router.push("/guestbook")}
-            >
-              <Image
-                src={personalData.profile.image.src}
-                alt={personalData.profile.image.alt}
-                fill
-                className="object-cover scale-110 group-hover:scale-100 transition-transform"
-                priority
-              />
+          <Link href="/guestbook" prefetch>
+            <div className="relative group">
+              <div className="relative cursor-pointer w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden grayscale hover:grayscale-0 shadow-2xl">
+                <Image
+                  src={personalData.profile.image.src}
+                  alt={personalData.profile.image.alt}
+                  fill
+                  className="object-cover scale-110 group-hover:scale-100 transition-transform"
+                  priority
+                />
+              </div>
             </div>
-          </div>
+          </Link>
         </Reveal>
       </main>
 

@@ -1,22 +1,48 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import GuestbookForm from "./GuestbookForm";
 import GuestbookEntries from "./GuestbookEntries";
 
-type Entry = {
-  id: string;
-  name: string;
-  message: string;
-  createdAt: Date;
-};
+type Entry = { id: string; name: string; message: string; createdAt: Date };
 
 export default function GuestbookClient({
   initialEntries,
+  total,
 }: {
   initialEntries: Entry[];
+  total: number;
 }) {
   const [entries, setEntries] = useState<Entry[]>(initialEntries);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(initialEntries.length < total);
+  const [loading, setLoading] = useState(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  const loadMore = async () => {
+    if (loading || !hasMore) return;
+    setLoading(true);
+    const nextPage = page + 1;
+    const res = await fetch(`/api/guestbook?page=${nextPage}`);
+    const data = await res.json();
+    setEntries((prev) => [...prev, ...data.entries]);
+    setPage(nextPage);
+    setHasMore(data.hasMore);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) loadMore();
+      },
+      { threshold: 0.1 }
+    );
+
+    if (bottomRef.current) observer.observe(bottomRef.current);
+    return () => observer.disconnect();
+  }, [page, hasMore, loading]);
 
   return (
     <div className="space-y-8">
@@ -27,6 +53,20 @@ export default function GuestbookClient({
         entries={entries}
         onDelete={(id) => setEntries((prev) => prev.filter((e) => e.id !== id))}
       />
+      {hasMore && (
+        <div ref={bottomRef} className="flex justify-center py-4">
+          {loading && (
+            <p className="text-xs font-mono text-muted-foreground">
+              Loading...
+            </p>
+          )}
+        </div>
+      )}
+      {!hasMore && entries.length > 10 && (
+        <p className="text-center text-xs font-mono text-muted-foreground pb-4">
+          you've reached the end 😉
+        </p>
+      )}
     </div>
   );
 }
