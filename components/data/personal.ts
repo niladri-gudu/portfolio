@@ -52,7 +52,7 @@ export const personalData: PersonalData = {
     name: "niladri.",
     role: "Fullstack Web3 Developer",
     image: {
-      src: "/profile.jpg",
+      src: "/new_profile_updated.jpeg",
       alt: "Niladri",
     },
   },
@@ -67,7 +67,7 @@ export const personalData: PersonalData = {
 
   about: {
     image: {
-      src: "/profile.jpg",
+      src: "/new_profile_updated.jpeg",
       alt: "Niladri",
     },
 paragraphs: [
