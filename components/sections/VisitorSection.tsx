@@ -10,7 +10,7 @@ export default function VisitorSection() {
     try {
       const response = await fetch("/api/visit/count");
       if (!response.ok) throw new Error("Failed to fetch");
-      
+
       const data = await response.json();
       setCount(data.count);
     } catch (error) {
@@ -28,7 +28,14 @@ export default function VisitorSection() {
   const getOrdinal = (n: number) => {
     const s = ["th", "st", "nd", "rd"];
     const v = n % 100;
-    return n.toLocaleString() + (s[(v - 20) % 10] || s[v] || s[0]);
+    const suffix = s[(v - 20) % 10] || s[v] || s[0];
+
+    return (
+      <>
+        {n.toLocaleString()}
+        <sup>{suffix}</sup>
+      </>
+    );
   };
 
   return (
@@ -38,11 +45,12 @@ export default function VisitorSection() {
           <span className="inline-block w-32 h-4 animate-pulse bg-muted rounded" />
         ) : count !== null ? (
           <p>
-            You are the <span className="font-bold">{getOrdinal(count)}</span> visitor
+            You are the <span className="font-bold">{getOrdinal(count)}</span>{" "}
+            visitor
           </p>
         ) : null}
       </div>
-      
+
       {!isLoading && (
         <p className="text-xs text-muted-foreground animate-in fade-in duration-700">
           Thanks for stopping by 🫶
