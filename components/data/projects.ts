@@ -46,6 +46,71 @@ export type ProjectItem = {
 
 export const projectItems: ProjectItem[] = [
   {
+    slug: "walletx",
+    title: "WalletX",
+    description:
+      "A full-stack ERC-4337 Account Abstraction smart wallet with gasless transactions, session keys, and real-time transaction lifecycle visualization.",
+    image: "/nature.jpg",
+
+    status: "Completed",
+
+    links: {
+      // website: "https://walletx.niladri.app",
+      github: "https://github.com/niladri-gudu/walletx",
+    },
+
+    timeline: "12 days",
+    role: "Full Stack Developer",
+    team: "Solo",
+
+    overview:
+      "WalletX is a production-grade ERC-4337 smart wallet implementation that demonstrates the full Account Abstraction stack — from UserOperation construction to on-chain execution. Instead of regular Ethereum transactions, users sign UserOperations that flow through a bundler, get validated by a custom VerifyingPaymaster, and execute via a programmable smart wallet contract. The project showcases gasless UX, delegated session key access, and a real-time transaction lifecycle visualizer.",
+
+    whatUsersCanDo: [
+      "Connect their EOA wallet via RainbowKit and interact with a deployed smart wallet.",
+      "Send gasless transactions where the VerifyingPaymaster covers all gas fees.",
+      "Create session keys with fine-grained permissions — restricted target address, ETH cap, and expiry time.",
+      "Execute transactions using session keys without owner signature involvement.",
+      "Track the full UserOperation lifecycle in real-time — from signing to bundler submission to on-chain confirmation.",
+      "Revoke session keys instantly to remove delegated access.",
+      "View confirmed transactions with direct Etherscan links.",
+    ],
+
+    whyIBuiltThis: [
+      "To deeply understand ERC-4337 Account Abstraction — the most important UX primitive in Web3.",
+      "To implement a custom VerifyingPaymaster from scratch and understand the signature verification flow.",
+      "To master the UserOperation lifecycle — how bundlers, EntryPoints, and smart wallets interact.",
+      "To build session keys as a senior-level feature that demonstrates programmable wallet logic.",
+      "To complete Phase 6 of the '6 Projects in 60 Days' challenge with the most infrastructure-heavy project yet.",
+    ],
+
+    afterLaunchImpact: [
+      "Successfully implemented a custom VerifyingPaymaster that reconstructs userOpHash internally to match EntryPoint's computation — solving a non-trivial signature verification challenge.",
+      "Built a complete two-hash signing flow where the paymaster signs with empty paymasterData and the wallet signs after paymasterData is finalized.",
+      "Implemented session key enforcement at the contract level using assembly-based calldata decoding to validate target address and ETH amount per transaction.",
+      "Integrated Pimlico bundler with sponsorship policy management to ensure the custom paymaster is respected.",
+      "Delivered a real-time transaction lifecycle UI that animates through each stage of the UserOperation flow.",
+    ],
+
+    futurePlans: [
+      "Add multi-owner support and on-chain multisig validation.",
+      "Implement ERC-20 token gas payments via a token paymaster.",
+      "Add social recovery — allow trusted guardians to restore wallet access.",
+      "Build a session key marketplace where dApps can request scoped access from users.",
+      "Integrate The Graph to index UserOperation history for a full transaction dashboard.",
+    ],
+
+    technologies: [
+      { name: "Solidity", icon: Solidity },
+      { name: "Next.js", icon: Next },
+      { name: "Nest.js", icon: Nest },
+      { name: "TypeScript", icon: Typescript },
+      { name: "Viem", icon: Viem },
+      { name: "Wagmi", icon: Wagmi },
+      { name: "Turborepo", icon: Turborepo },
+    ],
+  },
+  {
     slug: "questfi",
     title: "QuestFi",
     description:
