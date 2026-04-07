@@ -50,7 +50,7 @@ export const projectItems: ProjectItem[] = [
     title: "WalletX",
     description:
       "A full-stack ERC-4337 Account Abstraction smart wallet with gasless transactions, session keys, and real-time transaction lifecycle visualization.",
-    image: "/walletx.jpg",
+    image: "/walletx.png",
 
     status: "Completed",
 
@@ -115,7 +115,7 @@ export const projectItems: ProjectItem[] = [
     title: "QuestFi",
     description:
       "A Web3 questing platform that simplifies onchain interactions through XP, leaderboards, and NFT badge rewards.",
-    image: "/questfi.jpg",
+    image: "/questfi.png",
 
     status: "Completed",
 
@@ -180,7 +180,7 @@ export const projectItems: ProjectItem[] = [
     title: "LendX",
     description:
       "A decentralized Aave-style lending protocol featuring ETH collateralized borrowing, real-time health factor tracking, and an automated liquidation engine.",
-    image: "/lendx.jpg",
+    image: "/lendx.png",
 
     status: "Completed",
 
@@ -247,7 +247,7 @@ export const projectItems: ProjectItem[] = [
     title: "ZKPass",
     description:
       "A gasless, on-chain access control system using Merkle Trees to verify allowlist eligibility and mint access passes without user gas fees.",
-    image: "/zkpass.jpg",
+    image: "/zkpass.png",
 
     status: "Completed",
 
