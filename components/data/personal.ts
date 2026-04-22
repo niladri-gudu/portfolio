@@ -50,7 +50,7 @@ export const personalData: PersonalData = {
 
   profile: {
     name: "niladri.",
-    role: "Fullstack Web3 Developer",
+    role: "Backend & Systems Engineer",
     image: {
       src: "/new_profile_updated_2.0.jpeg",
       alt: "Niladri",
@@ -58,10 +58,10 @@ export const personalData: PersonalData = {
   },
 
   intro: {
-    text: "Building decentralized systems and high-fidelity interfaces. Currently focused on the intersection of",
+    text: "Architecting scalable distributed systems and high-performance backends. Currently obsessed with",
     highlight: {
-      first: "Solidity architecture",
-      second: "user-centric design",
+      first: "System Design",
+      second: "Distributed Computing",
     },
   },
 
@@ -70,10 +70,10 @@ export const personalData: PersonalData = {
       src: "/new_profile_updated_2.0.jpeg",
       alt: "Niladri",
     },
-paragraphs: [
-      "I’m Niladri, a Web3 developer in Visakhapatnam, originally from the small town of Damanjodi, Odisha.",
-      "I build decentralized systems focused on usability, prioritizing interfaces that feel fast, intentional, and polished.",
-      "Outside of code, I’m at the gym, watching a series, or lost in a playlist. Balance makes for better building.",
+    paragraphs: [
+      "I’m Niladri, a Backend Engineer based in Visakhapatnam, originally from the small town of Damanjodi, Odisha.",
+      "I focus on building resilient server-side architectures, tackling challenges in distributed processing, job queues, and real-time data synchronization.",
+      "Outside of code, I’m at the gym, watching a series, or lost in a playlist. I find that the discipline of strength training translates directly to building robust, high-performance systems.",
     ],
   },
 };
