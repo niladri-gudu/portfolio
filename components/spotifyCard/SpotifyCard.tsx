@@ -85,9 +85,9 @@ export default function SpotifyCard() {
                 </span>
                 {isPlaying && (
                   <div className="flex items-end gap-0.5 h-3 w-4">
-                    <span className="w-0.75 bg-green-500 rounded-t-full rounded-b-full animate-[music-bar_0.8s_ease-in-out_infinite]" />
-                    <span className="w-0.75 bg-green-500 rounded-t-full rounded-b-full animate-[music-bar_1.2s_ease-in-out_infinite_0.2s]" />
-                    <span className="w-0.75 bg-green-500 rounded-t-full rounded-b-full animate-[music-bar_1s_ease-in-out_infinite_0.4s]" />
+                    <span className="w-[3px] bg-green-500 rounded-t-full rounded-b-full animate-[music-bar_0.8s_ease-in-out_infinite]" />
+                    <span className="w-[3px] bg-green-500 rounded-t-full rounded-b-full animate-[music-bar_1.2s_ease-in-out_infinite_0.2s]" />
+                    <span className="w-[3px] bg-green-500 rounded-t-full rounded-b-full animate-[music-bar_1s_ease-in-out_infinite_0.4s]" />
                   </div>
                 )}
               </div>
@@ -101,7 +101,7 @@ export default function SpotifyCard() {
                   exit={{ opacity: 0, y: -4 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate transition-colors duration-300 group-hover:text-neutral-950 dark:group-hover:white">
+                  <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate transition-colors duration-300 group-hover:text-neutral-950 dark:group-hover:text-white">
                     {songName}
                   </h3>
                   <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium truncate transition-opacity duration-300 group-hover:opacity-95">

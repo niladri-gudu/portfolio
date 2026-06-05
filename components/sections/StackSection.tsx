@@ -30,7 +30,7 @@ export default function StackSection() {
   return (
     <section className="space-y-6">
       <Reveal delay={0.03}>
-        <h2 className="text-md font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
+        <h2 className="text-base font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
           Stack
         </h2>
       </Reveal>

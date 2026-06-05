@@ -9,6 +9,7 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "public/project-image-html/html2canjas.min.js",
     "next-env.d.ts",
   ]),
 ]);

@@ -51,9 +51,9 @@ export default function HeroSection() {
                   <span
                     className="
                       max-w-0 overflow-hidden whitespace-nowrap
-                      opacity-0 -translate-x-0.75
+                      opacity-0 -translate-x-0.5
                       transition-all duration-300 ease-out
-                      group-hover:max-w-55 group-hover:opacity-100 group-hover:translate-x-0
+                      group-hover:max-w-[13.75rem] group-hover:opacity-100 group-hover:translate-x-0
                       text-neutral-400 dark:text-neutral-500
                     "
                   >
@@ -72,7 +72,7 @@ export default function HeroSection() {
                   <span
                     className="
                       max-w-0 overflow-hidden whitespace-nowrap
-                      opacity-0 -translate-x-0.75
+                      opacity-0 -translate-x-0.5
                       transition-all duration-300 ease-out
                       group-hover:max-w-40 group-hover:opacity-100 group-hover:translate-x-0
                       text-neutral-400 dark:text-neutral-500

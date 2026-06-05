@@ -13,7 +13,7 @@ export default async function GuestbookSection() {
     <section className="space-y-3">
       <Reveal delay={0.03}>
         <div className="flex items-center justify-between pr-2">
-          <h2 className="text-md font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
+          <h2 className="text-base font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
             Guestbook
           </h2>
           <Link

@@ -9,8 +9,6 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 
 import Reveal from "@/components/motion/Reveal";
 import VisitorSection from "@/components/sections/VisitorSection";
-import GuestbookSection from "@/components/sections/GuestbookSection";
-import StackSection from "@/components/sections/StackSection";
 import AboutSection from "@/components/sections/AboutSection";
 
 export default async function HomePage() {

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import GuestbookForm from "./GuestbookForm";
 import GuestbookEntries from "./GuestbookEntries";
 
@@ -20,17 +20,24 @@ export default function GuestbookClient({
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  const loadMore = async () => {
+  const loadMore = useCallback(async () => {
     if (loading || !hasMore) return;
-    setLoading(true);
-    const nextPage = page + 1;
-    const res = await fetch(`/api/guestbook?page=${nextPage}`);
-    const data = await res.json();
-    setEntries((prev) => [...prev, ...data.entries]);
-    setPage(nextPage);
-    setHasMore(data.hasMore);
-    setLoading(false);
-  };
+
+    try {
+      setLoading(true);
+      const nextPage = page + 1;
+      const res = await fetch(`/api/guestbook?page=${nextPage}`);
+
+      if (!res.ok) return;
+
+      const data = await res.json();
+      setEntries((prev) => [...prev, ...data.entries]);
+      setPage(nextPage);
+      setHasMore(data.hasMore);
+    } finally {
+      setLoading(false);
+    }
+  }, [hasMore, loading, page]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -42,7 +49,7 @@ export default function GuestbookClient({
 
     if (bottomRef.current) observer.observe(bottomRef.current);
     return () => observer.disconnect();
-  }, [page, hasMore, loading]);
+  }, [loadMore]);
 
   return (
     <div className="space-y-8">

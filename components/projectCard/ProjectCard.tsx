@@ -37,7 +37,7 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
   return (
     <section className="flex flex-col h-full pb-6 px-2">
       <Reveal delay={d(0)}>
-        <div className="relative w-full aspect-3/2 rounded-xl overflow-hidden mb-4">
+        <div className="relative w-full aspect-[3/2] rounded-xl overflow-hidden mb-4">
           <Image
             src={item.image}
             alt={item.title}

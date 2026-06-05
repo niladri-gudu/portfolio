@@ -28,8 +28,6 @@ const linkArrowClass =
   "group-hover:text-primary group-hover:opacity-100 " +
   "group-hover:translate-x-1 group-hover:-translate-y-1";
 
-// ... (keep imports and styles as they are)
-
 const SectionBlock = ({
   title,
   children,
@@ -39,9 +37,9 @@ const SectionBlock = ({
 }) => {
   return (
     <div className="mt-10">
-      <Reveal> {/* Reveals the title and border */}
+      <Reveal>
         <div className="flex items-center gap-3 mb-4">
-          <div className="h-6 w-0.75 rounded-full bg-neutral-200 dark:bg-neutral-800" />
+          <div className="h-6 w-[3px] rounded-full bg-neutral-200 dark:bg-neutral-800" />
           <h2 className="text-2xl font-semibold">{title}</h2>
         </div>
       </Reveal>
@@ -57,7 +55,7 @@ const InfoList = ({ items }: { items?: string[] }) => {
   return (
     <ul className="space-y-1.5 text-muted-foreground leading-relaxed list-disc pl-5">
       {items.map((item, idx) => (
-        <Reveal key={idx} delay={idx * 0.05}> {/* Reveals each bullet point */}
+        <Reveal key={idx} delay={idx * 0.05}>
           <li>{item}</li>
         </Reveal>
       ))}
@@ -66,9 +64,6 @@ const InfoList = ({ items }: { items?: string[] }) => {
 };
 
 const ProjectDetails = ({ project }: { project: ProjectItem }) => {
-  // We can remove the strict d(i) calculation for many things 
-  // because whileInView handles the timing based on scroll position.
-
   return (
     <section className="px-4 py-10 max-w-5xl mx-auto">
       <Reveal>
@@ -88,7 +83,7 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
       </Reveal>
 
       <Reveal y={40}>
-        <div className="relative mx-2 aspect-3/2 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-8">
+        <div className="relative mx-2 aspect-[3/2] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-8">
           <Image src={project.image} alt={project.title} fill className="object-cover" priority />
         </div>
       </Reveal>
