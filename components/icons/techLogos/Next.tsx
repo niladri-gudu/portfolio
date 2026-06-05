@@ -5,7 +5,6 @@ export const Next = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 128 128"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
-    // 'fill' here sets the default for the circle
     fill="currentColor"
   >
     <circle cx="64" cy="64" r="64" />

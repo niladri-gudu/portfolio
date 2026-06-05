@@ -9,6 +9,10 @@ import {
   Nest,
   Prisma,
   Postgres,
+  Redis,
+  BullMQ,
+  SocketIO,
+  FFmpeg,
 } from "@/components/icons/techLogos";
 
 export type ProjectLinks = {
@@ -45,6 +49,155 @@ export type ProjectItem = {
 };
 
 export const projectItems: ProjectItem[] = [
+  {
+    slug: "transcodex",
+
+    title: "TranscodeX",
+
+    description:
+      "A distributed video processing and streaming platform featuring multipart uploads, FFmpeg-powered HLS transcoding, AI-generated captions, transcript-based chat, realtime processing updates, and adaptive bitrate streaming.",
+
+    image: "/transcodex.png",
+
+    status: "Completed",
+
+    links: {
+      github: "https://github.com/niladri-gudu/transcodex",
+    },
+
+    timeline: "3 weeks",
+
+    role: "Backend Engineer",
+
+    team: "Solo",
+
+    overview:
+      "Transcodex is a full-stack video processing platform inspired by modern streaming systems such as YouTube. The project implements the complete media pipeline from upload to playback — including multipart uploads, distributed video processing, thumbnail generation, HLS transcoding, adaptive streaming, AI-generated captions, transcript extraction, realtime progress tracking, and transcript-aware conversational AI. The primary goal was to explore media infrastructure, asynchronous processing, realtime communication, and AI integration in a single production-style system.",
+
+    whatUsersCanDo: [
+      "Upload large video files using multipart uploads directly to AWS S3.",
+      "Track video processing progress in realtime without polling.",
+      "Watch videos using adaptive bitrate HLS streaming.",
+      "Manually switch between 480p, 720p, and 1080p playback quality.",
+      "Control playback speed and view generated subtitles.",
+      "Access automatically generated captions and transcripts.",
+      "Chat with an AI assistant that answers questions using the video's transcript as context.",
+      "View thumbnails generated automatically during processing.",
+    ],
+
+    whyIBuiltThis: [
+      "To understand how modern video platforms process and deliver media at scale.",
+      "To gain hands-on experience with FFmpeg, HLS, and adaptive streaming.",
+      "To learn distributed job processing using BullMQ and Redis.",
+      "To implement realtime communication using Socket.IO and Redis Pub/Sub.",
+      "To explore practical AI integrations beyond simple chatbot applications.",
+      "To build a portfolio project demonstrating backend engineering, cloud infrastructure, media processing, and AI in a single system.",
+    ],
+
+    afterLaunchImpact: [
+      "Implemented multipart uploads to AWS S3 for reliable large-file handling.",
+      "Built a distributed processing pipeline using BullMQ workers and Redis queues.",
+      "Created an FFmpeg-based transcoding system that generates multi-resolution HLS streams.",
+      "Implemented adaptive streaming with manual quality selection and playback controls.",
+      "Built realtime processing updates using Socket.IO and Redis Pub/Sub.",
+      "Integrated Whisper-based caption generation and transcript extraction.",
+      "Implemented transcript-aware AI chat using Gemini.",
+      "Designed a media pipeline that separates API responsibilities from processing workloads.",
+    ],
+
+    futurePlans: [
+      "Implement semantic transcript search using vector embeddings.",
+      "Add timeline-aware AI responses that link answers to video timestamps.",
+      "Generate AI-powered video summaries and chapter markers.",
+      "Introduce GPU-accelerated transcoding for faster processing.",
+      "Add CDN integration for global video delivery.",
+      "Deploy horizontally scalable worker pools for parallel media processing.",
+    ],
+
+    technologies: [
+      { name: "Next.js", icon: Next },
+      { name: "TypeScript", icon: Typescript },
+      { name: "PostgreSQL", icon: Postgres },
+      { name: "Prisma", icon: Prisma },
+      { name: "Redis", icon: Redis },
+      { name: "BullMQ", icon: BullMQ },
+      { name: "Socket.IO", icon: SocketIO },
+      { name: "FFmpeg", icon: FFmpeg },
+      { name: "Turborepo", icon: Turborepo },
+    ],
+  },
+  {
+    slug: "strata",
+
+    title: "Strata",
+
+    description:
+      "A production-grade distributed social platform featuring realtime notifications, activity feeds, Redis caching, BullMQ workers, Dead Letter Queues, monitoring dashboards, and horizontally scalable Socket.IO infrastructure.",
+
+    image: "/strata.png",
+
+    status: "Building",
+
+    links: {
+      github: "https://github.com/niladri-gudu/strata",
+    },
+
+    timeline: "3 weeks",
+
+    role: "Backend Engineer",
+
+    team: "Solo",
+
+    overview:
+      "Strata is a backend-first social platform built to explore distributed systems architecture. The project implements a complete social graph, feed generation, realtime notifications, background job processing, Redis caching, failure recovery mechanisms, presence tracking, and operational monitoring. Rather than focusing on UI, the project emphasizes reliability, scalability, and infrastructure design similar to systems used by Twitter, LinkedIn, and Discord.",
+
+    whatUsersCanDo: [
+      "Create accounts and authenticate using JWT-based sessions.",
+      "Create posts, like posts, and comment on content.",
+      "Follow and unfollow other users to build a personalized social graph.",
+      "View a paginated feed generated from followed users.",
+      "Receive realtime notifications for follows, likes, and comments.",
+      "See unread notification counts update instantly without page refreshes.",
+      "View user presence and online status in realtime.",
+    ],
+
+    whyIBuiltThis: [
+      "To understand how large-scale social platforms architect feeds, notifications, and realtime systems.",
+      "To gain hands-on experience with Redis caching strategies and cache invalidation.",
+      "To implement BullMQ workers and background job processing patterns.",
+      "To learn reliability engineering concepts such as retries, dead letter queues, replay systems, and recovery metrics.",
+      "To build a portfolio project that demonstrates backend engineering beyond standard CRUD applications.",
+    ],
+
+    afterLaunchImpact: [
+      "Implemented an event-driven notification pipeline using BullMQ workers and Redis Pub/Sub.",
+      "Built realtime notification delivery using Socket.IO with Redis-backed room synchronization.",
+      "Designed a Dead Letter Queue (DLQ) system with replay capabilities for failed jobs.",
+      "Implemented notification count caching in Redis, reducing repeated database queries.",
+      "Added operational monitoring including queue metrics, worker metrics, health checks, replay history, and recovery rate tracking.",
+      "Integrated Bull Board to provide production-style queue inspection and debugging.",
+      "Implemented online presence tracking and last-seen functionality using Redis.",
+    ],
+
+    futurePlans: [
+      "Implement fan-out-on-write feed generation using background workers.",
+      "Introduce feed caching and timeline precomputation.",
+      "Add media uploads and content moderation pipelines.",
+      "Deploy multiple API instances behind a load balancer to demonstrate horizontal scaling.",
+      "Build a complete frontend dashboard for notifications, feeds, and system observability.",
+    ],
+
+    technologies: [
+      { name: "Next.js", icon: Next },
+      { name: "TypeScript", icon: Typescript },
+      { name: "PostgreSQL", icon: Postgres },
+      { name: "Prisma", icon: Prisma },
+      { name: "Redis", icon: Redis },
+      { name: "BullMQ", icon: BullMQ },
+      { name: "Socket.IO", icon: SocketIO },
+      { name: "Turborepo", icon: Turborepo },
+    ],
+  },
   {
     slug: "walletx",
     title: "WalletX",
