@@ -8,16 +8,18 @@ import Footer from "@/components/footer/Footer";
 import VisitLogger from "@/components/visitLogger/VisitLogger";
 
 export const metadata: Metadata = {
-  title: "nILADRI - Web3 Developer",
+  title: "Niladri - Backend & Systems Engineer",
   description:
-    "Portfolio of Niladri, a Web3 and dApp developer focused on building decentralized applications, smart contracts, and modern web experiences.",
+    "Portfolio of Niladri, a Backend and Systems Engineer focused on building scalable distributed systems, high-performance APIs, and robust cloud infrastructure.",
   keywords: [
     "Niladri",
-    "Web3 developer",
-    "dApp developer",
-    "Blockchain developer",
-    "Ethereum",
-    "Smart contracts",
+    "Backend Engineer",
+    "Systems Engineer",
+    "Distributed Systems",
+    "API Development",
+    "Scalable Architecture",
+    "Cloud Infrastructure",
+    "DevOps"
   ],
 };
 
