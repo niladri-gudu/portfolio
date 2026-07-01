@@ -1,6 +1,8 @@
 import ProjectCard from "@/components/projectCard/ProjectCard";
 import { projectItems } from "@/components/data/projects";
 import Reveal from "@/components/motion/Reveal";
+import Stagger from "@/components/motion/Stagger";
+import StaggerItem from "@/components/motion/StaggerItem";
 
 export default function ProjectsPage() {
   return (
@@ -33,13 +35,13 @@ export default function ProjectsPage() {
           </h2>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 px-4 divide-y divide-neutral-200 dark:divide-neutral-800 md:divide-y-0">
-          {projectItems.map((item, idx) => (
-            <Reveal key={item.slug} delay={(idx + 1) * 0.03}>
+        <Stagger className="grid grid-cols-1 gap-5 md:grid-cols-2 px-4 divide-y divide-neutral-200 dark:divide-neutral-800 md:divide-y-0">
+          {projectItems.map((item) => (
+            <StaggerItem key={item.slug}>
               <ProjectCard item={item} />
-            </Reveal>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
     </>
   );

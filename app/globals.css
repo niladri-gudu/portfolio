@@ -65,6 +65,8 @@ body {
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --color-accent-brand: var(--accent-brand);
+  --color-accent-brand-foreground: var(--accent-brand-fg);
 }
 
 :root {
@@ -101,6 +103,8 @@ body {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --next-n-color: #ffffff;
+  --accent-brand: var(--foreground);
+  --accent-brand-fg: var(--background);
 }
 
 .dark {
@@ -136,6 +140,8 @@ body {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
   --next-n-color: #000000;
+  --accent-brand: var(--foreground);
+  --accent-brand-fg: var(--background);
 }
 
 @layer base {

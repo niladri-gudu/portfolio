@@ -1,4 +1,6 @@
 import Reveal from "@/components/motion/Reveal";
+import Stagger from "@/components/motion/Stagger";
+import StaggerItem from "@/components/motion/StaggerItem";
 import BlogCard from "@/components/blog/BlogCard";
 import { getAllPosts } from "@/lib/blog";
 
@@ -60,13 +62,13 @@ export default function BlogPage() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 gap-5 px-6 divide-y divide-neutral-200 dark:divide-neutral-800">
-            {posts.map((post, idx) => (
-              <Reveal key={post.slug} delay={(idx + 1) * 0.03}>
+          <Stagger className="grid grid-cols-1 gap-5 px-6 divide-y divide-neutral-200 dark:divide-neutral-800">
+            {posts.map((post) => (
+              <StaggerItem key={post.slug}>
                 <BlogCard post={post} />
-              </Reveal>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </section>
       )}
     </>

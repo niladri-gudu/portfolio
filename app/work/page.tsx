@@ -1,10 +1,12 @@
 import WorkCard from "@/components/workCard/WorkCard";
 import { workItems } from "@/components/data/work";
 import Reveal from "@/components/motion/Reveal";
+import Stagger from "@/components/motion/Stagger";
+import StaggerItem from "@/components/motion/StaggerItem";
 
 export default function WorkPage() {
   const d = (i: number) => (i + 1) * 0.03;
-  
+
   return (
     <>
       <section className="flex flex-col my-8 gap-6 pt-4">
@@ -33,13 +35,13 @@ export default function WorkPage() {
           </h2>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-5 px-4 divide-y divide-neutral-200 dark:divide-neutral-800">
+        <Stagger className="grid grid-cols-1 gap-5 px-4 divide-y divide-neutral-200 dark:divide-neutral-800">
           {workItems.map((item, idx) => (
-            <Reveal key={`${item.company}-${idx}`} delay={(idx + 1) * 0.03}>
+            <StaggerItem key={`${item.company}-${idx}`}>
               <WorkCard item={item} showToggle={false} />
-            </Reveal>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
     </>
   );
