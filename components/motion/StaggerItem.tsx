@@ -3,12 +3,11 @@
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 16, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 14 },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
