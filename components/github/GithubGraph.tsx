@@ -2,6 +2,7 @@
 import { GitHubCalendar } from "react-github-calendar";
 import { useTheme } from "next-themes";
 import Reveal from "@/components/motion/Reveal";
+import SectionHeading from "@/components/sections/SectionHeading";
 
 export default function GithubGraph() {
   const { resolvedTheme } = useTheme();
@@ -9,10 +10,8 @@ export default function GithubGraph() {
 
   return (
     <section className="space-y-6 mb-10">
-      <Reveal delay={0.03}>
-        <h2 className="text-base font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
-          GitHub Activity ({currentYear})
-        </h2>
+      <Reveal>
+        <SectionHeading>GitHub Activity ({currentYear})</SectionHeading>
       </Reveal>
       <Reveal delay={0.06}>
         <div className="overflow-x-auto overflow-y-hidden px-2">

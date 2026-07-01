@@ -16,10 +16,10 @@ export default function Footer() {
 
   return (
     <footer className="mt-12 bg-background">
-      <hr className="mx-4 h-px border-0 rounded-full bg-linear-to-r from-neutral-200 dark:from-neutral-800 to-transparent" />
+      <hr className="mx-4 sm:mx-6 h-px border-0 rounded-full bg-linear-to-r from-neutral-200 dark:from-neutral-800 to-transparent" />
 
 
-      <div className="mx-auto w-full max-w-6xl px-6 py-10">
+      <div className="mx-auto w-full px-4 sm:px-6 py-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center justify-between md:block">
             <Link
@@ -40,7 +40,7 @@ export default function Footer() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={s.label}
-                        className="text-muted-foreground hover:text-foreground transition"
+                        className="text-muted-foreground hover:text-accent-brand hover:-translate-y-0.5 transition-all duration-300"
                       >
                         <Icon size={20} />
                       </a>
@@ -65,7 +65,7 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={s.label}
-                      className="text-muted-foreground hover:text-foreground transition"
+                      className="text-muted-foreground hover:text-accent-brand hover:-translate-y-0.5 transition-all duration-300"
                     >
                       <Icon size={22} />
                     </a>

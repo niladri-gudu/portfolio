@@ -1,23 +1,24 @@
 import ProjectCard from "@/components/projectCard/ProjectCard";
 import { projectItems } from "@/components/data/projects";
 import Reveal from "@/components/motion/Reveal";
+import Stagger from "@/components/motion/Stagger";
+import StaggerItem from "@/components/motion/StaggerItem";
+import SectionHeading from "@/components/sections/SectionHeading";
 
 export default function ProjectsSection() {
   return (
     <section className="space-y-6">
-      <Reveal delay={0.03}>
-        <h2 className="text-base font-mono uppercase tracking-widest text-muted-foreground border-l-2 border-neutral-200 dark:border-neutral-700 pl-3">
-          Projects
-        </h2>
+      <Reveal>
+        <SectionHeading>Projects</SectionHeading>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 divide-y divide-neutral-200 dark:divide-neutral-800 md:divide-y-0">
-        {projectItems.map((item, idx) => (
-          <Reveal key={item.title} delay={(idx + 1) * 0.03}>
+      <Stagger className="grid grid-cols-1 gap-5 md:grid-cols-2 divide-y divide-neutral-200 dark:divide-neutral-800 md:divide-y-0">
+        {projectItems.map((item) => (
+          <StaggerItem key={item.title}>
             <ProjectCard item={item} />
-          </Reveal>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 }

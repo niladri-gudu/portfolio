@@ -6,7 +6,7 @@ export default function Reveal({
   children,
   delay = 0,
   baseDelay = 0,
-  y = 20,
+  y = 16,
 }: {
   children: React.ReactNode;
   delay?: number;
@@ -15,18 +15,22 @@ export default function Reveal({
 }) {
   const shouldReduceMotion = useReducedMotion();
 
+  if (shouldReduceMotion) {
+    return <div>{children}</div>;
+  }
+
   return (
     <motion.div
-      initial={shouldReduceMotion ? false : { opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y, filter: "blur(6px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{
-        duration: shouldReduceMotion ? 0 : 0.35,
-        delay: shouldReduceMotion ? 0 : baseDelay + delay,
+        duration: 0.5,
+        delay: baseDelay + delay,
         ease: [0.22, 1, 0.36, 1],
       }}
       viewport={{
         once: true,
-        amount: "some",
+        amount: 0.15,
       }}
     >
       {children}

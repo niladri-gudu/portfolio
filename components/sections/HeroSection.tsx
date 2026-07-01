@@ -119,12 +119,16 @@ export default function HeroSection() {
         <Reveal delay={0.15}>
           <Link href="/guestbook" prefetch>
             <div className="relative group">
-              <div className="relative cursor-pointer w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden grayscale hover:grayscale-0 shadow-2xl">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-1 rounded-full bg-accent-brand/25 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
+              />
+              <div className="relative cursor-pointer w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden grayscale hover:grayscale-0 shadow-2xl ring-2 ring-transparent transition-all duration-500 group-hover:ring-accent-brand/40">
                 <Image
                   src={personalData.profile.image.src}
                   alt={personalData.profile.image.alt}
                   fill
-                  className="object-cover scale-110 group-hover:scale-100 transition-transform"
+                  className="object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
                   priority
                 />
               </div>
@@ -141,11 +145,11 @@ export default function HeroSection() {
         <div className="max-w-2xl text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed tracking-tight italic font-light">
           <p>
             {personalData.intro.text}{" "}
-            <span className="text-neutral-900 dark:text-neutral-100 font-medium not-italic">
+            <span className="text-accent-brand font-medium not-italic">
               {personalData.intro.highlight.first}
             </span>{" "}
             and{" "}
-            <span className="text-neutral-900 dark:text-neutral-100 font-medium not-italic">
+            <span className="text-accent-brand font-medium not-italic">
               {personalData.intro.highlight.second}
             </span>
             .

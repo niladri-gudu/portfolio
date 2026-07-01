@@ -9,12 +9,18 @@ export default function SmoothScroll({
   children: ReactNode;
 }) {
   useEffect(() => {
+    // Respect users who prefer reduced motion — skip momentum scrolling.
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReduced) return;
+
     let lenis: Lenis | null = null;
     let rafId: number;
 
     const initLenis = () => {
       lenis = new Lenis({
-        duration: 1.2,
+        duration: 1.1,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
       });
