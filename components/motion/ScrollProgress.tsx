@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   motion,
   useScroll,
@@ -7,7 +8,10 @@ import {
   useReducedMotion,
 } from "motion/react";
 
+const SHOW_ON_PATHS = ["/", "/work", "/projects", "/blog"];
+
 export default function ScrollProgress() {
+  const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -16,7 +20,7 @@ export default function ScrollProgress() {
     restDelta: 0.001,
   });
 
-  if (shouldReduceMotion) return null;
+  if (shouldReduceMotion || !SHOW_ON_PATHS.includes(pathname)) return null;
 
   return (
     <motion.div

@@ -81,7 +81,7 @@ export default function RootLayout({
           <div className="mx-auto flex min-h-dvh w-full flex-col md:w-3xl">
             <Header />
             <VisitLogger />
-            <main className="flex-1">{children}</main>
+            <main className="flex flex-1 flex-col">{children}</main>
             <Footer />
           </div>
         </Providers>
