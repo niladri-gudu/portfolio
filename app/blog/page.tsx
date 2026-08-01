@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
 import StaggerItem from "@/components/motion/StaggerItem";
 import BlogCard from "@/components/blog/BlogCard";
 import { getAllPosts } from "@/lib/blog";
+import { buildMetadata } from "@/lib/site";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Blog",
+  description:
+    "Building processes and small wins found along the way — engineering notes from Niladri.",
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const posts = getAllPosts();

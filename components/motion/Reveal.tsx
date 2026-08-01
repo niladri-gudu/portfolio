@@ -15,14 +15,12 @@ export default function Reveal({
 }) {
   const shouldReduceMotion = useReducedMotion();
 
-  if (shouldReduceMotion) {
-    return <div>{children}</div>;
-  }
-
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={shouldReduceMotion ? false : { opacity: 0, y }}
+      whileInView={
+        shouldReduceMotion ? undefined : { opacity: 1, y: 0 }
+      }
       transition={{
         duration: 0.4,
         delay: baseDelay + delay,

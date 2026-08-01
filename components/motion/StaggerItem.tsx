@@ -20,12 +20,14 @@ export default function StaggerItem({
 }) {
   const shouldReduceMotion = useReducedMotion();
 
-  if (shouldReduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
-    <motion.div className={className} variants={itemVariants}>
+    <motion.div
+      className={className}
+      initial={shouldReduceMotion ? false : "hidden"}
+      whileInView={shouldReduceMotion ? undefined : "show"}
+      viewport={{ once: true, amount: 0.15 }}
+      variants={itemVariants}
+    >
       {children}
     </motion.div>
   );

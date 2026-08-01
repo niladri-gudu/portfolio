@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 import Providers from "@/components/providers/Providers";
@@ -6,20 +6,57 @@ import Header from "@/components/header/Header";
 import { geistSans, geistMono, telma, ds } from "../lib/fonts";
 import Footer from "@/components/footer/Footer";
 import VisitLogger from "@/components/visitLogger/VisitLogger";
+import { siteConfig, absoluteUrl } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "Niladri - Backend & Systems Engineer",
-  description:
-    "Portfolio of Niladri, a Backend and Systems Engineer focused on building scalable distributed systems, high-performance APIs, and robust cloud infrastructure.",
-  keywords: [
-    "Niladri",
-    "Backend Engineer",
-    "Systems Engineer",
-    "Distributed Systems",
-    "API Development",
-    "Scalable Architecture",
-    "Cloud Infrastructure",
-    "DevOps"
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.title,
+    template: `%s — ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  category: "Technology",
+  manifest: "/manifest.webmanifest",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [{ url: absoluteUrl(siteConfig.ogImage) }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [absoluteUrl(siteConfig.ogImage)],
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#171717" },
   ],
 };
 

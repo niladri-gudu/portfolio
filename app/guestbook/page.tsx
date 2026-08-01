@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import GuestbookClient from "@/components/guestbook/GuestbookClient";
 import Reveal from "@/components/motion/Reveal";
+import { buildMetadata } from "@/lib/site";
 
 export const revalidate = 0;
+
+export const metadata: Metadata = buildMetadata({
+  title: "Guestbook",
+  description:
+    "Leave your mark on Niladri's guestbook — a simple sign-and-see wall for visitors.",
+  path: "/guestbook",
+});
 
 export default async function GuestbookPage() {
   const [entries, total] = await Promise.all([

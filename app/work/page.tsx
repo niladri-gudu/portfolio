@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import WorkCard from "@/components/workCard/WorkCard";
 import { workItems } from "@/components/data/work";
 import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
 import StaggerItem from "@/components/motion/StaggerItem";
+import { buildMetadata } from "@/lib/site";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Work",
+  description:
+    "Professional roles and teams joined by Niladri, a Backend and Systems Engineer.",
+  path: "/work",
+});
 
 export default function WorkPage() {
   const d = (i: number) => (i + 1) * 0.03;

@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import ProjectCard from "@/components/projectCard/ProjectCard";
 import { projectItems } from "@/components/data/projects";
 import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
 import StaggerItem from "@/components/motion/StaggerItem";
+import { buildMetadata } from "@/lib/site";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Projects",
+  description:
+    "A collection of engineering projects built and shipped by Niladri — distributed systems, media pipelines, and Web3 products.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

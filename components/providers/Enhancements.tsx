@@ -1,11 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const SmoothScroll = dynamic(
-  () => import("./SmoothScroll"),
-  { ssr: false }
-);
+import SmoothScroll from "./SmoothScroll";
 
 export default function Enhancements({
   children,

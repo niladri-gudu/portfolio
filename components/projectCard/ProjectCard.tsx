@@ -39,7 +39,6 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
           alt={item.title}
           fill
           className="object-cover transition-transform duration-500 ease-out group-hover/card:scale-105"
-          priority
         />
         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover/card:opacity-100" />
       </div>

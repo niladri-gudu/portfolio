@@ -18,7 +18,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
 
       <div className="flex-1 space-y-1.5">
         <div className="flex items-start justify-between gap-4">
-          <h3 className="text-base font-semibold tracking-tight text-foreground drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.2)] transition-all duration-300 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+          <h3 className="text-base font-semibold tracking-tight text-foreground dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.2)] transition-all duration-300 dark:group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
             {post.title}
           </h3>
 
