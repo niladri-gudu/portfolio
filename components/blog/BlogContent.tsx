@@ -50,6 +50,10 @@ export default function BlogContent({ post }: { post: Post }) {
             ))}
           </div>
           <h1 className="text-4xl font-bold">{post.title}</h1>
+          <span
+            aria-hidden
+            className="block h-0.5 w-16 rounded-full bg-linear-to-r from-accent-brand/60 to-accent-brand"
+          />
           <p className="text-muted-foreground text-lg leading-relaxed">
             {post.description}
           </p>

@@ -4,7 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-import { ChevronDown, Sparkles, Wrench } from "lucide-react";
+import { AlignLeft, ChevronDown, Wrench } from "lucide-react";
 
 import WorldIcon from "../ui/world-icon";
 import TwitterXIcon from "../ui/twitter-x-icon";
@@ -139,7 +139,7 @@ export default function WorkCard({ item, showToggle = true }: WorkCardProps) {
           >
             <div className="mt-6 flex flex-col pl-2">
               <div>
-                <SubHeading icon={Sparkles} title="Summary" />
+                <SubHeading icon={AlignLeft} title="Summary" />
                 <ul className="list-disc list-outside ml-4 space-y-2 mb-5 text-sm text-neutral-600 dark:text-neutral-400">
                   {item.summary.map((point, i) => (
                     <li key={`${point}-${i}`}>{point}</li>

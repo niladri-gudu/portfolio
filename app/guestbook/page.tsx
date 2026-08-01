@@ -28,9 +28,15 @@ export default async function GuestbookPage() {
     <>
       <section className="flex flex-col my-8 gap-6 pt-4">
         <Reveal>
-          <h1 className="flex items-center justify-center gap-6 text-6xl xl:text-7xl font-ds font-extrabold">
-            <span>Guestbook</span>
-          </h1>
+          <div className="flex flex-col items-center gap-5">
+            <h1 className="flex items-center justify-center gap-6 text-6xl xl:text-7xl font-ds font-extrabold">
+              <span>Guestbook</span>
+            </h1>
+            <span
+              aria-hidden
+              className="h-1 w-20 rounded-full bg-linear-to-r from-accent-brand/60 to-accent-brand"
+            />
+          </div>
         </Reveal>
         <Reveal delay={d(0)}>
           <p className="text-center text-lg text-muted-foreground mx-auto w-5/6">

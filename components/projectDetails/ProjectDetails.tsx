@@ -39,7 +39,7 @@ const SectionBlock = ({
     <div className="mt-10">
       <Reveal>
         <div className="flex items-center gap-3 mb-4">
-          <div className="h-6 w-[3px] rounded-full bg-neutral-200 dark:bg-neutral-800" />
+          <div className="h-6 w-[3px] rounded-full bg-linear-to-b from-accent-brand to-accent-brand/30" />
           <h2 className="text-2xl font-semibold">{title}</h2>
         </div>
       </Reveal>
@@ -91,6 +91,10 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
       <Reveal>
         <div className="mb-8 pl-2 mx-1">
           <h1 className="text-4xl font-bold mb-3">{project.title}</h1>
+          <span
+            aria-hidden
+            className="mb-3 block h-0.5 w-16 rounded-full bg-linear-to-r from-accent-brand/60 to-accent-brand"
+          />
           <p className="text-muted-foreground text-lg leading-relaxed">{project.description}</p>
         </div>
       </Reveal>

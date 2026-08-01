@@ -20,7 +20,11 @@ export default function ScrollProgress() {
     restDelta: 0.001,
   });
 
-  if (shouldReduceMotion || !SHOW_ON_PATHS.includes(pathname)) return null;
+  if (
+    shouldReduceMotion ||
+    (!SHOW_ON_PATHS.includes(pathname) && !pathname.startsWith("/projects/"))
+  )
+    return null;
 
   return (
     <motion.div
