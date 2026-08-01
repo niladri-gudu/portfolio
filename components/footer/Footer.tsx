@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { getSeason } from "@/lib/season";
 
 export default function Footer() {
+  const season = getSeason();
   const socials = [
     { href: "mailto:niladrigudu@gmail.com", label: "Email", icon: Mail },
     { href: "https://github.com/niladri-gudu", label: "GitHub", icon: Github },
@@ -82,6 +84,11 @@ export default function Footer() {
         <div className="mt-8 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Niladri.
+            {season && (
+              <span className="ml-1.5" title={season.name} aria-label={season.name}>
+                {season.emoji}
+              </span>
+            )}
           </p>
 
           <p className="text-xs text-muted-foreground">

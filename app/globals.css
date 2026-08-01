@@ -144,6 +144,20 @@ body {
   --accent-brand-fg: var(--background);
 }
 
+/* Seasonal themes: accent color + visible background tint (light) */
+:root[data-season="winter"] { --accent-brand: #4f6af5; --background: #eef2ff; }
+:root[data-season="spring"] { --accent-brand: #16a34a; --background: #ecfdf5; }
+:root[data-season="summer"] { --accent-brand: #d97706; --background: #fffbeb; }
+:root[data-season="monsoon"] { --accent-brand: #0891b2; --background: #ecfeff; }
+:root[data-season="autumn"] { --accent-brand: #c2410c; --background: #fff7ed; }
+
+/* Seasonal themes: accent color + visible background tint (dark) */
+.dark[data-season="winter"] { --accent-brand: #93a5ff; --background: #0f1224; }
+.dark[data-season="spring"] { --accent-brand: #4ade80; --background: #0a1f14; }
+.dark[data-season="summer"] { --accent-brand: #fbbf24; --background: #1d1605; }
+.dark[data-season="monsoon"] { --accent-brand: #67e8f9; --background: #0a1f24; }
+.dark[data-season="autumn"] { --accent-brand: #fb923c; --background: #201309; }
+
 @layer base {
   * {
     @apply border-border;
@@ -163,13 +177,17 @@ html, body {
   height: auto;
 }
 
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    60% 40% at 50% 0%,
+    color-mix(in srgb, var(--accent-brand) 12%, transparent),
+    transparent 70%
+  );
 }
 
 ::selection {

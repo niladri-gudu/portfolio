@@ -7,6 +7,7 @@ import { geistSans, geistMono, telma, ds } from "../lib/fonts";
 import Footer from "@/components/footer/Footer";
 import VisitLogger from "@/components/visitLogger/VisitLogger";
 import { siteConfig, absoluteUrl } from "../lib/site";
+import { getSeason } from "../lib/season";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -65,8 +66,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const season = getSeason();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-season={season?.key ?? "default"}
+    >
       <body
         className={`${geistSans.className} ${geistMono.className} ${telma.variable} ${ds.variable}  antialiased`}
       >
