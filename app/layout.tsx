@@ -78,10 +78,10 @@ export default function RootLayout({
         className={`${geistSans.className} ${geistMono.className} ${telma.variable} ${ds.variable}  antialiased`}
       >
         <Providers>
-          <div className="mx-auto w-full md:w-3xl">
+          <div className="mx-auto flex min-h-dvh w-full flex-col md:w-3xl">
             <Header />
             <VisitLogger />
-            <main>{children}</main>
+            <main className="flex-1">{children}</main>
             <Footer />
           </div>
         </Providers>
