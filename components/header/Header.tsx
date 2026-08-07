@@ -1,5 +1,6 @@
 import HeaderNav from "./HeaderNav";
 import ThemeToggle from "../theme/ThemeToggle";
+import SearchButton from "@/components/search/SearchButton";
 import LogoLink from "./LogoLink";
 import ScrollProgress from "../motion/ScrollProgress";
 
@@ -12,7 +13,7 @@ export default function Header() {
 
         <div className="flex items-center gap-4 sm:gap-6 text-sm">
           <HeaderNav />
-
+          <SearchButton />
           <ThemeToggle />
         </div>
       </div>

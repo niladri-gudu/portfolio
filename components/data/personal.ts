@@ -44,7 +44,7 @@ export const personalData: PersonalData = {
   },
 
   location: {
-    city: "Visakhapatnam",
+    city: "Ahmedabad",
     country: "India",
   },
 
@@ -71,7 +71,7 @@ export const personalData: PersonalData = {
       alt: "Niladri",
     },
     paragraphs: [
-      "I’m Niladri, a Backend Engineer based in Visakhapatnam, originally from the small town of Damanjodi, Odisha.",
+      "I’m Niladri, a Backend Engineer based in Ahmedabad, originally from the small town of Damanjodi, Odisha.",
       "I focus on building resilient server-side architectures, tackling challenges in distributed processing, job queues, and real-time data synchronization.",
       "Outside of code, I’m at the gym, watching a series, or lost in a playlist. I find that the discipline of strength training translates directly to building robust, high-performance systems.",
     ],

@@ -33,7 +33,7 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
 
   return (
     <section className="group/card flex flex-col h-full pb-6 px-2">
-      <div className="relative w-full aspect-[3/2] rounded-xl overflow-hidden mb-4 border border-neutral-200 dark:border-neutral-800 transition-all duration-300 group-hover/card:border-accent-brand/40 group-hover/card:shadow-lg group-hover/card:shadow-accent-brand/10">
+      <div className="relative w-full aspect-3/2 rounded-xl overflow-hidden mb-4 border border-neutral-200 dark:border-neutral-800 transition-all duration-300 group-hover/card:border-accent-brand/40 group-hover/card:shadow-lg group-hover/card:shadow-accent-brand/10">
         <Image
           src={item.image}
           alt={item.title}

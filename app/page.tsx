@@ -26,7 +26,7 @@ export default async function HomePage() {
     email: "niladrigudu@gmail.com",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Visakhapatnam",
+      addressLocality: "Ahmedabad",
       addressCountry: "India",
     },
     sameAs: [

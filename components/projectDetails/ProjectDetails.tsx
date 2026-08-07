@@ -39,7 +39,7 @@ const SectionBlock = ({
     <div className="mt-10">
       <Reveal>
         <div className="flex items-center gap-3 mb-4">
-          <div className="h-6 w-[3px] rounded-full bg-linear-to-b from-accent-brand to-accent-brand/30" />
+          <div className="h-6 w-0.75 rounded-full bg-linear-to-b from-accent-brand to-accent-brand/30" />
           <h2 className="text-2xl font-semibold">{title}</h2>
         </div>
       </Reveal>
@@ -83,7 +83,7 @@ const ProjectDetails = ({ project }: { project: ProjectItem }) => {
       </Reveal>
 
       <Reveal y={40}>
-        <div className="relative mx-2 aspect-[3/2] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-8">
+        <div className="relative mx-2 aspect-3/2 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-8">
           <Image src={project.image} alt={project.title} fill className="object-cover" priority />
         </div>
       </Reveal>

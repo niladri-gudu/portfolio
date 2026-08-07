@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 import Providers from "@/components/providers/Providers";
+import SearchProvider from "@/components/search/SearchProvider";
+import SearchDialog from "@/components/search/SearchDialog";
 import Header from "@/components/header/Header";
 import { geistSans, geistMono, telma, ds } from "../lib/fonts";
 import Footer from "@/components/footer/Footer";
@@ -78,12 +80,15 @@ export default function RootLayout({
         className={`${geistSans.className} ${geistMono.className} ${telma.variable} ${ds.variable}  antialiased`}
       >
         <Providers>
-          <div className="mx-auto flex min-h-dvh w-full flex-col md:w-3xl">
-            <Header />
-            <VisitLogger />
-            <main className="flex flex-1 flex-col">{children}</main>
-            <Footer />
-          </div>
+          <SearchProvider>
+            <div className="mx-auto flex min-h-dvh w-full flex-col md:w-3xl">
+              <Header />
+              <VisitLogger />
+              <SearchDialog />
+              <main className="flex flex-1 flex-col">{children}</main>
+              <Footer />
+            </div>
+          </SearchProvider>
         </Providers>
       </body>
     </html>

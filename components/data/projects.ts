@@ -136,7 +136,7 @@ export const projectItems: ProjectItem[] = [
 
     image: "/strata.png",
 
-    status: "Building",
+    status: "Completed",
 
     links: {
       github: "https://github.com/niladri-gudu/strata",
