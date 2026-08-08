@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/site";
 export const metadata: Metadata = buildMetadata({
   title: "Blog",
   description:
-    "Building processes and small wins found along the way — engineering notes from Niladri.",
+    "Building processes and small wins found along the way - engineering notes from Niladri.",
   path: "/blog",
 });
 
@@ -55,7 +55,7 @@ export default function BlogPage() {
           </Reveal>
           <Reveal delay={d(4)}>
             <p className="text-sm text-muted-foreground max-w-sm">
-              I&apos;m cooking up some posts. Check back soon — or{" "}
+              I&apos;m cooking up some posts. Check back soon - or{" "}
               <a
                 href="https://x.com/dev_niladri"
                 target="_blank"

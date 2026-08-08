@@ -9,6 +9,10 @@ import {
   Hetzner,
   Coolify,
   GCP,
+  Express,
+  Nodejs,
+  MongoDB,
+  Angular,
 } from "@/components/icons/techLogos";
 
 export type TechIconComponent = ComponentType<SVGProps<SVGSVGElement>>;
@@ -23,6 +27,10 @@ export const techIconMap = {
   hetzner: Hetzner,
   coolify: Coolify,
   gcp: GCP,
+  express: Express,
+  node: Nodejs,
+  mongodb: MongoDB,
+  angular: Angular,
 } satisfies Record<string, TechIconComponent>;
 
 export type TechIconKey = keyof typeof techIconMap;

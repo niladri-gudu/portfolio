@@ -49,7 +49,7 @@ export function buildSearchIndex(): SearchResult[] {
     {
       id: "page-home",
       title: "Home",
-      description: "Niladri — Backend & Systems Engineer",
+      description: "Niladri - Backend & Systems Engineer",
       href: "/",
       category: "Pages",
       icon: Compass,

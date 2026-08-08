@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/site";
 export const metadata: Metadata = buildMetadata({
   title: "Projects",
   description:
-    "A collection of engineering projects built and shipped by Niladri — distributed systems, media pipelines, and Web3 products.",
+    "A collection of engineering projects built and shipped by Niladri - distributed systems, media pipelines, and Web3 products.",
   path: "/projects",
 });
 

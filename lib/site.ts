@@ -6,7 +6,7 @@ const siteUrl = (
 
 export const siteConfig = {
   name: "Niladri",
-  title: "Niladri — Backend & Systems Engineer",
+  title: "Niladri - Backend & Systems Engineer",
   description:
     "Portfolio of Niladri, a Backend and Systems Engineer focused on building scalable distributed systems, high-performance APIs, and robust cloud infrastructure.",
   url: siteUrl,
@@ -49,7 +49,7 @@ export function buildMetadata({
   publishedTime?: string;
 }): Metadata {
   const url = absoluteUrl(path);
-  const ogTitle = `${title} — ${siteConfig.name}`;
+  const ogTitle = `${title} - ${siteConfig.name}`;
 
   return {
     title,

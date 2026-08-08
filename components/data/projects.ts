@@ -72,7 +72,7 @@ export const projectItems: ProjectItem[] = [
     team: "Solo",
 
     overview:
-      "Transcodex is a full-stack video processing platform inspired by modern streaming systems such as YouTube. The project implements the complete media pipeline from upload to playback — including multipart uploads, distributed video processing, thumbnail generation, HLS transcoding, adaptive streaming, AI-generated captions, transcript extraction, realtime progress tracking, and transcript-aware conversational AI. The primary goal was to explore media infrastructure, asynchronous processing, realtime communication, and AI integration in a single production-style system.",
+      "Transcodex is a full-stack video processing platform inspired by modern streaming systems such as YouTube. The project implements the complete media pipeline from upload to playback - including multipart uploads, distributed video processing, thumbnail generation, HLS transcoding, adaptive streaming, AI-generated captions, transcript extraction, realtime progress tracking, and transcript-aware conversational AI. The primary goal was to explore media infrastructure, asynchronous processing, realtime communication, and AI integration in a single production-style system.",
 
     whatUsersCanDo: [
       "Upload large video files using multipart uploads directly to AWS S3.",
@@ -217,28 +217,28 @@ export const projectItems: ProjectItem[] = [
     team: "Solo",
 
     overview:
-      "WalletX is a production-grade ERC-4337 smart wallet implementation that demonstrates the full Account Abstraction stack — from UserOperation construction to on-chain execution. Instead of regular Ethereum transactions, users sign UserOperations that flow through a bundler, get validated by a custom VerifyingPaymaster, and execute via a programmable smart wallet contract. The project showcases gasless UX, delegated session key access, and a real-time transaction lifecycle visualizer.",
+      "WalletX is a production-grade ERC-4337 smart wallet implementation that demonstrates the full Account Abstraction stack - from UserOperation construction to on-chain execution. Instead of regular Ethereum transactions, users sign UserOperations that flow through a bundler, get validated by a custom VerifyingPaymaster, and execute via a programmable smart wallet contract. The project showcases gasless UX, delegated session key access, and a real-time transaction lifecycle visualizer.",
 
     whatUsersCanDo: [
       "Connect their EOA wallet via RainbowKit and interact with a deployed smart wallet.",
       "Send gasless transactions where the VerifyingPaymaster covers all gas fees.",
-      "Create session keys with fine-grained permissions — restricted target address, ETH cap, and expiry time.",
+      "Create session keys with fine-grained permissions - restricted target address, ETH cap, and expiry time.",
       "Execute transactions using session keys without owner signature involvement.",
-      "Track the full UserOperation lifecycle in real-time — from signing to bundler submission to on-chain confirmation.",
+      "Track the full UserOperation lifecycle in real-time - from signing to bundler submission to on-chain confirmation.",
       "Revoke session keys instantly to remove delegated access.",
       "View confirmed transactions with direct Etherscan links.",
     ],
 
     whyIBuiltThis: [
-      "To deeply understand ERC-4337 Account Abstraction — the most important UX primitive in Web3.",
+      "To deeply understand ERC-4337 Account Abstraction - the most important UX primitive in Web3.",
       "To implement a custom VerifyingPaymaster from scratch and understand the signature verification flow.",
-      "To master the UserOperation lifecycle — how bundlers, EntryPoints, and smart wallets interact.",
+      "To master the UserOperation lifecycle - how bundlers, EntryPoints, and smart wallets interact.",
       "To build session keys as a senior-level feature that demonstrates programmable wallet logic.",
       "To complete Phase 6 of the '6 Projects in 60 Days' challenge with the most infrastructure-heavy project yet.",
     ],
 
     afterLaunchImpact: [
-      "Successfully implemented a custom VerifyingPaymaster that reconstructs userOpHash internally to match EntryPoint's computation — solving a non-trivial signature verification challenge.",
+      "Successfully implemented a custom VerifyingPaymaster that reconstructs userOpHash internally to match EntryPoint's computation - solving a non-trivial signature verification challenge.",
       "Built a complete two-hash signing flow where the paymaster signs with empty paymasterData and the wallet signs after paymasterData is finalized.",
       "Implemented session key enforcement at the contract level using assembly-based calldata decoding to validate target address and ETH amount per transaction.",
       "Integrated Pimlico bundler with sponsorship policy management to ensure the custom paymaster is respected.",
@@ -248,7 +248,7 @@ export const projectItems: ProjectItem[] = [
     futurePlans: [
       "Add multi-owner support and on-chain multisig validation.",
       "Implement ERC-20 token gas payments via a token paymaster.",
-      "Add social recovery — allow trusted guardians to restore wallet access.",
+      "Add social recovery - allow trusted guardians to restore wallet access.",
       "Build a session key marketplace where dApps can request scoped access from users.",
       "Integrate The Graph to index UserOperation history for a full transaction dashboard.",
     ],
@@ -363,7 +363,7 @@ export const projectItems: ProjectItem[] = [
       "To master the mathematical foundations of DeFi: LTV ratios, health factors, and liquidation thresholds.",
       "To build a robust, idempotent event indexer that mirrors on-chain state into a relational database.",
       "To solve the UX friction of ERC20 approvals and real-time state invalidation after transactions.",
-      "To practice 'protocol thinking'—understanding how every state transition impacts systemic risk.",
+      "To practice 'protocol thinking'-understanding how every state transition impacts systemic risk.",
       "To advance my '6 Projects in 60 Days' challenge by tackling complex financial logic.",
     ],
 
@@ -428,7 +428,7 @@ export const projectItems: ProjectItem[] = [
     whyIBuiltThis: [
       "To implement Merkle Trees as a core infrastructure primitive for scalable on-chain verification.",
       "To build a secure backend relayer capable of sponsoring and submitting transactions on behalf of users.",
-      "To explore hybrid architecture—balancing blockchain finality with Postgres-backed state tracking.",
+      "To explore hybrid architecture-balancing blockchain finality with Postgres-backed state tracking.",
       "To solve the 'cold start' problem in Web3 where users need ETH just to interact with a dApp.",
       "To reach the halfway mark of the '6 Projects in 60 Days' challenge with a complex cryptography project.",
     ],

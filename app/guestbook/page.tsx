@@ -9,7 +9,7 @@ export const revalidate = 0;
 export const metadata: Metadata = buildMetadata({
   title: "Guestbook",
   description:
-    "Leave your mark on Niladri's guestbook — a simple sign-and-see wall for visitors.",
+    "Leave your mark on Niladri's guestbook - a simple sign-and-see wall for visitors.",
   path: "/guestbook",
 });
 
