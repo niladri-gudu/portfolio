@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { GuestbookEntry } from "./types";
 
-type Entry = { id: string; name: string; message: string; createdAt: Date };
-
-export default function GuestbookForm({ onNew }: { onNew: (e: Entry) => void }) {
+export default function GuestbookForm({ onNew }: { onNew: (e: GuestbookEntry) => void }) {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);

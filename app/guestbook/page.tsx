@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import GuestbookClient from "@/components/guestbook/GuestbookClient";
+import type { GuestbookEntry } from "@/components/guestbook/types";
 import Reveal from "@/components/motion/Reveal";
 import { buildMetadata } from "@/lib/site";
 
@@ -14,13 +15,21 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default async function GuestbookPage() {
-  const [entries, total] = await Promise.all([
+  const [rawEntries, total] = await Promise.all([
     prisma.guestbookEntry.findMany({
       orderBy: { createdAt: "desc" },
       take: 10,
     }),
     prisma.guestbookEntry.count(),
   ]);
+
+  const entries: GuestbookEntry[] = rawEntries.map((e) => ({
+    id: e.id,
+    name: e.name,
+    message: e.message,
+    reply: e.reply,
+    createdAt: e.createdAt,
+  }));
 
   const d = (i: number) => (i + 1) * 0.03;
 
@@ -56,7 +65,10 @@ export default async function GuestbookPage() {
         </Reveal>
         <Reveal delay={d(3)}>
           <div className="px-4">
-            <GuestbookClient initialEntries={entries} total={total} />
+            <GuestbookClient
+              initialEntries={entries}
+              total={total}
+            />
           </div>
         </Reveal>
       </section>

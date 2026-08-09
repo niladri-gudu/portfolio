@@ -26,5 +26,6 @@ model GuestbookEntry {
   id        String   @id @default(cuid())
   name      String
   message   String
+  reply     String?
   createdAt DateTime @default(now())
 }
