@@ -1,6 +1,15 @@
 import Reveal from "@/components/motion/Reveal";
 import BackButton from "@/components/backButton/BackButton";
-import MDXContent from "@/components/blog/MDXContent";
+import dynamic from "next/dynamic";
+
+const MDXContent = dynamic(() => import("@/components/blog/MDXContent"), {
+  ssr: true,
+  loading: () => (
+    <div className="text-sm text-muted-foreground/60 py-8 text-center">
+      Loading…
+    </div>
+  ),
+});
 
 type Post = {
   slug: string;

@@ -31,7 +31,7 @@ export default function ProjectsSection() {
       </Stagger>
 
       {hasMore && (
-        <div className="flex justify-center pt-2">
+        <div className="flex justify-center pb-4">
           <button
             onClick={() => setShowAll((v) => !v)}
             className="flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-800 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:border-accent-brand/40 hover:text-accent-brand transition-colors cursor-pointer"

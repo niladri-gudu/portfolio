@@ -8,15 +8,24 @@ import useSWR from "swr";
 import Reveal from "../motion/Reveal";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
+import { useInView } from "@/hooks/useInView";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function SpotifyCard() {
   const [progress, setProgress] = useState(0);
 
-  const { data, error } = useSWR("/api/now-playing", fetcher, {
-    refreshInterval: 10000,
-  });
+  const { ref, inView } = useInView({ threshold: 0.1, once: true });
+
+  const { data, error } = useSWR(
+    inView ? "/api/now-playing" : null,
+    fetcher,
+    {
+      refreshInterval: 10000,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    },
+  );
 
   useEffect(() => {
     if (data?.isPlaying && data?.durationMs) {
@@ -37,13 +46,15 @@ export default function SpotifyCard() {
   }, [data?.isPlaying, data?.durationMs]);
 
   const isPlaying = data?.isPlaying || false;
-  const songName = data?.title || (error ? "Error Loading" : "Not Playing");
+  const isPending = !inView;
+  const songName = data?.title || (error ? "Error Loading" : isPending ? "Loading…" : "Not Playing");
   const artistName = data?.artist || "Spotify";
   const albumCover = data?.albumImageUrl || null;
 
   return (
     <Reveal delay={0.03}>
-      <Link
+      <div ref={ref}>
+        <Link
         href={data?.songUrl || "https://spotify.com"}
         target="_blank"
         rel="noopener noreferrer"
@@ -134,6 +145,7 @@ export default function SpotifyCard() {
           </div>
         )}
       </Link>
+      </div>
 
       <style jsx>{`
         @keyframes music-bar {

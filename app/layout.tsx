@@ -54,6 +54,12 @@ export const metadata: Metadata = {
   },
 };
 
+export async function headers() {
+  return {
+    "x-dns-prefetch-control": "on",
+  };
+};
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
