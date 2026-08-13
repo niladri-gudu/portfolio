@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 import Providers from "@/components/providers/Providers";
@@ -82,6 +83,21 @@ export default function RootLayout({
       suppressHydrationWarning
       data-season={season?.key ?? "default"}
     >
+      <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-MY4H3H1L5M"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-MY4H3H1L5M');
+          `}
+        </Script>
+      </head>
       <body
         className={`${geistSans.className} ${geistMono.className} ${telma.variable} ${ds.variable}  antialiased`}
       >
