@@ -17,10 +17,8 @@ export default function Reveal({
 
   return (
     <motion.div
-      initial={shouldReduceMotion ? false : { opacity: 0, y }}
-      whileInView={
-        shouldReduceMotion ? undefined : { opacity: 1, y: 0 }
-      }
+      initial={shouldReduceMotion ? false : { y }}
+      whileInView={shouldReduceMotion ? undefined : { y: 0 }}
       transition={{
         duration: 0.4,
         delay: baseDelay + delay,

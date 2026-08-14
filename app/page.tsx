@@ -1,6 +1,6 @@
 import PageContainer from "@/components/layout/PageContainer";
 import SpotifyCard from "@/components/spotifyCard/SpotifyCard";
-import GithubGraph from "@/components/github/GithubGraph";
+import LazyGithubGraph from "@/components/github/LazyGithubGraph";
 import JsonLd from "@/components/seo/JsonLd";
 
 import HeroSection from "@/components/sections/HeroSection";
@@ -54,7 +54,7 @@ export default async function HomePage() {
           <SocialsSection />
           <WorkSection />
           <ProjectsSection />
-          <GithubGraph />
+          <LazyGithubGraph />
           <AboutSection />
           <VisitorSection />
         </div>
