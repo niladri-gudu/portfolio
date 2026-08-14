@@ -5,7 +5,7 @@ import "./globals.css";
 
 import Providers from "@/components/providers/Providers";
 import SearchProvider from "@/components/search/SearchProvider";
-import LazySearchDialog from "@/components/search/LazySearchDialog";
+import SearchDialog from "@/components/search/SearchDialog";
 import Header from "@/components/header/Header";
 import { geistSans, geistMono, telma, ds } from "../lib/fonts";
 import Footer from "@/components/footer/Footer";
@@ -88,9 +88,9 @@ export default function RootLayout({
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-MY4H3H1L5M"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="lazyOnload">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -107,7 +107,7 @@ export default function RootLayout({
             <div className="mx-auto flex min-h-dvh w-full flex-col md:w-3xl">
               <Header />
               <VisitLogger />
-              <LazySearchDialog />
+              <SearchDialog />
               <main className="flex flex-1 flex-col">{children}</main>
               <Footer />
             </div>
