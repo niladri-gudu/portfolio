@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getAllPosts } from "@/lib/blog";
-import type { ApiSearchResult } from "@/lib/search";
+import { getAllPosts } from "@/features/blog/lib";
+import type { ApiSearchResult } from "@/features/search/lib";
 
 export const revalidate = 3600;
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { projectItems } from "@/components/data/projects";
-import ProjectDetails from "@/components/projectDetails/ProjectDetails";
+import { projectItems } from "@/features/projects/data";
+import ProjectDetails from "@/features/projects/components/ProjectDetails";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/site";
 

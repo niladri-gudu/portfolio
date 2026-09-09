@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/site";
-import { projectItems } from "@/components/data/projects";
-import { getAllPosts } from "@/lib/blog";
+import { projectItems } from "@/features/projects/data";
+import { getAllPosts } from "@/features/blog/lib";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

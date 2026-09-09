@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import Reveal from "@/components/motion/Reveal";
+import Reveal from "@/shared/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "Page not found",

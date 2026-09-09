@@ -1,47 +1,26 @@
-import PageContainer from "@/components/layout/PageContainer";
-import SpotifyCard from "@/components/spotifyCard/SpotifyCard";
-import GithubGraph from "@/components/github/GithubGraph";
-import JsonLd from "@/components/seo/JsonLd";
+import PageContainer from "@/shared/components/PageContainer";
+import SpotifyCard from "@/features/spotify/components/SpotifyCard";
+import GithubGraph from "@/features/home/components/GithubGraph";
+import JsonLd from "@/shared/seo/JsonLd";
 
-import HeroSection from "@/components/sections/HeroSection";
-import SocialsSection from "@/components/sections/SocialsSection";
-import WorkSection from "@/components/sections/WorkSection";
-import ProjectsSection from "@/components/sections/ProjectsSection";
+import HeroSection from "@/features/home/components/HeroSection";
+import SocialsSection from "@/features/home/components/SocialsSection";
+import WorkSection from "@/features/work/components/WorkSection";
+import ProjectsSection from "@/features/projects/components/ProjectsSection";
 
-import VisitorSection from "@/components/sections/VisitorSection";
-import AboutSection from "@/components/sections/AboutSection";
+import VisitorSection from "@/features/analytics/components/VisitorSection";
+import AboutSection from "@/features/home/components/AboutSection";
 
-import { siteConfig } from "@/lib/site";
+import { buildPersonJsonLd, buildWebsiteJsonLd } from "@/shared/seo/builders";
+import { getCachedTrack } from "@/features/spotify/server";
 
 export default async function HomePage() {
-  const personJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Niladri",
-    url: siteConfig.url,
-    image: `${siteConfig.url}/new_profile_updated_2.0.jpeg`,
-    jobTitle: "Backend & Systems Engineer",
-    description:
-      "Backend and Systems Engineer building scalable distributed systems, high-performance APIs, and robust cloud infrastructure.",
-    email: "niladrigudu@gmail.com",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Ahmedabad",
-      addressCountry: "India",
-    },
-    sameAs: [
-      siteConfig.links.github,
-      siteConfig.links.twitter,
-      siteConfig.links.linkedin,
-    ],
-  };
+  const personJsonLd = buildPersonJsonLd();
 
-  const websiteJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: siteConfig.title,
-    url: siteConfig.url,
-  };
+  const websiteJsonLd = buildWebsiteJsonLd();
+
+  // Instant first paint: last known track from Postgres (null-safe at build).
+  const initialTrack = await getCachedTrack().catch(() => null);
 
   return (
     <section className="pt-16 selection:bg-neutral-200 dark:selection:bg-neutral-800">
@@ -50,7 +29,7 @@ export default async function HomePage() {
       <PageContainer>
         <div className="space-y-4">
           <HeroSection />
-          <SpotifyCard />
+          <SpotifyCard initial={initialTrack} />
           <SocialsSection />
           <WorkSection />
           <ProjectsSection />

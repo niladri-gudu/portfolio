@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import ProjectCard from "@/components/projectCard/ProjectCard";
-import { projectItems } from "@/components/data/projects";
-import Reveal from "@/components/motion/Reveal";
-import Stagger from "@/components/motion/Stagger";
-import StaggerItem from "@/components/motion/StaggerItem";
+import ProjectCard from "@/features/projects/components/ProjectCard";
+import { projectItems } from "@/features/projects/data";
+import Reveal from "@/shared/motion/Reveal";
+import Stagger from "@/shared/motion/Stagger";
+import StaggerItem from "@/shared/motion/StaggerItem";
+import PageHero from "@/shared/components/PageHero";
 import { buildMetadata } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
@@ -16,29 +17,10 @@ export const metadata: Metadata = buildMetadata({
 export default function ProjectsPage() {
   return (
     <>
-      <section className="flex flex-col my-8 gap-6 pt-4">
-        <Reveal>
-          <div className="flex flex-col items-center gap-5">
-            <h1 className="flex items-center justify-center gap-4 text-6xl xl:text-7xl font-ds font-extrabold">
-              <span>Projects</span>
-            </h1>
-            <span
-              aria-hidden
-              className="h-1 w-20 rounded-full bg-linear-to-r from-accent-brand/60 to-accent-brand"
-            />
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.03}>
-          <p className="text-center text-lg text-muted-foreground mx-auto w-5/6">
-            Things built and products shipped to the world.
-          </p>
-        </Reveal>
-      </section>
-
-      <Reveal delay={0.06}>
-        <hr className="mx-3 rounded-xl" />
-      </Reveal>
+      <PageHero
+        title="Projects"
+        description="Things built and products shipped to the world."
+      />
 
       <section className="flex flex-col gap-5 pb-8">
         <Reveal delay={0.09}>

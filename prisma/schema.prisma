@@ -29,3 +29,18 @@ model GuestbookEntry {
   reply     String?
   createdAt DateTime @default(now())
 }
+
+model SpotifyCache {
+  id        String   @id @default("current")
+  isPlaying Boolean  @default(false)
+  title     String   @default("")
+  artists   String   @default("")
+  albumArt  String   @default("")
+  url       String   @default("https://open.spotify.com/")
+  progressMs Int?
+  durationMs Int?
+  playedAt  DateTime?
+  stale     Boolean  @default(false)
+  fetchedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}

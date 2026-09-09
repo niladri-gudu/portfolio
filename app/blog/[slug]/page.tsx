@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { getPostBySlug, getAllPosts } from "@/lib/blog";
-import BlogContent from "@/components/blog/BlogContent";
-import JsonLd from "@/components/seo/JsonLd";
+import { getPostBySlug, getAllPosts } from "@/features/blog/lib";
+import BlogContent from "@/features/blog/components/BlogContent";
+import JsonLd from "@/shared/seo/JsonLd";
 import { notFound } from "next/navigation";
-import { buildMetadata, siteConfig, absoluteUrl } from "@/lib/site";
+import { buildMetadata } from "@/lib/site";
+import { buildBlogPostingJsonLd } from "@/shared/seo/builders";
 
 export async function generateMetadata({
   params,
@@ -34,39 +35,21 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params;
 
+  let post;
   try {
-    const post = getPostBySlug(slug);
-
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      headline: post.title,
-      description: post.description,
-      datePublished: new Date(post.date).toISOString(),
-      dateModified: new Date(post.date).toISOString(),
-      url: absoluteUrl(`/blog/${post.slug}`),
-      author: {
-        "@type": "Person",
-        name: siteConfig.name,
-        url: siteConfig.url,
-      },
-      publisher: {
-        "@type": "Person",
-        name: siteConfig.name,
-        url: siteConfig.url,
-      },
-      keywords: post.tags?.join(", "),
-    };
-
-    return (
-      <>
-        <JsonLd data={jsonLd} />
-        <BlogContent post={post} />
-      </>
-    );
+    post = getPostBySlug(slug);
   } catch {
     return notFound();
   }
+
+  const jsonLd = buildBlogPostingJsonLd(post);
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <BlogContent post={post} />
+    </>
+  );
 }
 
 export function generateStaticParams() {

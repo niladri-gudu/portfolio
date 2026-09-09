@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Reveal from "@/components/motion/Reveal";
-import Stagger from "@/components/motion/Stagger";
-import StaggerItem from "@/components/motion/StaggerItem";
-import BlogCard from "@/components/blog/BlogCard";
-import { getAllPosts } from "@/lib/blog";
+import Reveal from "@/shared/motion/Reveal";
+import Stagger from "@/shared/motion/Stagger";
+import StaggerItem from "@/shared/motion/StaggerItem";
+import BlogCard from "@/features/blog/components/BlogCard";
+import PageHero from "@/shared/components/PageHero";
+import { getAllPosts } from "@/features/blog/lib";
 import { buildMetadata } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
@@ -19,29 +20,10 @@ export default function BlogPage() {
 
   return (
     <>
-      <section className="flex flex-col my-8 gap-6 pt-4">
-        <Reveal>
-          <div className="flex flex-col items-center gap-5">
-            <h1 className="flex items-center justify-center gap-6 text-6xl xl:text-7xl font-ds font-extrabold">
-              <span>Blog</span>
-            </h1>
-            <span
-              aria-hidden
-              className="h-1 w-20 rounded-full bg-linear-to-r from-accent-brand/60 to-accent-brand"
-            />
-          </div>
-        </Reveal>
-
-        <Reveal delay={d(0)}>
-          <p className="text-center text-lg text-muted-foreground mx-auto w-5/6">
-            Building processes and small wins found along the way.
-          </p>
-        </Reveal>
-      </section>
-
-      <Reveal delay={d(1)}>
-        <hr className="mx-3 rounded-xl" />
-      </Reveal>
+      <PageHero
+        title="Blog"
+        description="Building processes and small wins found along the way."
+      />
 
       {posts.length === 0 ? (
         <section className="flex flex-col items-center justify-center gap-4 py-24 text-center">

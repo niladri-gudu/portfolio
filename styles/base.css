@@ -1,0 +1,58 @@
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  *:focus-visible {
+    @apply outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html, body {
+  min-height: 100%;
+  height: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    60% 40% at 50% 0%,
+    color-mix(in srgb, var(--accent-brand) 12%, transparent),
+    transparent 70%
+  );
+}
+
+::selection {
+  color: var(--background);
+  background-color: var(--foreground);
+}
+
+.dark ::selection {
+  color: var(--background);
+  background-color: var(--foreground);
+}
+
+::-moz-selection {
+  color: var(--background);
+  background-color: var(--foreground);
+}
+
+.dark ::-moz-selection {
+  color: var(--background);
+  background-color: var(--foreground);
+}

@@ -1,17 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
-import Providers from "@/components/providers/Providers";
-import SearchProvider from "@/components/search/SearchProvider";
-import SearchDialog from "@/components/search/SearchDialog";
-import Header from "@/components/header/Header";
-import { geistSans, geistMono, telma, ds } from "../lib/fonts";
-import Footer from "@/components/footer/Footer";
-import VisitLogger from "@/components/visitLogger/VisitLogger";
-import { siteConfig, absoluteUrl } from "../lib/site";
-import { getSeason } from "../lib/season";
+import Providers from "@/shared/providers/Providers";
+import SearchProvider from "@/features/search/components/SearchProvider";
+import SearchDialog from "@/features/search/components/SearchDialog";
+import Header from "@/features/navigation/components/Header";
+import { geistSans, geistMono, telma, ds } from "@/lib/fonts";
+import Footer from "@/features/navigation/components/Footer";
+import VisitLogger from "@/features/analytics/components/VisitLogger";
+import { siteConfig, absoluteUrl } from "@/lib/site";
+import { getSeason } from "@/lib/season";
+import Analytics from "@/features/analytics/components/Analytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -56,12 +56,6 @@ export const metadata: Metadata = {
   },
 };
 
-export async function headers() {
-  return {
-    "x-dns-prefetch-control": "on",
-  };
-};
-
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -85,19 +79,7 @@ export default function RootLayout({
       data-season={season?.key ?? "default"}
     >
       <head>
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-MY4H3H1L5M"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-MY4H3H1L5M');
-          `}
-        </Script>
+        <Analytics />
       </head>
       <body
         className={`${geistSans.className} ${geistMono.className} ${telma.variable} ${ds.variable}  antialiased`}

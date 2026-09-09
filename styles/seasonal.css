@@ -1,0 +1,12 @@
+/* Seasonal themes: accent color only (background stays neutral) */
+:root[data-season="winter"] { --accent-brand: #4f6af5; }
+:root[data-season="spring"] { --accent-brand: #16a34a; }
+:root[data-season="summer"] { --accent-brand: #d97706; }
+:root[data-season="monsoon"] { --accent-brand: #0891b2; }
+:root[data-season="autumn"] { --accent-brand: #c2410c; }
+
+.dark[data-season="winter"] { --accent-brand: #93a5ff; }
+.dark[data-season="spring"] { --accent-brand: #4ade80; }
+.dark[data-season="summer"] { --accent-brand: #fbbf24; }
+.dark[data-season="monsoon"] { --accent-brand: #67e8f9; }
+.dark[data-season="autumn"] { --accent-brand: #fb923c; }
