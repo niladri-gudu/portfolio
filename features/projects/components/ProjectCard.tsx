@@ -67,20 +67,24 @@ const ProjectCard = ({ item }: { item: ProjectItem }) => {
         <div className="mb-6">
           <h3 className="mb-2 font-semibold">Technologies</h3>
 
-          <div className="flex cursor-pointer gap-2">
-            {item.technologies.map((t) => {
+          <div className="flex flex-wrap gap-1.5">
+            {item.technologies.slice(0, 6).map((t) => {
               const Icon = t.icon;
               return (
-                <Tooltip key={t.name}>
-                  <TooltipTrigger className="cursor-pointer">
-                    <Icon className="w-6 h-6 hover:scale-125 transition" />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{t.name}</p>
-                  </TooltipContent>
-                </Tooltip>
+                <span
+                  key={t.name}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/60 text-xs font-medium text-neutral-600 dark:text-neutral-300"
+                >
+                  {Icon ? <Icon className="w-3.5 h-3.5" /> : null}
+                  {t.name}
+                </span>
               );
             })}
+            {item.technologies.length > 6 && (
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md border border-dashed border-neutral-200 dark:border-neutral-800 text-xs font-medium text-neutral-400 dark:text-neutral-500">
+                +{item.technologies.length - 6} more
+              </span>
+            )}
           </div>
         </div>
 

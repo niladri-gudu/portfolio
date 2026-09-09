@@ -4,6 +4,7 @@ import Image from "next/image";
 import { MapPin } from "lucide-react";
 import LiveClock from "@/features/home/components/LiveClock";
 import { personalData } from "@/data/personal";
+import { siteConfig } from "@/lib/site";
 import Reveal from "@/shared/motion/Reveal";
 import Link from "next/link";
 
@@ -154,6 +155,34 @@ export default function HeroSection() {
             </span>
             .
           </p>
+        </div>
+      </Reveal>
+
+      <Reveal delay={0.24} y={10}>
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          <Link
+            href="/projects"
+            prefetch
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg bg-neutral-900 text-neutral-50 dark:bg-neutral-50 dark:text-neutral-900 hover:opacity-90 transition-opacity"
+          >
+            View projects
+            <span aria-hidden>→</span>
+          </Link>
+          <Link
+            href="mailto:niladrigudu@gmail.com"
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:border-accent-brand/40 hover:text-accent-brand transition-colors"
+          >
+            Email me
+          </Link>
+          <Link
+            href={siteConfig.links.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:border-accent-brand/40 hover:text-accent-brand transition-colors"
+          >
+            Resume
+            <span aria-hidden>↗</span>
+          </Link>
         </div>
       </Reveal>
     </section>

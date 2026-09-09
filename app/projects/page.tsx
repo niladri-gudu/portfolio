@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/site";
 export const metadata: Metadata = buildMetadata({
   title: "Projects",
   description:
-    "A collection of engineering projects built and shipped by Niladri - distributed systems, media pipelines, and Web3 products.",
+    "Distributed backends by Niladribihari Mohanta: live diary withink.me, agentic RAG, HLS media pipelines, realtime social infra - plus onchain infra appendix.",
   path: "/projects",
 });
 
@@ -19,7 +19,7 @@ export default function ProjectsPage() {
     <>
       <PageHero
         title="Projects"
-        description="Things built and products shipped to the world."
+        description="Distributed backends first - live products, queues, realtime, media pipelines. Onchain infra at the end."
       />
 
       <section className="flex flex-col gap-5 pb-8">

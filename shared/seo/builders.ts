@@ -7,9 +7,9 @@ export function buildPersonJsonLd() {
     name: "Niladri",
     url: siteConfig.url,
     image: `${siteConfig.url}/new_profile_updated_2.0.jpeg`,
-    jobTitle: "Backend & Systems Engineer",
+    jobTitle: "Backend & AI Engineer",
     description:
-      "Backend and Systems Engineer building scalable distributed systems, high-performance APIs, and robust cloud infrastructure.",
+      "Backend and AI Engineer building scalable distributed systems, high-performance APIs, and robust cloud infrastructure.",
     email: "niladrigudu@gmail.com",
     address: {
       "@type": "PostalAddress",

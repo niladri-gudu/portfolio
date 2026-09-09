@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/site";
 export const metadata: Metadata = buildMetadata({
   title: "Work",
   description:
-    "Professional roles and teams joined by Niladri, a Backend and Systems Engineer.",
+    "Professional roles and teams joined by Niladri, a Backend and AI Engineer.",
   path: "/work",
 });
 

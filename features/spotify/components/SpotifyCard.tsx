@@ -76,7 +76,7 @@ export default function SpotifyCard({
     errorRetryCount: 3,
   });
 
-  // Render from the object every time. Network only updates it — no loader.
+  // Render from the object every time. Network only updates it - no loader.
   const track = data ?? initial ?? null;
 
   // Freshness clock lives in state so render stays pure.

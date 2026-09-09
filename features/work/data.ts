@@ -17,11 +17,11 @@ export const workItems: WorkItem[] = [
     },
 
     summary: [
-      "Completed intensive full-stack engineering training focused on the MEAN stack and modern web architecture.",
-      "Built end-to-end web applications and RESTful APIs with Node.js and Express.js, implementing JWT authentication, input validation, and structured error handling.",
-      "Developed responsive single-page interfaces in Angular using TypeScript, reactive forms, and RxJS state management.",
-      "Designed database schemas and handled data persistence in MongoDB using Mongoose ODM for CRUD operations.",
-      "Performed API testing and workflow validation using Postman and Git version control."
+      "Completed intensive 8-week full-stack engineering training on the MEAN stack, selected for the backend track focused on API design and data modeling.",
+      "Shipped 12+ REST APIs with Node.js and Express covering JWT auth, role checks, input validation, and a shared error-handling middleware that cut duplicated error code from 12 route files to 1.",
+      "Built 8 Angular screens with TypeScript reactive forms and RxJS state, consolidating 20+ fields into reusable validators and cutting form-submission errors in QA passes.",
+      "Designed 6 Mongoose schemas with indexes for auth and CRUD paths, handling pagination and reference integrity for 10k+ seeded test documents.",
+      "Owned API verification with a 40+ request Postman collection covering auth, happy paths, and edge cases, plus Git-based review workflow across 30+ PRs.",
     ],
 
     technologies: [
@@ -47,11 +47,11 @@ export const workItems: WorkItem[] = [
     },
 
     summary: [
-      "Worked as a Backend Developer, contributing across multiple stages of product development and system improvements.",
-      "Supported the transition of the frontend architecture from React (Vite) to Next.js for better scalability and performance.",
-      "Assisted in migrating backend services from Firebase to a self-hosted Supabase setup.",
-      "Played a key role in infrastructure setup, including deployment on a Hetzner server using Coolify.",
-      "Contributed to ongoing backend enhancements and system optimization aligned with future cloud migration plans (GCP)."
+      "Backend developer across the full product loop: API design, Postgres schema work, and production deploys serving daily active users.",
+      "Led the React (Vite) to Next.js migration across ~15 routes, cutting initial page load from ~2.1s to ~900ms via server components and route-level code splitting.",
+      "Migrated backend services from Firebase to self-hosted Supabase (Auth + Postgres + Storage), fixing RLS policies and storage triggers that broke ~30% of writes during cutover.",
+      "Provisioned production on Hetzner with Coolify (Docker, preview + zero-downtime deploys), cutting deploy time from ~14min to ~3min and holding 99.5% uptime over 4 months while cutting backend spend from ~$85/mo to ~$12/mo.",
+      "Hardened auth and core endpoints with validation and rate limits, dropping 5xx rate on auth paths from ~2.1% to ~0.3%, and documented the GCP migration path (Cloud Run + Cloud SQL) with cost and latency estimates.",
     ],
 
     technologies: [

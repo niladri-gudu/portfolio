@@ -6,15 +6,18 @@ const siteUrl = (
 
 export const siteConfig = {
   name: "Niladri",
-  title: "Niladri - Backend & Systems Engineer",
+  fullName: "Niladribihari Mohanta",
+  title: "Niladri - Backend & AI Engineer",
   description:
-    "Portfolio of Niladri, a Backend and Systems Engineer focused on building scalable distributed systems, high-performance APIs, and robust cloud infrastructure.",
+    "Portfolio of Niladribihari Mohanta (Niladri), a Backend and AI Engineer focused on building scalable distributed systems, high-performance APIs, and robust cloud infrastructure.",
   url: siteUrl,
   ogImage: "/opengraph-image.jpg",
   keywords: [
+    "Niladribihari Mohanta",
     "Niladri",
+    "Niladri Mohanta",
     "Backend Engineer",
-    "Systems Engineer",
+    "AI Engineer",
     "Distributed Systems",
     "API Development",
     "Scalable Architecture",
@@ -26,6 +29,8 @@ export const siteConfig = {
     github: "https://github.com/niladri-gudu",
     twitter: "https://x.com/dev_niladri",
     linkedin: "https://www.linkedin.com/in/niladribihari-mohanta",
+    resume:
+      "https://docs.google.com/document/d/1jvM2XtJfCdhjZDK8QFyrKr_3TkFdCVdkP0F7nG3DYd4/edit?usp=sharing",
   },
 } as const;
 
@@ -50,6 +55,7 @@ export function buildMetadata({
 }): Metadata {
   const url = absoluteUrl(path);
   const ogTitle = `${title} - ${siteConfig.name}`;
+  const ogImageUrl = absoluteUrl(imageUrl ?? siteConfig.ogImage);
 
   return {
     title,
@@ -61,14 +67,14 @@ export function buildMetadata({
       siteName: siteConfig.name,
       title: ogTitle,
       description,
-      ...(imageUrl ? { images: [{ url: absoluteUrl(imageUrl) }] } : {}),
+      images: [{ url: ogImageUrl, width: 1200, height: 630 }],
       ...(publishedTime ? { publishedTime } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle,
       description,
-      ...(imageUrl ? { images: [absoluteUrl(imageUrl)] } : {}),
+      images: [ogImageUrl],
     },
   };
 }

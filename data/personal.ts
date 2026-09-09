@@ -50,7 +50,7 @@ export const personalData: PersonalData = {
 
   profile: {
     name: "niladri.",
-    role: "Backend & Systems Engineer",
+    role: "Backend & AI Engineer",
     image: {
       src: "/new_profile_updated_2.0.jpeg",
       alt: "Niladri",
@@ -58,10 +58,10 @@ export const personalData: PersonalData = {
   },
 
   intro: {
-    text: "Architecting scalable distributed systems and high-performance backends. Currently obsessed with",
+    text: "Engineering scalable distributed systems and high-performance backends. Currently deep into",
     highlight: {
       first: "System Design",
-      second: "Distributed Computing",
+      second: "Applied AI",
     },
   },
 

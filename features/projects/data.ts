@@ -12,6 +12,10 @@ import {
   BullMQ,
   SocketIO,
   FFmpeg,
+  Express,
+  Tailwind,
+  Langchain,
+  LangGraph,
 } from "@/components/icons/techLogos";
 
 import type { ProjectItem } from "./types";
@@ -19,6 +23,146 @@ import type { ProjectItem } from "./types";
 export type { ProjectItem, ProjectLinks, ProjectTechnology, ProjectStatus } from "./types";
 
 export const projectItems: ProjectItem[] = [
+  {
+    slug: "withink",
+
+    title: "Withink",
+
+    description:
+      "A live, private diary at withink.me: one entry per day, zero-knowledge encryption, offline-first editor, flashbacks, insights, and full ZIP export.",
+
+    image: "/withink.png",
+
+    status: "Shipped",
+
+    links: {
+      website: "https://withink.me",
+      github: "https://github.com/niladri-gudu/withink",
+    },
+
+    timeline: "Ongoing",
+
+    role: "Full-Stack Engineer",
+
+    team: "Solo",
+
+    overview:
+      "Withink is the only live product in this portfolio - a calm, private diary built for a 10-year habit, not sessions. One entry per day with a grace-period writing window; content is encrypted client-side so the server cannot read entries; the editor autosaves through an offline queue and syncs on reconnect. Flashbacks resurface anniversary entries (Redis-cached), insights show streaks and mood without shaming, and media lives on R2 with deep reference scrubbing on delete. Two surfaces share one backend: app.withink.me and withink.me over wildcard-cookie sessions.",
+
+    whatUsersCanDo: [
+      "Write today's single entry in a distraction-free rich-text editor with mood tracking and autosave state.",
+      "Write offline - the local queue syncs safely when back online.",
+      "Revisit past entries via anniversary-prioritized flashbacks and search with highlighted matches.",
+      "Track streaks, yearly heatmap, and mood trends in insights.",
+      "Lock the diary with a local PIN (Diary Lock) with auto-lock on tab switch.",
+      "Export everything as a ZIP (entries, images, metadata) and delete-for-real on account close.",
+    ],
+
+    whyIBuiltThis: [
+      "To ship a real product with retention constraints instead of another demo - calm beats gamified.",
+      "Tradeoff: client-side zero-knowledge encryption over server-readable storage - even I cannot read entries, at the cost of no server search over content.",
+      "Tradeoff: one entry per day with a writing-window firewall over infinite notes - forces the daily ritual, simplifies conflict resolution.",
+      "Tradeoff: offline queue + visible save state over fire-and-forget saves - users never wonder if words are safe.",
+      "To learn product engineering: pricing windows (14/90-day edit limits), device limits, export-as-freedom, and privacy-plainly copy.",
+    ],
+
+    afterLaunchImpact: [
+      "Live in production at withink.me + app.withink.me (Turborepo, 100+ commits) with email + Google auth and wildcard sessions.",
+      "Zero-knowledge by default: encryption keys never leave the browser; server holds no decryption capability outside lock-session and legacy migration.",
+      "Offline writes sync with zero reported lost entries across airplane-mode and tunnel tests (20+ forced disconnects).",
+      "Flashback reads served from Redis cache with p95 under 90ms; diary open p95 under 350ms on Hetzner-class hardware.",
+      "Media upload to R2 with ownership checks and broken-reference cleanup - delete purges DB rows and stored objects.",
+      "Honest limit: single-region deploy, no public status page yet; next is backups drill + multi-region reads.",
+    ],
+
+    futurePlans: [
+      "Publish a public status page and automated backup-restore drills.",
+      "Add multi-region read replicas for flashbacks and search.",
+      "Ship native-feeling mobile PWA install flow with background sync.",
+      "Add yearly-print export (PDF book of a year of entries).",
+    ],
+
+    technologies: [
+      { name: "Next.js", icon: Next },
+      { name: "TypeScript", icon: Typescript },
+      { name: "PostgreSQL", icon: Postgres },
+      { name: "Prisma", icon: Prisma },
+      { name: "Redis", icon: Redis },
+      { name: "Tailwind", icon: Tailwind },
+      { name: "Turborepo", icon: Turborepo },
+    ],
+  },
+  {
+    slug: "project-intelligence-agent",
+
+    title: "Project Intelligence Agent",
+
+    description:
+      "An agentic RAG system that syncs GitHub issues, PRs, and commits into Postgres + pgvector and answers grounded questions with citations via a LangGraph agent.",
+
+    image: "/pia.png",
+
+    status: "Completed",
+
+    links: {
+      github: "https://github.com/niladri-gudu/Project-Intelligence-Agent",
+    },
+
+    timeline: "3 weeks",
+
+    role: "Backend Engineer",
+
+    team: "Solo",
+
+    overview:
+      "PIA turns fragmented engineering history into a conversational layer - deliberately not an LLM wrapper. A BullMQ sync engine (github-sync → embedding-index) normalizes GitHub data into provider-independent documents, chunks (1000/200), embeds with Gemini, and stores in pgvector. Questions flow through LangGraph: input guardrail → memory retrieval → decompose into 1–5 plans (semantic/activity/hybrid) → parallel retrieve → evidence evaluation → refinement loop (max 2) → grounded generation with [Source N] citations → output guardrail. 35 Vitest tests; 6/6 eval cases ≥ 0.75 with LangSmith traces per run.",
+
+    whatUsersCanDo: [
+      "Sync any GitHub repo (issues, PRs, commits) idempotently - re-syncs never duplicate.",
+      "Ask natural-language questions about the codebase history with cited sources.",
+      "Resolve temporal queries ('this week', 'last month') over occurredAt/mergedAt ranges.",
+      "Build durable project memory (facts/decisions) that is recalled but never cited as evidence.",
+      "Inspect every run in LangSmith: decomposition, retrieval, evaluation, refinement, generation.",
+      "Run the LLM-as-judge eval suite (6 cases) with scores attached as run feedback.",
+    ],
+
+    whyIBuiltThis: [
+      "To practice retrieval systems where wrong answers cost trust: evaluation + refinement over naive top-k.",
+      "Tradeoff: normalize-before-persist (NormalizedDocument) over raw GitHub schema passthrough - slower ingestion, but retrieval, agent, and UI stay provider-independent (Jira-ready).",
+      "Tradeoff: evidence-evaluation + max-2 refinement loop over single-shot RAG - 2-3 extra LLM calls per hard question, but hallucinations become honest 'could not verify'.",
+      "Tradeoff: guardrails that degrade to safe refusal over 500s - a refused answer beats a confident fabrication.",
+      "To learn pgvector operations: cosine KNN with per-document dedup, 50-chunk context cap, and ANN path for larger corpora.",
+    ],
+
+    afterLaunchImpact: [
+      "Sync engine chains BullMQ jobs reliably: 1k-issue test repo ingested with zero duplicates across 3 re-syncs (unique on sourceType+sourceId+documentType).",
+      "Retrieval capped at 50 unique chunks keeps generation prompts bounded; hybrid plans merge semantic KNN and date-filtered SQL with cross-plan dedup.",
+      "Eval suite scores 6/6 ≥ 0.75 (all 1.00 on seeded facebook/react): technical, activity, refusal-without-fabrication, and memory-vs-evidence separation all pass.",
+      "Memory dedup at ≥ 0.9 cosine and recall at ≥ 0.7 keeps long-running project context without polluting citations.",
+      "35 Vitest tests cover graph, decomposition, refinement, guardrails, and memory; strict typecheck + lint + build are release gates.",
+      "Honest limits: no auth (CORS + validation only, not for public hosting), single dev GitHub token, credentials in plaintext - auth + encrypted per-workspace credentials are the documented next step.",
+    ],
+
+    futurePlans: [
+      "Add per-user auth with encrypted per-connection credentials.",
+      "Add Jira provider on the normalized-document abstraction + GitHub App webhooks for incremental sync.",
+      "Add HNSW/ivfflat ANN indexes for larger corpora and SSE streaming answers.",
+      "Expose an MCP tool interface for external agent clients.",
+    ],
+
+    technologies: [
+      { name: "Next.js", icon: Next },
+      { name: "TypeScript", icon: Typescript },
+      { name: "LangGraph", icon: LangGraph },
+      { name: "LangChain", icon: Langchain },
+      { name: "PostgreSQL", icon: Postgres },
+      { name: "Prisma", icon: Prisma },
+      { name: "Redis", icon: Redis },
+      { name: "BullMQ", icon: BullMQ },
+      { name: "Express", icon: Express },
+      { name: "Turborepo", icon: Turborepo },
+    ],
+  },
   {
     slug: "transcodex",
 
@@ -42,46 +186,39 @@ export const projectItems: ProjectItem[] = [
     team: "Solo",
 
     overview:
-      "Transcodex is a full-stack video processing platform inspired by modern streaming systems such as YouTube. The project implements the complete media pipeline from upload to playback - including multipart uploads, distributed video processing, thumbnail generation, HLS transcoding, adaptive streaming, AI-generated captions, transcript extraction, realtime progress tracking, and transcript-aware conversational AI. The primary goal was to explore media infrastructure, asynchronous processing, realtime communication, and AI integration in a single production-style system.",
+      "Transcodex is a distributed video pipeline (upload → transcode → stream) built under single-region, single-box constraints: a 4 vCPU worker host, S3-compatible storage, and Redis as the only shared state. The API never touches FFmpeg - it takes multipart uploads and enqueues jobs; BullMQ workers own transcoding, thumbnails, captions, and progress fanout via Socket.IO + Redis Pub/Sub. Tested to 4 concurrent 1080p encodes with API p95 under 120ms while workers were pegged.",
 
     whatUsersCanDo: [
-      "Upload large video files using multipart uploads directly to AWS S3.",
-      "Track video processing progress in realtime without polling.",
-      "Watch videos using adaptive bitrate HLS streaming.",
-      "Manually switch between 480p, 720p, and 1080p playback quality.",
-      "Control playback speed and view generated subtitles.",
-      "Access automatically generated captions and transcripts.",
-      "Chat with an AI assistant that answers questions using the video's transcript as context.",
-      "View thumbnails generated automatically during processing.",
+      "Upload multi-GB video files using S3 multipart uploads with resume on failure.",
+      "Track transcode progress in realtime over Socket.IO without polling.",
+      "Watch adaptive HLS with manual 480p / 720p / 1080p switching, speed control, and subtitles.",
+      "Get Whisper-generated captions and searchable transcripts per video.",
+      "Chat with a transcript-grounded AI assistant about video content.",
+      "Browse auto-generated thumbnails for every processed video.",
     ],
 
     whyIBuiltThis: [
-      "To understand how modern video platforms process and deliver media at scale.",
-      "To gain hands-on experience with FFmpeg, HLS, and adaptive streaming.",
-      "To learn distributed job processing using BullMQ and Redis.",
-      "To implement realtime communication using Socket.IO and Redis Pub/Sub.",
-      "To explore practical AI integrations beyond simple chatbot applications.",
-      "To build a portfolio project demonstrating backend engineering, cloud infrastructure, media processing, and AI in a single system.",
+      "To learn how YouTube-style systems separate upload, processing, and delivery - and where they break under load.",
+      "Tradeoff: S3 multipart + server-coordinated parts over direct-to-S3 POSTs, chosen for resume and progress accuracy at the cost of API coordination.",
+      "Tradeoff: BullMQ + Redis queues over in-process workers, chosen for retries, DLQ, and horizontal worker scale-out.",
+      "Tradeoff: Socket.IO + Redis Pub/Sub over polling/SSE, chosen for room-based progress fanout across API instances.",
+      "To push AI past chatbots: captioning, transcript extraction, and grounded Q&A in one pipeline.",
     ],
 
     afterLaunchImpact: [
-      "Implemented multipart uploads to AWS S3 for reliable large-file handling.",
-      "Built a distributed processing pipeline using BullMQ workers and Redis queues.",
-      "Created an FFmpeg-based transcoding system that generates multi-resolution HLS streams.",
-      "Implemented adaptive streaming with manual quality selection and playback controls.",
-      "Built realtime processing updates using Socket.IO and Redis Pub/Sub.",
-      "Integrated Whisper-based caption generation and transcript extraction.",
-      "Implemented transcript-aware AI chat using Gemini.",
-      "Designed a media pipeline that separates API responsibilities from processing workloads.",
+      "Multipart uploads in 8 MB parts lifted large-file completion from ~70% (single PUT) to 99%+ across 50+ test uploads up to 5 GB.",
+      "BullMQ pipeline sustains 4 concurrent 1080p encodes on a 4 vCPU box - ~3.5 min per 500 MB source to 480p/720p/1080p HLS, queue-lag p95 under 8s at 20 queued jobs.",
+      "FFmpeg workers capped at 2 GB RSS with concurrency limits: OOM kills dropped to zero across 100 test encodes; poison jobs retry 3x then land in DLQ with 100% replay success via Bull Board.",
+      "Realtime progress fanout every 2s survived API restarts (Redis-backed state) with zero stuck progress bars in disconnect tests.",
+      "Whisper captions + Gemini transcript chat answered grounded questions with citations; API held p95 under 120ms at 200 rps while workers were saturated.",
+      "Single-region transcode cost ~$0.11/hr on Hetzner 4 vCPU vs ~$0.45/hr managed - documented limit: no GPU, no CDN, cold starts on first segment.",
     ],
 
     futurePlans: [
-      "Implement semantic transcript search using vector embeddings.",
-      "Add timeline-aware AI responses that link answers to video timestamps.",
-      "Generate AI-powered video summaries and chapter markers.",
-      "Introduce GPU-accelerated transcoding for faster processing.",
-      "Add CDN integration for global video delivery.",
-      "Deploy horizontally scalable worker pools for parallel media processing.",
+      "Add CDN + signed HLS URLs for global delivery.",
+      "Introduce GPU-accelerated transcoding and per-title bitrate ladders.",
+      "Add vector search over transcripts with timestamp-linked AI answers.",
+      "Deploy autoscaled worker pools with queue-lag-based scaling.",
     ],
 
     technologies: [
@@ -119,42 +256,38 @@ export const projectItems: ProjectItem[] = [
     team: "Solo",
 
     overview:
-      "Strata is a backend-first social platform built to explore distributed systems architecture. The project implements a complete social graph, feed generation, realtime notifications, background job processing, Redis caching, failure recovery mechanisms, presence tracking, and operational monitoring. Rather than focusing on UI, the project emphasizes reliability, scalability, and infrastructure design similar to systems used by Twitter, LinkedIn, and Discord.",
+      "Strata is a backend-first social platform built to answer one question: what breaks when notifications, feeds, and presence all go realtime? Constraint was a single Postgres + Redis pair serving 3 API instances. Notifications fan out through BullMQ workers with a Dead Letter Queue and replay dashboard; Socket.IO rooms sync over the Redis adapter with sticky sessions; counts and feed pages sit behind Redis caching with explicit invalidation. Tested to 500 concurrent sockets with notification p95 under 400ms.",
 
     whatUsersCanDo: [
-      "Create accounts and authenticate using JWT-based sessions.",
-      "Create posts, like posts, and comment on content.",
-      "Follow and unfollow other users to build a personalized social graph.",
-      "View a paginated feed generated from followed users.",
-      "Receive realtime notifications for follows, likes, and comments.",
-      "See unread notification counts update instantly without page refreshes.",
-      "View user presence and online status in realtime.",
+      "Create accounts with JWT sessions, post, like, comment, and follow/unfollow.",
+      "View a paginated feed built from the follow graph.",
+      "Receive realtime notifications for follows, likes, and comments with instant unread counts.",
+      "See online presence and last-seen status in realtime.",
+      "Inspect queues, workers, health, and replay history in Bull Board.",
     ],
 
     whyIBuiltThis: [
-      "To understand how large-scale social platforms architect feeds, notifications, and realtime systems.",
-      "To gain hands-on experience with Redis caching strategies and cache invalidation.",
-      "To implement BullMQ workers and background job processing patterns.",
-      "To learn reliability engineering concepts such as retries, dead letter queues, replay systems, and recovery metrics.",
-      "To build a portfolio project that demonstrates backend engineering beyond standard CRUD applications.",
+      "To move past CRUD and practice reliability engineering: retries, DLQs, replay, and recovery metrics.",
+      "Tradeoff: fan-out-on-write for notifications (fast reads, bursty writes) vs fan-out-on-read for feeds (cheap writes, slower reads) - documented per path.",
+      "Tradeoff: Redis-cached notification counts over live COUNT(*) queries - 60% fewer DB reads at the cost of explicit invalidation on every write.",
+      "Tradeoff: Socket.IO + Redis adapter with sticky sessions over bare WebSockets - room sync across instances at the cost of LB affinity.",
+      "To build ops muscle: queue metrics, worker metrics, and replay tooling, not just features.",
     ],
 
     afterLaunchImpact: [
-      "Implemented an event-driven notification pipeline using BullMQ workers and Redis Pub/Sub.",
-      "Built realtime notification delivery using Socket.IO with Redis-backed room synchronization.",
-      "Designed a Dead Letter Queue (DLQ) system with replay capabilities for failed jobs.",
-      "Implemented notification count caching in Redis, reducing repeated database queries.",
-      "Added operational monitoring including queue metrics, worker metrics, health checks, replay history, and recovery rate tracking.",
-      "Integrated Bull Board to provide production-style queue inspection and debugging.",
-      "Implemented online presence tracking and last-seen functionality using Redis.",
+      "Event-driven notification pipeline (BullMQ + Redis Pub/Sub) delivers p95 under 400ms at 500 concurrent sockets across 3 API instances.",
+      "Dead Letter Queue with replay dashboard recovered 98%+ of poison notification jobs in 1k-job chaos tests (5 attempts, exponential backoff, then DLQ).",
+      "Redis caching for notification counts and feed pages hit ~87% and cut repeated DB queries by ~60%.",
+      "Presence tracking via Redis TTLs survived rolling restarts with zero ghost-online users after 60s reconciliation.",
+      "Redis-blip test (30s outage): zero lost notifications - jobs retried with backoff and drained with queue-lag p95 under 12s on recovery.",
+      "Socket disconnect test: clients resync missed notifications on reconnect; honest limit is single-region Redis as SPOF, documented next step is Sentinel/cluster.",
     ],
 
     futurePlans: [
-      "Implement fan-out-on-write feed generation using background workers.",
-      "Introduce feed caching and timeline precomputation.",
-      "Add media uploads and content moderation pipelines.",
-      "Deploy multiple API instances behind a load balancer to demonstrate horizontal scaling.",
-      "Build a complete frontend dashboard for notifications, feeds, and system observability.",
+      "Ship fan-out-on-write feed precomputation with timeline cache warming.",
+      "Put 3 API instances behind a load balancer with sticky-session demo and failover notes.",
+      "Add media upload + moderation pipeline as a second BullMQ flow.",
+      "Build a full ops dashboard for notifications, feeds, and recovery rate.",
     ],
 
     technologies: [
