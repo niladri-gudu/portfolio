@@ -9,7 +9,7 @@ export default function GithubGraph() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <section className="space-y-6 mb-10">
+    <section className="space-y-6">
       <Reveal>
         <SectionHeading>GitHub Activity ({currentYear})</SectionHeading>
       </Reveal>

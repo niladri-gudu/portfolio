@@ -12,7 +12,7 @@ export default function HeroSection() {
   const isAvailable = personalData.availability.isAvailable;
 
   return (
-    <section className="space-y-8 px-2 pb-6">
+    <section className="space-y-6 px-2">
       <main className="flex flex-col-reverse md:flex-row md:items-end justify-between gap-8">
         <div className="flex flex-col gap-6">
           <Reveal delay={0.03}>
@@ -124,7 +124,7 @@ export default function HeroSection() {
                 aria-hidden
                 className="pointer-events-none absolute -inset-1 rounded-full bg-accent-brand/25 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
               />
-              <div className="relative cursor-pointer w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden grayscale hover:grayscale-0 shadow-2xl ring-2 ring-transparent transition-all duration-500 group-hover:ring-accent-brand/40">
+              <div className="relative cursor-pointer w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden grayscale hover:grayscale-0 shadow-2xl ring-2 ring-transparent transition-all duration-500 group-hover:ring-accent-brand/40">
                 <Image
                   src={personalData.profile.image.src}
                   alt={personalData.profile.image.alt}
@@ -159,7 +159,7 @@ export default function HeroSection() {
       </Reveal>
 
       <Reveal delay={0.24} y={10}>
-        <div className="flex flex-wrap items-center gap-3 pt-1">
+        <div className="max-w-2xl flex flex-wrap items-center gap-3 pt-1">
           <Link
             href="/projects"
             prefetch

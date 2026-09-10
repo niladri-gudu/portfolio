@@ -117,7 +117,7 @@ export default function SpotifyCard({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group mb-10 relative p-4 mx-2 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30 flex flex-col gap-3 transition-all duration-300 ease-out hover:bg-neutral-100 dark:hover:bg-neutral-900/50 hover:-translate-y-px hover:shadow-sm dark:hover:shadow-neutral-950/40 hover:border-neutral-300 dark:hover:border-neutral-700"
+        className="group relative p-4 mx-2 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30 flex flex-col gap-3 transition-all duration-300 ease-out hover:bg-neutral-100 dark:hover:bg-neutral-900/50 hover:-translate-y-px hover:shadow-sm dark:hover:shadow-neutral-950/40 hover:border-neutral-300 dark:hover:border-neutral-700"
       >
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-4 min-w-0">

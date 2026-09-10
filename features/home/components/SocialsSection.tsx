@@ -27,7 +27,7 @@ const socialArrowClass =
 
 export default function SocialsSection() {
   return (
-    <div className="space-y-6 pb-8">
+    <div className="space-y-6">
       <Reveal>
         <SectionHeading>Connect with me</SectionHeading>
       </Reveal>

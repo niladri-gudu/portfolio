@@ -9,7 +9,6 @@ import WorkSection from "@/features/work/components/WorkSection";
 import ProjectsSection from "@/features/projects/components/ProjectsSection";
 
 import VisitorSection from "@/features/analytics/components/VisitorSection";
-import AboutSection from "@/features/home/components/AboutSection";
 
 import { buildPersonJsonLd, buildWebsiteJsonLd } from "@/shared/seo/builders";
 import { getCachedTrack } from "@/features/spotify/server";
@@ -27,14 +26,13 @@ export default async function HomePage() {
       <JsonLd data={personJsonLd} />
       <JsonLd data={websiteJsonLd} />
       <PageContainer>
-        <div className="space-y-4">
+        <div className="space-y-6">
           <HeroSection />
           <SpotifyCard initial={initialTrack} />
           <SocialsSection />
           <WorkSection />
           <ProjectsSection />
           <GithubGraph />
-          <AboutSection />
           <VisitorSection />
         </div>
       </PageContainer>
