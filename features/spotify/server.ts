@@ -2,7 +2,7 @@
  * Server-only Spotify cache orchestration.
  * Single token refresh per cycle, 1.5s time-box, fail-silent with stale cache.
  */
-import { prisma } from "@/lib/prisma";
+import { redis } from "./lib/redis";
 import {
   fetchNowPlaying,
   fetchRecentlyPlayed,
@@ -16,45 +16,13 @@ export const SPOTIFY_PROFILE_URL =
 /** Client time-box budget: never block the hero on Spotify. */
 export const SPOTIFY_REFRESH_TIMEOUT_MS = 1500;
 
-const CACHE_ID = "current";
-
-type SpotifyRow = {
-  isPlaying: boolean;
-  title: string;
-  artists: string;
-  albumArt: string;
-  url: string;
-  progressMs: number | null;
-  durationMs: number | null;
-  playedAt: Date | null;
-  stale: boolean;
-  fetchedAt: Date;
-};
-
-function toTrack(row: SpotifyRow | null, stale = false): CachedTrack | null {
-  if (!row || !row.title) return null;
-
-  return {
-    isPlaying: row.isPlaying,
-    title: row.title,
-    artists: row.artists,
-    albumArt: row.albumArt,
-    url: row.url,
-    ...(row.progressMs != null ? { progressMs: row.progressMs } : {}),
-    ...(row.durationMs != null ? { durationMs: row.durationMs } : {}),
-    ...(row.playedAt ? { playedAt: row.playedAt.toISOString() } : {}),
-    fetchedAt: row.fetchedAt.toISOString(),
-    ...(stale || row.stale ? { stale: true } : {}),
-  };
-}
+const CACHE_KEY = "spotify:current";
 
 /** Instant read: last known track, null when never cached. */
 export async function getCachedTrack(): Promise<CachedTrack | null> {
   try {
-    const row = await prisma.spotifyCache.findUnique({
-      where: { id: CACHE_ID },
-    });
-    return toTrack(row);
+    const track = await redis.get<CachedTrack>(CACHE_KEY);
+    return track;
   } catch {
     return null;
   }
@@ -64,32 +32,12 @@ async function persist(track: Omit<CachedTrack, "fetchedAt" | "stale"> & {
   playedAt?: string;
 }) {
   try {
-    await prisma.spotifyCache.upsert({
-      where: { id: CACHE_ID },
-      create: {
-        id: CACHE_ID,
-        isPlaying: track.isPlaying,
-        title: track.title,
-        artists: track.artists,
-        albumArt: track.albumArt,
-        url: track.url,
-        progressMs: track.progressMs ?? null,
-        durationMs: track.durationMs ?? null,
-        playedAt: track.playedAt ? new Date(track.playedAt) : null,
-        stale: false,
-      },
-      update: {
-        isPlaying: track.isPlaying,
-        title: track.title,
-        artists: track.artists,
-        albumArt: track.albumArt,
-        url: track.url,
-        progressMs: track.progressMs ?? null,
-        durationMs: track.durationMs ?? null,
-        playedAt: track.playedAt ? new Date(track.playedAt) : null,
-        stale: false,
-      },
-    });
+    const now = new Date().toISOString();
+    const toStore: CachedTrack = {
+      ...track,
+      fetchedAt: now,
+    };
+    await redis.set(CACHE_KEY, toStore, { ex: 86400 });
   } catch {
     // Cache write is best-effort; live data still returned.
   }

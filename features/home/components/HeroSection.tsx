@@ -54,7 +54,7 @@ export default function HeroSection() {
                       max-w-0 overflow-hidden whitespace-nowrap
                       opacity-0 -translate-x-0.5
                       transition-all duration-300 ease-out
-                      group-hover:max-w-[13.75rem] group-hover:opacity-100 group-hover:translate-x-0
+                      group-hover:max-w-55 group-hover:opacity-100 group-hover:translate-x-0
                       text-neutral-400 dark:text-neutral-500
                     "
                   >

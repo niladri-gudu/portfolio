@@ -14,7 +14,7 @@ import { timeAgo } from "@/features/spotify/format";
 /** Client time-box: never block the hero on Spotify. */
 const FETCH_TIMEOUT_MS = 1500;
 /** Background refresh cadence (server edge-caches for 45s). */
-const REFRESH_INTERVAL_MS = 45000;
+const REFRESH_INTERVAL_MS = 10000;
 /** A cached "live" flag older than this is shown as Last played. */
 const LIVE_FRESH_MS = 90_000;
 
@@ -69,7 +69,7 @@ export default function SpotifyCard({
   const { data } = useSWR<CachedTrack>(inView ? "/api/now-playing" : null, fetcher, {
     fallbackData: initial ?? undefined,
     refreshInterval: REFRESH_INTERVAL_MS,
-    revalidateOnFocus: false,
+    revalidateOnFocus: true,
     revalidateOnReconnect: true,
     keepPreviousData: true,
     errorRetryInterval: 30000,
