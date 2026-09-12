@@ -30,7 +30,7 @@ export const siteConfig = {
     twitter: "https://x.com/dev_niladri",
     linkedin: "https://www.linkedin.com/in/niladribihari-mohanta",
     resume:
-      "https://docs.google.com/document/d/1jvM2XtJfCdhjZDK8QFyrKr_3TkFdCVdkP0F7nG3DYd4/edit?usp=sharing",
+      "https://docs.google.com/document/d/1CHszP2WuvJBuTvP0JJbUsPZqkQne2fi8ecANTHqZW8Y/edit?usp=sharing",
   },
 } as const;
 
